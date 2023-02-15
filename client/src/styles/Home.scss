@@ -1,0 +1,228 @@
+@import './Scss-components/Colors.scss';
+@import './Scss-components/Mixin.scss';
+
+.All-section1{
+    
+    display:flex;
+    justify-content: center;
+    
+    
+    .section1-1{
+        padding-top:140px;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        width: 30%;
+        .Mot-fonda{
+            h1{
+                color:$Text-color2;
+                font-size: $Font-text;
+            }
+            p{
+                color:white;
+                font-size: $Font-text;
+                width:70% ;
+                text-align: justify;
+                font-weight: 700;
+                span{
+                    color: $Text-color5;
+                }
+            }
+            .button-s1{
+                width:25%;
+                @include button-yellow2;
+               
+            }
+        }
+        
+            
+            
+
+        
+
+    }
+    .section1-2{
+        padding-top:160px;
+        padding-bottom: 100px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        width: 25%;
+        
+        .card-titre{
+            display: flex;
+            align-items: center;
+            justify-content:space-around;
+            background-color: $Text-color2;
+            border-radius: 20px 20px 0px 0px;
+            
+            h1{
+                color:white;
+                font-size: $Font-titrebloc;
+                
+            }
+            i{
+                color:white;
+                font-size: $Font-titrebloc;
+            }
+        }
+        .bloc-bac-compteur{
+            background-color: $Text-color1;
+            border-radius: 0 0 20px 20px;
+        .compteur{
+            display: flex;
+            align-items:center;
+            justify-content:center;
+            img{
+                margin-top:1em;
+            }
+            p{
+                color : $Text-color3;
+                font-size: 4rem;
+                font-weight: 700;
+                margin-top: 0.2em;
+                margin-left: 0.5em;
+                margin-bottom: 0;
+                border-bottom: 1px solid $Text-color2;
+            }
+        }
+        .date{
+                font-weight: 700;
+                color: $Text-color2;
+                margin-right: -6em;
+                margin-top: -0.6em;
+        }
+        .retour{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            color:$Text-color6;
+            border-top: 1px solid $Text-color6 ;
+            margin-top: 1em;
+            p{
+                margin-left:2em ;
+                margin-top: 0.3em;
+                margin-bottom: 0.3em;
+               
+            }
+            .chevron{
+                margin-right: 2em;
+            }
+        }
+    }
+}
+}
+.All-section2{
+    margin-top: 2em;
+    margin-bottom: 2em;
+    margin-left: 10em;
+    margin-right: 10em;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    
+.bloc-img-text{
+    display: flex;
+    flex-direction: column;
+    .bloc-img{
+           
+        text-align: center;
+        width: 50%;
+       
+    }
+    .bloc-etoile-text{
+        display: flex;
+        .bloc-text{
+            width: 70%;
+
+            h1{
+                color: $Text-color2;
+                font-size: $Font-titre;
+            }
+            .text-1{
+                color : $Text-color1;
+                font-weight: 400;
+                font-size: $Font-text;
+                span{
+                    font-weight: 600;
+                }
+            }
+        .bloc-text2-btn{
+            
+            display: flex;
+            align-items: center;
+            .text-2{
+                color : $Text-color2;
+                font-weight: 400;
+                font-size: $Font-soustext;
+                width: 87%;
+            }
+            .bouton-s2{
+                
+               height: 100%;
+                @include button-yellow2;
+                padding-left: 1em;
+                padding-right: 1em;
+            }
+        }   
+            
+            
+        }
+    }
+}
+.text-3{
+    margin-left: 10em;
+    h1{
+        color : $Text-color2;
+    }
+    p{
+        column-count:2;
+    }
+}
+}
+.All-section3{
+    padding-top: 4em;
+    padding-bottom:4em;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    
+        .bloc-temoin{
+            display: flex;
+            flex-direction: column;
+            width: 60%;
+   
+            img{
+                width: 100px;
+            } 
+            h2{
+                color: #fff;
+                font-size: $Font-titre
+            }   
+            p{
+                color: #fff;
+                font-size: $Font-text
+            }    
+        }
+        .bloc-img{
+            display: flex;
+            flex-flow: row wrap;
+            justify-content:center;
+            margin-top: 2em;
+            img{
+                margin: 1em;
+                margin-right: 3em;
+            }
+        }
+        .bouton-s3{
+            
+            a{
+                
+                color : $Text-color5;
+                text-decoration: none;
+                font-weight: bold;
+            }
+        }
+}

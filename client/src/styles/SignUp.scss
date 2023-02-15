@@ -1,0 +1,88 @@
+@import './Scss-components/Colors.scss';
+@import './Scss-components/Mixin.scss';
+
+.All-page{
+    padding-top: 140px;
+    margin-left: 30em;
+    margin-right: 30em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .Form-head{
+        display: flex;
+        justify-content: space-between; 
+        h1{ 
+            color:$Text-color2;
+        }   
+        .head-button{
+            display: flex;
+            align-items: center;
+            p{
+                margin-right: 5em;
+                color:$Text-color2
+            }
+        }
+    }
+    .Form-desc{
+            text-align:justify;
+            font-weight: 600;
+            .desc1{
+                color:$Text-color6;
+
+            }
+            .desc2{
+                color:$Text-color4;
+            }
+        
+    }
+    .Titre-section{
+        display: flex;
+        flex-direction: column;
+        h2{
+                color:$Text-color2;
+        }
+    }
+    .All-form{
+
+        span{
+            color:red;
+        }
+
+    .identifiants{
+        display: flex;
+        flex-direction: row;
+        @include Input
+    }
+    .coordonnées{
+        display: flex;
+        flex-direction: column;
+        .All-input{
+            display:flex;
+            flex-direction: row;
+            @include Input;
+
+        }
+    }
+    }
+    .asterisque{
+        color: $Text-color6;
+        margin-bottom:1em;
+        font-weight: 600;
+    }
+    .Form-button-bottom{
+        display: flex;
+        justify-content:center;
+        margin-bottom: 2em;
+        margin-top: 2em;
+        #reset{
+            @include button-blue;
+            height: 50px;
+        }
+        #submit{
+            @include button-yellow2;
+            width: 170px;
+            height: 50px;
+            margin-left:5em;
+        }
+    }
+    }

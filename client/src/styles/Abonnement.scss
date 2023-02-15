@@ -1,0 +1,35 @@
+@import './Scss-components/Colors.scss';
+@import './Scss-components/Mixin.scss';
+
+
+.box{
+    padding-top:140px;
+    margin-left: 30em;
+    margin-right: 30em;
+    height:78vh;
+    h1{
+        margin-left: 0.5em;
+        color:$Text-color2;
+        font-family: $Font-fam2;
+    }
+}
+.All-box{
+    
+    display:flex;
+    align-items: center;
+    @include Blocprice;
+
+    
+    .Button-box{
+        width:280px;
+        height: 50px;
+        @include button-yellow2;
+        p{  
+            margin-top: 0.3em;
+            font-size: 24px;
+        }
+
+        
+    }
+
+}

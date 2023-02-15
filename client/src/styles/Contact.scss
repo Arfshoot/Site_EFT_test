@@ -1,0 +1,36 @@
+@import './Scss-components/Colors.scss';
+@import './Scss-components/Mixin.scss';
+
+
+.All-contact{
+    @include Input;
+    padding-top: 140px;
+    margin-right: 35em;
+    margin-left: 35em;
+    h1{
+        
+        margin-bottom:2em;
+        color:$Text-color2;
+    }
+    .desc2{
+        color:$Text-color2;
+        margin-bottom:4em;
+    }
+    .Captcha{
+        margin-top:2em;
+        margin-bottom:2em;
+    }
+    #message{
+        width:600px;
+        height: 200px;
+    }
+    #submit{
+        margin-bottom: 3em;
+        @include button-yellow2;
+        width: 90px;
+        height: 30px;
+    }
+    
+       
+    
+}

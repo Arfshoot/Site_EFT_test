@@ -1,0 +1,37 @@
+@import './Scss-components/Colors.scss';
+@import './Scss-components/Mixin.scss';
+
+
+
+.All-blog{
+    padding-top:140px;
+ 
+.Blog-titre{    
+    color: $Text-color2;
+    font-weight:600;
+    font-family: $Font-fam2;  
+    
+}
+.Blog-Bloc{
+    height: 100vh;
+    width: 30%;
+    h2{
+        color: $Text-color2;
+        font-size: $Font-titrebloc;
+        border: 2px solid $Back-color4; 
+        border-radius:30px 30px 0 0 ;
+        border-bottom: none;
+        margin-bottom: 0;
+        padding: 1em;
+    }
+    p{  
+        margin-top: 0;
+        padding: 1em;
+        text-align: justify;
+        border: 2px solid $Back-color4;
+        border-radius: 0 0 30px 30px;
+    }
+}
+    
+
+}

@@ -1,0 +1,41 @@
+@import './Scss-components/Colors.scss';
+
+
+.all-page{
+    margin-right: 10em;
+    margin-left: 10em;
+    height: 100vh;
+}
+.titre-page{
+    padding-top: 140px;
+    color: $Text-color2;
+    margin-bottom: 3em;
+}
+.bloc{
+    width: 25%;
+    text-align:justify;
+    h2{
+        color:white;
+        background-color:$Back-color3;
+        padding:1em;
+        border-radius:13px 13px 0px 0px;
+        font-size: $Font-titrebloc;
+        margin-bottom: 0;
+    }
+    .desc-bloc{
+        background-color:$Back-color1;
+        border-radius: 0px 0px 13px 13px;
+        padding:1em;
+        margin-bottom: 3em;
+        
+    .date{
+        color:$Text-color2;
+        margin-top: 0;
+        
+    }
+    .desc{
+        color:white;
+        
+    }
+    }
+}
