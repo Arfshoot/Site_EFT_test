@@ -1,0 +1,41 @@
+@import './components/Colors.scss';
+@import './components/Mixin.scss';
+
+
+.All-Footer{
+    
+   width: 100%;
+   .Footer-P1{
+    display: flex;
+    align-items: center;
+    background-color: $Back-color3;
+    height: 38px;
+    .P1-link{
+        color: white;
+        text-decoration: none;
+    }
+   }
+   .Footer-P2{
+    background-color: $Back-color2;
+    display: flex;
+    align-items: center;
+    padding-top: 0.2em;
+    .P2-LinkLogo{
+        display:flex;
+        
+    p{
+        margin-right: 0;
+        color:white;
+    }
+    a{
+        margin-left: 0.5em;
+    }
+
+    }
+    .P2-Link{
+        a{
+            margin-left:2em;
+        }
+    }
+   }
+}

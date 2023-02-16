@@ -1,9 +1,9 @@
-@import './Scss-components/Colors.scss';
-@import './Scss-components/Mixin.scss';
+@import './components/Colors.scss';
+@import './components/Mixin.scss';
 
 
 .All-contact{
-    @include Input;
+    
     padding-top: 140px;
     margin-right: 35em;
     margin-left: 35em;

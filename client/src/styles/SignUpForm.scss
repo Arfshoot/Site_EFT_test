@@ -1,0 +1,224 @@
+@import './components/Colors.scss';
+@import './components/Mixin.scss';
+
+.All-page{
+    
+    padding-top: 40px;
+    margin-left: 30em;
+    margin-right: 30em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .Form-head{
+        display: flex;
+        margin: 0;
+        padding-bottom: 2em;
+        
+       .form-title{ 
+            width: 60%;
+            margin: 0;
+            color:$Text-color2;
+            margin-left: 0.3em;
+        }   
+        .head-button{
+            display: flex;
+            margin: 0;
+            width: 40%;
+            a{
+                margin-right:0;
+            }
+            
+            p{
+                
+                color:$Text-color2;
+                
+            }
+        }
+    }
+    .Form-desc{
+        font-size: $Font-text;
+            text-align:justify;
+            .desc-grey{
+                color:$Text-color6;
+                
+            }
+            .desc-Weight{
+                font-weight:bold;
+                
+            }
+            .desc-red{
+                color:$Text-color4;
+                font-weight:bold;
+                
+            }
+        p{
+            margin-left: 0.5em;
+        }
+    }
+    .Titre-section{
+        h2{
+                color:$Text-color2;
+                margin-left: 0.3em;
+        }
+    }
+    .All-form{
+        margin: 0;
+        width: 100%;
+        .Titre-section{
+            
+                    color:$Text-color2;
+                    margin-left: 0;
+                    margin-top: 1em;
+            
+        }
+        .identifiants{
+            display: flex;
+            flex-direction: row;
+            
+            .input-error{
+                display: flex;
+                flex-direction: column;
+                margin: 0.5em;
+                width: 100%;
+                p{
+                    font-size:14px;
+                    color:$Text-color2;
+                }
+                .input{
+                    margin: 0;
+                }
+                .error{
+                    color:$Text-color4;
+                    margin-left: 0;
+                    font-weight: 700;
+                    width: 100%;
+                    margin:0.5em;
+                }
+            }
+            .input{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                width: 100%;
+                margin:0.5em;
+                label{
+                    margin-bottom: 0.2em;
+                    margin-left: 0;
+                    
+                }
+                input{
+                    border: 2px solid $Text-color6;
+                    padding: 0.5em;
+                    border-radius: 5px;
+                    margin-right: 1.5em;
+                    margin-bottom: 1.5em;
+                    margin: 0;
+        
+                }
+                select{
+                    border: 1px solid $Text-color6;
+                    padding: 0.5em;
+                    border-radius: 5px;
+                    margin-right: 1.5em;
+                    margin-bottom: 1.5em;  
+                }
+            }
+        }
+        .coordonnées{
+            width: 100%;
+            .All-input{
+                display:flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                
+                .input{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    width: 100%;
+                    margin:0.5em;
+                    
+                    label{
+                        margin-bottom: 0.2em;
+                        margin-left: 0;
+                        color:black;
+                    }
+                    input{
+                        border: 2px solid $Text-color6;
+                        padding: 0.5em;
+                        border-radius: 5px;
+                        margin-right: 1.5em;
+                        margin-bottom: 1.5em;
+                        margin: 0;
+                        
+            
+                    }
+                    select{
+                        border: 1px solid $Text-color6;
+                        padding: 0.5em;
+                        border-radius: 5px;
+                        margin-right: 1.5em;
+                        margin-bottom: 1.5em;  
+                        margin: 0;
+                    }
+                }
+            }
+        
+    }
+
+        span{
+            color:red;
+        }
+    }
+
+    .asterisque{
+        color: $Text-color6;
+        margin-bottom:1em;
+        font-weight: 600;
+    }
+   .Bouton-Condition{
+        width: 32%;
+        border:1px solid $Text-color6;
+        padding: 1em;
+        margin-left: 0.5em;
+        border-radius: 10px 10px 10px 10px;
+        input{
+            margin-right: 1em;
+
+        }
+        label{
+           color:$Text-color2;
+            a{
+                text-decoration: none;
+                font-weight: bold;
+                cursor: hand;
+                padding-left: 0.2em;
+                
+            }
+        }
+        .terms{
+            color:$Text-color4;
+            font-weight: bold;
+            padding: 0.2em;
+            font-size:16px;
+        }
+    }
+    .Form-button-bottom{
+        display: flex;
+        justify-content:center;
+        margin-bottom: 2em;
+        margin-top: 2em;
+        
+        #reset{
+            @include button-dark;
+            height: 50px;
+        }
+        #submit{
+            @include button-yellow2;
+            width: 170px;
+            height: 50px;
+            margin-left: 0.5em;
+            
+        }
+    }
+    }

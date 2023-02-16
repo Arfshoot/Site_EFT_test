@@ -1,9 +1,10 @@
 import React from 'react';
 
+
 const Home = () => {
     return (
         <div>
-            coucou de home
+            coucou de Home
         </div>
     );
 };

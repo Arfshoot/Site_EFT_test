@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import Log from "../Log";
 import { UidContext } from "../components/AppContext";
 
 // permet de check le user si connecter (via app.js) et si ca l'est change la redirection du user 
@@ -14,9 +13,6 @@ const Profil = () => {
         <div>UPDATE PROFIL</div>
       ) : (
         <div className="log-container">
-          <Log signin={false} signup={true} />
-          <div className="img-container">
-          </div>
         </div>
       )}
     </div>

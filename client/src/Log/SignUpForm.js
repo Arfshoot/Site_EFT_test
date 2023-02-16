@@ -1,11 +1,14 @@
 
 import React, { useState } from "react";
 import axios from "axios";
-import SignInForm from "./SignInForm";
+
 
 // js et scss
-import './../styles/SignUp.scss'
+import './../styles/SignUpForm.scss'
+import { NavLink, Switch } from "react-router-dom";
 
+// images
+import Connexion from './../images/Connexion-SignUP.png'
 
 
 const SignUpForm = () => {
@@ -96,81 +99,102 @@ const SignUpForm = () => {
       <div className="All-page">
         
         <div className='Form-head'>
-          <h1>Création de votre compte</h1>
+          <div className='form-title' >
+            <h1 >Création de votre compte</h1>
+          </div>
           <div className='head-button'>
-          <p>Déja inscrit ?</p>
+            <p>Déja inscrit ?</p>
+            <NavLink to='/login'><img src={Connexion} alt='connexion'/></NavLink>
           </div>
-          </div>
-        <div className="Titre-section" >
-        <div className='Form-Catégorie'> 
-          <h2>Identifiant</h2>
         </div>
-          <div className='All-form'>
+          <div className='Form-desc'>
+            <p className="desc-grey">Compte tenu de la qualité de nos signaux, nous sommes confrontés à de nombreuses tentatives de fraudes; en conséquence, tout enregistrement douteux sera systématiquement déconnecté; il appartiendra au trader de fournir les preuves de son identité et de sa localisation.</p>
+            <br/>
+            <br/>
+            <p >Si vous n'avez pas encore de compte Efficient Trading, vous avez la possibilité d'en créer un <span className="desc-Weight">en quelques minutes.</span>
+            Les nouveaux adhérents bénéficient <span className="desc-Weight">d'une offre de bienvenue : deux jours d'accès complet aux différentes salles de marchés.</span>
+            <br/>
+            <br/>
+            La création d'un compte <span className="desc-red">vous engage à effectuer un essai dans l’une des salles de trading disponibles.</span>
+            <br/>
+            <br/>
+            <span className="desc-grey">Note : Vega-Traders n'autorise la création que d'un seul compte par foyer.</span></p>
+          <div>
           {formSubmit ? (
-        <>
-          <SignInForm />
-          <span></span>
-          <h4 className="success">
-            Enregistrement réussi, veuillez-vous connecter
-          </h4>
-        </>
+        
+          window.location = "/login"
+        
       ) : (
-              <form method='get' action="" onSubmit={handleRegister}>
+              <form className='All-form'  method='get' action="" onSubmit={handleRegister}>
+              <div className="Titre-section" >
+                <h2 >Identifiant</h2>
+              </div>
                 <div className='identifiants'>
                     {/*Email*/}
-                  <div className='input'>
-                    <label htmlFor="Email">Adresse mail<span>*</span></label>
-                    <input type='email'id='Email' onChange = {(e) => setEmail(e.target.value)}
-                    value={email} required/>
-                  </div>
-                  <div className='email error'/>
-                  {/*password*/}
-                  <div className='input'> 
-                    <label htmlFor='Mot de passe'>Mot de passe<span>*</span></label>
-                    <input type="password" placeholder='************' id='Mot de passe' onChange = {(e) => setPassword(e.target.value)}
-                    value={password} required />
-                  </div>
-                  <div className='password error'/>
-                  {/*Confimation password*/}
-                  <div className='input'> 
-                    <label htmlFor='Confimation mot de passe'>Confirmation du mot de passe<span>*</span></label>
-                    <input type="password" placeholder='************' id='Confimation mot de passe' onChange = {(e) => setPasswordConfirmation(e.target.value)}
-                    value={passwordConfirmation} required />
-                  </div>
-                  <div className='passwordconfirmation error'/>
-
+                    <div className='input-error'>
+                      <div className='input'>
+                        <label htmlFor="Email">Adresse mail<span>*</span></label>
+                        <input type='email'id='Email' onChange = {(e) => setEmail(e.target.value)}
+                        value={email} required/>
+                      </div>
+                      <div className='email error'></div>
+                      <p>Nous vous remercions d'utiliser en priorité une adresse gmail ou hotmail pour éviter les spams.</p>
+                    </div>
+                    {/*password*/}
+                    <div className='input-error'>
+                    <div className='input'> 
+                      <label htmlFor='Mot de passe'>Mot de passe<span>*</span></label>
+                      <input type="password" placeholder='************' id='Mot de passe' onChange = {(e) => setPassword(e.target.value)}
+                      value={password} required />
+                    </div>
+                    <div className='password error'></div>
+                    </div>
+                    <div className='input-error'>
+                    {/*Confimation password*/}
+                    <div className='input'> 
+                      <label htmlFor='Confimation mot de passe'>Confirmation du mot de passe<span>*</span></label>
+                      <input type="password" placeholder='************' id='Confimation mot de passe' onChange = {(e) => setPasswordConfirmation(e.target.value)}
+                      value={passwordConfirmation} required />
+                    </div>
+                    <div className='passwordconfirmation error'></div>
                 </div>
-                <p>Nous vous remercions d'utiliser en priorité une adresse gmail ou hotmail pour éviter les spams.</p>
-                <div className='coordonnées ,Titre-section'> 
+                </div>
+
+                
+
+                <div className='coordonnées Titre-section'> 
                   <h2>Coordonnées</h2>
                   <div className='All-input'>
 
                     {/*Nom*/}
-                    <div className='input'> 
-                    <label htmlFor='Nom'>Nom<span>*</span></label>
-                    <input type='text' placeholder='Dupond' id='Nom' required 
-                    onChange = {(e) => setlastName(e.target.value)}
-                    value={lastName} />
-                    </div>
+                    
+                      <div className='input'> 
+                      <label htmlFor='Nom'>Nom<span>*</span></label>
+                      <input type='text' placeholder='Dupond' id='Nom' required 
+                      onChange = {(e) => setlastName(e.target.value)}
+                      value={lastName} />
+                      </div>
 
-                    {/*prénom*/}
-                    <div className='input'> 
-                    <label htmlFor='Prénom'>Prénom<span>*</span></label>
-                    <input type="text" placeholder='Michel' id='Prénom' required 
-                    onChange = {(e) => setfirstName(e.target.value)}
-                    value={firstName}></input>
-                    </div>
+                      {/*prénom*/}
+                      <div className='input'> 
+                      <label htmlFor='Prénom'>Prénom<span>*</span></label>
+                      <input type="text" placeholder='Michel' id='Prénom' required 
+                      onChange = {(e) => setfirstName(e.target.value)}
+                      value={firstName}></input>
+                      </div>
 
-                    {/*Deuxieme prénom*/}
-                    <div className='input'> 
-                    <label htmlFor='DeuxièmePrénom'>Deuxième Prénom<span>*</span></label>
-                    <input type="text" placeholder='Paul' id='DeuxièmePrénom' required 
-                    onChange = {(e) => setsecondName(e.target.value)}
-                    value={secondName}></input>
+                      {/*Deuxieme prénom*/}
+                      <div className='input'> 
+                      <label htmlFor='DeuxièmePrénom'>Deuxième Prénom<span>*</span></label>
+                      <input type="text" placeholder='Paul' id='DeuxièmePrénom' required 
+                      onChange = {(e) => setsecondName(e.target.value)}
+                      value={secondName}></input>
+                      </div>
                     </div>
-                  </div>
+                  
 
                     {/*address*/}
+
                   <div className='All-input'>
                     <div className='input'> 
                       <label htmlFor='Adresse'>Adresse<span>*</span></label>
@@ -333,17 +357,17 @@ const SignUpForm = () => {
                     <div className='terms error'></div>
                 </div>
                 <div className='Form-button-bottom'> 
-                  <div> 
+                  
                     {/*Bouton reset*/}
-                    <label htmlFor='reset'></label>
+                    
                     <input type='reset' placeholder="Reset" id='reset' value="Réinitialiser les données"/>
-                    <input type='submit' placeholder='Enregistrer' id='enregistrer' value='Enregistrer'/>
-                  </div>
-                  <div>
-                  </div>
+                    <input type='submit' placeholder='Enregistrer' id='submit' value='Enregistrer'/>
+                  
                 </div>
               </form>
+              
               )}
+              
           </div>
 
       </div>

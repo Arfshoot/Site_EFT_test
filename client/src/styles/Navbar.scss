@@ -1,0 +1,62 @@
+@import './components/Colors.scss';
+@import './components/Mixin.scss';
+
+.nav-container{
+     background-color:$Back-color1;
+     display: flex;
+     .btn-salle{
+        @include button-yellow2
+     }
+     .logo{
+        padding:0.3em;
+     }
+     //partie css quand connecté
+     .Nav-log {
+        width: 100%;
+        ul{
+            display: flex;
+            justify-content:space-between;
+            .Nav-Log1 {
+                width: 60%;
+                display:flex;
+                align-items: center;
+                justify-content:space-evenly;
+                list-style-type: none;
+                a{
+                    color: white;
+                    text-decoration: none;
+                    font-size: $Font-cta;
+                    font-weight: 700;
+                }  
+            }
+            .Nav-Log2{
+                width: 40%;
+                display:flex;
+                align-items: center;
+                justify-content:space-evenly;
+                list-style-type: none;
+                .img-padd{
+                    padding-top: 0.3em;
+                }
+                h5{
+                    align-items: center;
+                    .pnj {
+                        height: 20px;
+                        padding-right:1em;
+                        margin-bottom: -0.2em 
+                    }
+                }
+                .Pseudo{
+                    @include button-yellow;
+                    font-weight: 700;
+                }
+                a{
+                    color: white;
+                    text-decoration: none;
+                }
+            }
+        }
+     }
+     // Fin de partie placement connecté
+   
+}

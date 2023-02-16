@@ -1,0 +1,67 @@
+@import './components/Colors.scss';
+@import './components/Mixin.scss';
+
+
+.All-page-form{
+    background-image: url('./../images/Fond-Connexion.png');
+    height: 100vh;
+    form{
+
+
+        margin: 0 auto; ;
+        padding-top: 10em;
+        width: 500px;
+
+        
+        .title-connexion{
+            padding:1em;
+            background-color:$Back-color3;
+            color:white;
+            font-weight: 700;
+            font-size: $Font-titrebloc;
+            border-radius: 20px 20px 0px 0px;
+        }
+        .placement-connexion{
+            display: flex;
+            flex-flow: column nowrap;
+            padding-top: 2em;
+            background-color: $Back-color1;
+            border-radius: 0px 0px 20px 20px;
+            .error{
+                width: 90%;
+                color:$Text-color4;
+                font-weight: 700;
+
+            }
+            label{
+                width: 90%;
+                color:$Text-color7;
+                padding-bottom: 0.2em;
+            }
+            input{
+                width: 90%;
+                border-radius: 10px  10px  10px  10px;
+                height:45px;
+                font-size: 16px;
+            }
+            .forgot-register{
+                width: 90%;
+                color:$Text-color2;
+                padding-top:0.5em;
+            }
+        #btn-connexion{
+            @include button-yellow2;
+            cursor:pointer;
+        }
+        .note{
+            width:90% ;
+            padding-top: 1em;
+            padding-bottom:1em;
+            color:$Text-color7;
+        }
+           
+        }
+
+
+    }
+}
