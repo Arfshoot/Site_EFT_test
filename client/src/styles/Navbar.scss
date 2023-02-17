@@ -4,6 +4,8 @@
 .nav-container{
      background-color:$Back-color1;
      display: flex;
+     position: fixed;
+     width: 100%;
      .btn-salle{
         @include button-yellow2
      }
@@ -54,8 +56,11 @@
                     color: white;
                     text-decoration: none;
                 }
+                
             }
+            
         }
+
      }
      // Fin de partie placement connecté
    

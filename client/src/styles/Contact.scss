@@ -9,26 +9,62 @@
     margin-left: 35em;
     h1{
         
-        margin-bottom:2em;
+        margin-bottom:1em;
         color:$Text-color2;
     }
     .desc2{
         color:$Text-color2;
         margin-bottom:4em;
     }
-    .Captcha{
-        margin-top:2em;
-        margin-bottom:2em;
+
+    .input{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        margin:0.5em;
+        label{
+            margin-bottom: 0.4em;
+            margin-left: 0;
+
+            
+        }
+        input{
+            border: 2px solid $Text-color6;
+            padding: 0.5em;
+            border-radius: 5px;
+            margin-right: 1.5em;
+            margin-bottom: 1.5em;
+            margin: 0;
+            width: 50%;
+
+        }
+        select{
+            border: 2px solid $Text-color6;
+            padding: 0.5em;
+            border-radius: 5px;
+            margin-right: 1.5em;
+            margin-bottom: 1.5em; 
+            margin: 0; 
+            width: 52.2%;
+        }
     }
     #message{
         width:600px;
         height: 200px;
+        margin-left: 0;
+        border: 2px solid $Text-color6;
+        padding: 0.5em;
+        border-radius: 5px;
     }
     #submit{
         margin-bottom: 3em;
         @include button-yellow2;
-        width: 90px;
-        height: 30px;
+    
+    }
+    #reset{
+        @include button-dark
+        
     }
     
        

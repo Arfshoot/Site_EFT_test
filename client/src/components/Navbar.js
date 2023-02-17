@@ -5,14 +5,12 @@ import { UidContext } from './AppContext';
 // import js scss
 import './../styles/Navbar.scss'
 import Logout from '../Log/Logout';
-import SignInForm from '../Log/SignInForm';
-import SignUpForm from '../Log/SignUpForm';
+
 
 // import images
 
 import Logo from './../images/Logo.png'
 import Connexion from './../images/Connexion.png'
-import Deconnexion from './../images/Deconnexion.png'
 import Inscription from './../images/Inscription.png'
 import PNJ from './../images/pnj-profil.png'
 import langue from './../images/langue.png'
@@ -50,8 +48,8 @@ const Navbar = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink exact to='/'>
-                            <a href='#'>Contact</a>
+                        <NavLink exact to='/contact'>
+                            Contact
                         </NavLink>
                     </li>
                     </div>
@@ -64,7 +62,7 @@ const Navbar = () => {
                     </li>
                     
                     
-                    <Logout  />
+                    <Logout  className='Logout'/>
                         
                     
                     <li>
@@ -95,8 +93,8 @@ const Navbar = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink exact to='/'>
-                            <a href='#'>Contact</a>
+                        <NavLink exact to='/contact'>
+                            Contact
                         </NavLink>
                     </li>
                     </div>
