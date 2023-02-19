@@ -14,11 +14,14 @@ import Connexion from './../images/Connexion.png'
 import Inscription from './../images/Inscription.png'
 import PNJ from './../images/pnj-profil.png'
 import langue from './../images/langue.png'
+import { useSelector } from 'react-redux';
+
 
 
 
 const Navbar = () => {
     const uid = useContext(UidContext)
+    const userData = useSelector((state) => state.userReducer)
     return (
         <nav>
         <div className="nav-container">
@@ -37,14 +40,12 @@ const Navbar = () => {
                     <div className="Nav-Log1">
                     <li>
                         <NavLink exact to="/">
-                                <a href='#'>
                                     <p className='btn-salle'>Accès aux salles</p>
-                                </a>
                         </NavLink>
                     </li>
                     <li>
                         <NavLink exact to='/'>
-                            <a href='#'>FAQ</a>
+                            FAQ
                         </NavLink>
                     </li>
                     <li>
@@ -57,19 +58,13 @@ const Navbar = () => {
                     <div className='Nav-Log2'>
                     <li className="welcome">
                         <NavLink exact to="/profil">
-                        <h5 className="Pseudo"><img className="pnj" src={PNJ} alt='Pnj'/>Valeur dynamique</h5>
+                        <h5 className="Pseudo"><img className="pnj" src={PNJ} alt='Pnj'/>{userData.lastName} {userData.firstName}</h5>
                         </NavLink>
                     </li>
-                    
-                    
                     <Logout  className='Logout'/>
-                        
-                    
                     <li>
                         <NavLink exact to="/">
-                            <a>
                                 <img className='img-padd' src={langue} alt="Langues"/>
-                            </a>
                         </NavLink>
                     </li>
                     </div>
@@ -81,15 +76,13 @@ const Navbar = () => {
                 <ul>
                     <div className="Nav-Log1">
                     <li>
-                        <NavLink exact to="/">
-                                
+                        <NavLink exact to="/"> 
                                     <p className='btn-salle'>Accès aux salles</p>
-                                
                         </NavLink>
                     </li>
                     <li>
                         <NavLink exact to='/'>
-                            <a href='#'>FAQ</a>
+                           FAQ
                         </NavLink>
                     </li>
                     <li>

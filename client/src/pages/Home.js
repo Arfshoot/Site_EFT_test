@@ -23,7 +23,7 @@ const Home = () => {
                     </div>
                 </div>
                 <div className='section1-2'>
-                    <div className='card-titre'><h1>Retour sur inverstissement quotidien</h1><i class="fa-solid fa-arrow-trend-up"></i></div>
+                    <div className='card-titre'><h1>Retour sur inverstissement quotidien</h1><i className="fa-solid fa-arrow-trend-up"></i></div>
                     <div className='bloc-bac-compteur'>
                         <div className='compteur'>
                             <img src={Compteur}></img>
@@ -33,7 +33,7 @@ const Home = () => {
                                 <p>12/12/22</p>
                             </div>
                         <div className='retour'>
-                            <p>Retour sur inverstissement sur 7 jours</p><div className='chevron'><i class="fa-solid fa-chevron-right"></i></div>
+                            <p>Retour sur inverstissement sur 7 jours</p><div className='chevron'><i className="fa-solid fa-chevron-right"></i></div>
                         </div>
                     </div>
                 </div>

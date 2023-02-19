@@ -56,16 +56,14 @@ module.exports.updateUser = async (req, res) => {
           },
         },
         // paramètre obligatoire pour un put
-        { new: true, upsert: true, setDefaultsOnInsert: true },
-        (err, docs) => {
-          if (!err) return res.send(docs);
-          if (err) return res.status(500).send({ message: err });
-        }
-      );
+        { new: true, upsert: true, setDefaultsOnInsert: true })
+        .then((data) => res.send(data))
+        .catch((err) => res.status(500).send({ message: err }));
     } catch (err) {
       return res.status(500).json({ message: err });
     }
   };
+  
 
 // delete profil
 

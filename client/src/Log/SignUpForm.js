@@ -250,6 +250,16 @@ const SignUpForm = () => {
                           <option value="royaume-uni">Royaume-Uni</option>
                           <option value="canada">Canada</option>
                           <option value="japon">Japon</option>
+                          <option value="allemagne">Allemagne</option>
+                          <option value="italie">Italie</option>
+                          <option value="chine">Chine</option>
+                          <option value="australie">Australie</option>
+                          <option value="suisse">Suisse</option>
+                          <option value="inde">Inde</option>
+                          <option value="bresil">Brésil</option>
+                          <option value="argentine">Argentine</option>
+                          <option value="mexique">Mexique</option>
+                          <option value="afrique-du-sud">Afrique du Sud</option>
                       </select>
                     </div>
 

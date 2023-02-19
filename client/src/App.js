@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { UidContext } from './components/AppContext';
 import axios from "axios";
 import Routes from './components/Routes'
+import { useDispatch } from 'react-redux';
+import { getUser } from "./actions/user.actions";
 
 
 // check si l'utilisateur est connecté en analysant le token (JWT) "Stockage" 
 const App = () => {
   const [uid, setUid] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchToken = async () => {
@@ -16,15 +19,14 @@ const App = () => {
         withCredentials: true,
       })
         .then((res) => {
-          console.log(res)
           setUid(res.data);
         })
         .catch((err) => console.log("No token"));
     };
     fetchToken();
 
-    
-  }, [uid]);
+    if (uid) dispatch(getUser(uid));
+  }, [uid, dispatch]);
 
 
   return (
