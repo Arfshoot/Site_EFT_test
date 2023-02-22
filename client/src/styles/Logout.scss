@@ -1,0 +1,68 @@
+@import './components/Colors.scss';
+@import './components/Mixin.scss';
+
+/* Style pour la boîte de dialogue de confirmation */
+.confirmation-dialog {
+    
+    
+
+    padding: 16px;
+    position: absolute;
+    top:10%;
+    right:35%;
+    width: 500px;
+    height: 250px;
+
+  }
+  
+  .confirmation-dialog h2 {
+    font-size: 20px;
+    
+    background-color: $Text-color2;
+    padding:1em;
+    border-radius: 10px 10px 0 0;
+    color:white;
+
+  }
+  
+  .confirmation-dialog p {
+    color: white;
+    margin-left: 1em;
+    margin-bottom: 2em;
+    margin-top: 1.5em;
+  }
+  .confirmation-dialog .button-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: $Back-color1;
+    padding-bottom: 2em;
+    border-radius: 0 0 10px 10px;
+    
+  }
+  .btn-logout{
+    margin-left: 6em;
+  }
+  .confirmation-dialog button {
+    @include button-yellow2;
+    padding: 0.28em;
+    margin-left: 0.5em;
+    cursor: pointer;
+  }
+  
+
+  
+  .confirmation-dialog button:focus {
+    outline: none;
+  }
+  
+  .confirmation-dialog button.secondary {
+  
+    @include button-dark;
+    margin-left: 0.5em;
+  }
+  
+  
+  .confirmation-dialog button.secondary:focus {
+    outline: none;
+  }

@@ -11,7 +11,7 @@ const Profil = () => {
   const uid = useContext(UidContext);
 
   return (
-    <div className="profil-page" >
+    <div className="profil" >
         {/*user conecté ? alors va sur page profil, autrement sur formulaire d'inscription*/}
       {uid ? (
         <div ><UpdateProfil/></div>

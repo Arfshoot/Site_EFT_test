@@ -16,6 +16,7 @@ router.get('/', userController.getAllUsers)
 router.get('/:id', userController.userInfo)
 // modification info user
 router.put("/:id", userController.updateUser);
+// modification mot de passe 
 
 
 module.exports= router

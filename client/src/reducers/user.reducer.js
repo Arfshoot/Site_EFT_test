@@ -15,92 +15,93 @@ const userReducer = (state = initialState, action) => {
     
     case UPDATE_LASTNAME:
     return{
-      ... state,
+      ...state,
       lastName: action.payload
     }
     case UPDATE_FIRSTNAME: 
     return{
-      ... state,
+      ...state,
       firstName: action.payload
     }
+
     case UPDATE_SECONDNAME:
     return{
-      ... state,
+      ...state,
       secondName: action.payload
     }
     case UPDATE_EMAIL:
     return{
-      ... state,
+      ...state,
       email: action.payload
     }
     case UPDATE_ADRESS:
     return{
-      ... state,
+      ...state,
       adress: action.payload
     }
     case UPDATE_COMPLMTADRESS:
     return{
-      ... state,
+      ...state,
       complmtAdress: action.payload
     }
     case UPDATE_VILLE:
     return{
-      ... state,
+      ...state,
       ville: action.payload
     }
     case UPDATE_CODEPOSTAL: 
     return{
-      ... state,
+      ...state,
       codePostal: action.payload
     }
     case UPDATE_ETATPROV: 
     return{
-      ... state,
+      ...state,
       etatProv: action.payload
     }
     case UPDATE_PAYS: 
     return{
-      ... state,
+      ...state,
       pays: action.payload
     }
     case UPDATE_PHONE: 
     return{
-      ... state,
+      ...state,
       phone: action.payload
     }
     case UPDATE_AGE: 
     return{
-      ... state,
+      ...state,
       age: action.payload
     }
     case UPDATE_CATEGORIESP: 
     return{
-      ... state,
+      ...state,
       categorieSP: action.payload
     }
     case UPDATE_SATUT: 
     return{
-      ... state,
+      ...state,
       statut: action.payload
     }
     case UPDATE_RAISONS: 
     return{
-      ... state,
+      ...state,
       raisonS: action.payload
     }
     case UPDATE_CONNU: 
     return{
-      ... state,
+      ...state,
       connu: action.payload
     }
     case UPDATE_BROKER: 
     return{
-      ... state,
+      ...state,
       broker: action.payload
     }
     case UPDATE_USERIP: 
     return{
-      ... state,
+      ...state,
       userIp: action.payload
     }
     

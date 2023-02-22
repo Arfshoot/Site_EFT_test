@@ -230,7 +230,7 @@ h1{
 }
 }
 .All-section3{
-    padding-top: 4em;
+    padding-top: 3em;
     padding-bottom:4em;
     background-image: url(../images/Bg-s3.png);
     display: flex;
@@ -241,32 +241,32 @@ h1{
         .bloc-temoin{
             display: flex;
             flex-direction: column;
-            width: 60%;
+            width: 80%;
    
-            img{
-                width: 100px;
-            } 
+         
             h2{
                 color: #fff;
-                font-size: $Font-titre
+                font-size: $Font-titre;
+                font-family: $Font-fam2;
+                margin-left: 0;
+                margin-bottom: 1em;
+
             }   
             p{
                 color: #fff;
-                font-size: $Font-text
+                font-size: $Font-text;
+                margin-bottom: 1em;
             }    
         }
         .bloc-img{
             display: flex;
             flex-flow: row wrap;
             justify-content:center;
-            margin-top: 2em;
-            img{
-                margin: 1em;
-                margin-right: 3em;
-            }
+            margin-top: 1em;
+
         }
         .bouton-s3{
-            
+            margin-left: 10em;
             a{
                 
                 color : $Text-color5;

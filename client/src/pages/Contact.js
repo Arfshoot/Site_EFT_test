@@ -33,9 +33,10 @@ const Contact = () => {
                 <label for="message">Message:</label>
                 <textarea id="message" name="message" rows="5" required></textarea><br/>
                 </div>
-
-                <input  id='submit'type="submit" value="Envoyer"/>
-                <input type="reset" id='reset' value="Effacer"></input>
+                <div className='btn-contact'>
+                    <input  id='submit'type="submit" value="Envoyer"/>
+                    {/*<input type="reset" id='reset' value="Effacer"></input>*/}
+                </div>
 
             </form>
         </div>

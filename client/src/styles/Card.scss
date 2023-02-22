@@ -1,0 +1,32 @@
+@import './components/Colors.scss';
+@import './components/Mixin.scss';
+
+
+.card-container{
+    display: flex;
+    flex-direction: row;
+    margin: 2em;
+    .card{
+        width:450px;
+        .pseudo{
+            background-color:$Text-color2;
+            color:white;
+            padding: 1em;
+            border-radius: 15px 15px 0 0;
+            
+        }
+        .card-desc{
+            background-color:$Text-color1;
+            padding: 1em;
+            border-radius: 0 0 15px 15px ;
+            .card-date{
+                color: $Text-color2;
+                margin-bottom: 0.5em;
+            }
+            .card-message{
+                color:white;
+            }
+            
+        }
+    }
+}

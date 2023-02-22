@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { updateAdress, updateAge, updateBroker, updateCategorieSP, updateCodePostal, updateComplmtAdress, updateConnu, updateEmail, updateEtatProv, updateFirstName, updateLastName, updatePays, updatePhone, updateRaisonS, updateSecondName, updateStatut, updateUserIp, updateVille } from '../../actions/user.actions';
+
+// js et scss
+import { updateAdress, updateAge, updateCategorieSP, updateCodePostal, updateComplmtAdress, updateEmail, updateEtatProv, updateFirstName, updateLastName, updatePays, updatePhone, updateRaisonS, updateSecondName, updateStatut, updateVille } from '../../actions/user.actions';
+
 import DateParser from '../Utils';
+
+import './../../styles/UpdateProfil.scss'
 
 const UpdateProfil = () => {
   const userData = useSelector((state) => state.userReducer);
@@ -13,8 +18,6 @@ const UpdateProfil = () => {
   const [firstName, setfirstName] = useState(userData.firstName);
   const [secondName, setsecondName] = useState(userData.secondName);
   const [email, setEmail] = useState(userData.email);
-  const [password, setPassword] = useState('');
-  const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [adress, setAdress] = useState(userData.adress);
   const [complmtAdress, setComplmtAdress] = useState(userData.complmtAdress);
   const [ville, setVille] = useState(userData.ville);
@@ -45,62 +48,134 @@ const UpdateProfil = () => {
     dispatch(updateAge(userData._id, age));
     dispatch(updateCategorieSP(userData._id, categorieSP));
     dispatch(updateStatut(userData._id, statut));
-    dispatch(updateRaisonS(userData._id))
+    dispatch(updateRaisonS(userData._id, raisonS));
     setUpdateForm(false);
   };
 
   return (
     <div className="profil-page">
-      <h1>Profil de {userData.lastName} - {userData.firstName}</h1>
+      <div className="profil-nav">
+      <NavLink to='/profil' className="nav-link">Profil de {userData.lastName} {userData.firstName}</NavLink>
+      <NavLink to='abonnement' className="nav-link">Mes abonnements</NavLink>
+      <NavLink to='faq' className="nav-link">Besoin d'aide?</NavLink>
+      </div>
       {/* si form est faux */}
       {!updateForm && (
         <>
-          <p>Votre Email</p>
-          <p onClick={() => setUpdateForm(true)}>{userData.email}</p>
-          <p>Nom</p>
-          <p onClick={() => setUpdateForm(true)}>{userData.lastName}</p>
-          <p>Prénom</p>
-          <p onClick={() => setUpdateForm(true)}>{userData.firstName}</p>
-          <p>Deuxieme Prénom</p>
-          <p onClick={() => setUpdateForm(true)}>{userData.secondName}</p>
-          <p>Adresse</p>
-          <p onClick={() => setUpdateForm(true)}>{userData.adress}</p>
-          <p>Code Postal</p>
-          <p onClick={() => setUpdateForm(true)}>{userData.codePostal}</p>
-          <p>État / Province</p>
-          <p onClick={() => setUpdateForm(true)}>{userData.etatProv}</p>
-          <p>Pays</p>
-          <p onClick={() => setUpdateForm(true)}>{userData.pays}</p>
-          <p>Téléphone</p>
-          <p onClick={() => setUpdateForm(true)}>{userData.phone}</p>
-          <p>Tranche D'age</p>
-          <p onClick={() => setUpdateForm(true)}>{userData.age}</p>
-          <p>Catégorie socio-professionnelle</p>
-          <p onClick={() => setUpdateForm(true)}>{userData.categorieSP}</p>
-          <p>Statut</p>
-          <p onClick={() => setUpdateForm(true)}>{userData.statut}</p>
-          <p>Raison Sociale</p>
-          <p onClick={() => setUpdateForm(true)}>{userData.raisonS}</p>
-          <p>Comment nous avez-vous Connus ?</p>
-          <p onClick={() => setUpdateForm(true)}>{userData.connu}</p>
-          <p>Votre broker</p>
-          <p onClick={() => setUpdateForm(true)}>{userData.broker}</p>
-          <p>Votre ip enregistrée</p>
-          <p onClick={() => setUpdateForm(true)}>{userData.userIp}</p>
+        <div className='affichage-profil'>
+          <div className='infos-nonmodif'>
+            <div className='info-nm'>
+              <h4>Votre Email</h4>
+              <p >{userData.email}</p>
+              <p className='text'>Merci de nous contacter si vous souhaitez modifier votre adresse email </p>
+              <NavLink to='/contact'className='profil-contact'>Nous Contacter</NavLink>
+            </div>
+            <div className='info-nm'>
+              <h4>Mot de passe</h4>
+              <p>*******</p>
+              
+              <p className='text'>Pour modifier votre mot de passe, nous vous envoyons un mail de confirmation afin d’entamer la procédure.</p>
+              
+              <button type='button' className='profil-contact'>Nouveau mot de passe</button>
+            </div>
+          </div>
+          {/*Partie 1*/}
+            <div className='infos-profil'>
+              <div className='info'>
+              <h4>Nom</h4>
+              <p >{userData.lastName}</p>
+              </div>
+              <div className='info'>
+              <h4>Prénom</h4>
+              <p >{userData.firstName}</p>
+              </div>
+              <div className='info'>
+              <h4>Deuxieme Prénom</h4>
+              <p >{userData.secondName}</p>
+              </div>
+            </div>
+          {/*Partie 2*/}
+          <div className='infos-profil'>
+            <div className='info'>
+              <h4>Adresse</h4>
+              <p >{userData.adress}</p>
+            </div>
+            <div className='info'>
+              <h4>Ville</h4>
+              <p>{userData.ville}</p>
+            </div>
+            <div className='info'>
+            <h4>Code Postal</h4>
+            <p >{userData.codePostal}</p>
+            </div>
+            <div className='info'>
+            <h4>État / Province</h4>
+            <p >{userData.etatProv}</p>
+            </div>
+            <div className='info'>
+            <h4>Pays</h4>
+            <p >{userData.pays}</p>
+            </div>
+          </div>
+          {/*Partie 3*/}
+          <div className='infos-profil'>
+            <div className='info'>
+            <h4>Téléphone</h4>
+            <p >{userData.phone}</p>
+            </div>
+            <div className='info'>
+            <h4>Tranche D'age</h4>
+            <p >{userData.age}</p>
+            </div>
 
+          <div className='info'>
+            <h4>Catégorie socio-professionnelle</h4>
+            <p >{userData.categorieSP}</p>
+            </div>
+            <div className='info'>
+            <h4>Statut</h4>
+            <p >{userData.statut}</p>
+            </div>
+          
+            <div className='info'>
+              <h4>Comment nous avez-vous Connus ?</h4>
+              <p >{userData.connu}</p>
+              </div>
+              <div className='info'>
+              <h4>Raison Sociale</h4>
+              <p >{userData.raisonS}</p>
+            </div>
+
+            <div className='info'>
+            <h4>Votre broker</h4>
+            <p >{userData.broker}</p>
+            </div>
+            <div className='info'>
+              <h4>Votre ip enregistrée</h4>
+              <p >{userData.userIp}</p>
+            </div>
+          </div>
+        </div>
         </>
       )}
       {/* si form est vrai */}
       {updateForm && (
         <>
-          <label htmlFor='Nom'>Nom<span>*</span></label>
-          <input
-            type="text"
-            defaultValue={userData.lastName}
-            onChange={(e) => setlastName(e.target.value)}
-            required
-          />
-
+         <div className="modif-titre">
+          <h1>Modification du profil</h1>
+          </div>
+        <div className='modif-input'>
+         
+          <div className='profil-input'>
+            <label htmlFor='Nom'>Nom<span>*</span></label>
+            <input
+              type="text"
+              defaultValue={userData.lastName}
+              onChange={(e) => setlastName(e.target.value)}
+              required
+            />
+          </div>
+          <div className='profil-input'>
           <label htmlFor='Prénom'>Prénom<span>*</span></label>
           <input
             type="text"
@@ -108,14 +183,19 @@ const UpdateProfil = () => {
             onChange={(e) => setfirstName(e.target.value)}
             required
           />
-
+          </div>
+          <div className='profil-input'>
             <label htmlFor='Deuxième Prénom'>Deuxième Prénom<span>*</span></label>
             <input
             type="text"
             defaultValue={userData.secondName}
             onChange={(e) => setsecondName(e.target.value)}
           />
+          </div>
+        </div >
 
+        <div className='modif-input'>
+          <div className='profil-input'>
           <label htmlFor='Adresse'>Adresse<span>*</span></label>
             <input
             type="text"
@@ -123,14 +203,19 @@ const UpdateProfil = () => {
             onChange={(e) => setAdress(e.target.value)}
             required
           />
-
+          </div>
+          <div className='profil-input'>
             <label htmlFor='Complément adresse'>Complément adresse<span>*</span></label>
             <input
             type="text"
             defaultValue={userData.complmtAdress}
             onChange={(e) => setComplmtAdress(e.target.value)}
           />
+          </div>
+        </div>
 
+        <div className='modif-input'>
+          <div className='profil-input'>
             <label htmlFor='Ville'>Ville<span>*</span></label>    
             <input
             type="text"
@@ -138,7 +223,8 @@ const UpdateProfil = () => {
             onChange={(e) => setVille(e.target.value)}
             required
           />
-
+          </div>
+          <div className='profil-input'>
             <label htmlFor='Code postal'>Code postal<span>*</span></label>
             <input
             type="text"
@@ -146,14 +232,19 @@ const UpdateProfil = () => {
             onChange={(e) => setCodePostal(e.target.value)}
             required
           />
-
+          </div>
+          <div className='profil-input'>
             <label htmlFor='Etat / Province'>Etat / Province<span>*</span></label>
             <input
             type="text"
             defaultValue={userData.etatProv}
             onChange={(e) => setEtatProv(e.target.value)}
           />
+          </div>
+        </div>
 
+        <div className='modif-input'>
+          <div className='profil-input'>
             <label htmlFor='Pays'>Pays<span>*</span></label>
             <select
             type="text"
@@ -177,15 +268,20 @@ const UpdateProfil = () => {
             <option value="mexique">Mexique</option>
             <option value="afrique-du-sud">Afrique du Sud</option>
           </select>
+          </div>
 
-
+          <div className='profil-input'>
             <label htmlFor='Téléphone'>Téléphone<span>*</span></label>
             <input
             type="text"
             defaultValue={userData.phone}
             onChange={(e) => setPhone(e.target.value)}
           />
+          </div>
+        </div>
 
+        <div className='modif-input'>
+          <div className='profil-input'>
             <label htmlFor='Age'>Age<span>*</span></label>
             <select
             type="text"
@@ -197,8 +293,29 @@ const UpdateProfil = () => {
             <option value="46-59ans">46-59ans</option>
             <option value="60ans et plus">60ans et plus</option>
             </select>
+            </div>
+            <div className='profil-input'>
+            <label htmlFor='Catégorie'>Catégorie socio-professionnelle</label>
+            <select 
+            type='text' 
+            defaultValue={categorieSP}
+            onChange = {(e) => setCategorieSP(e.target.value)}
+            >
+            <option value=""></option>
+            <option value="Agriculture">Agriculture</option>
+            <option value="Artisan, Commercant, Chef d'entreprise">Artisan, Commercant, Chef d'entreprise</option>
+            <option value="Cadre">Cadre</option>
+            <option value="Profession interimaire">Profession interimaire</option>
+            <option value="Employé">Employé</option>
+            <option value="Ouvrier">Ouvrier</option>
+            <option value="Retraité">Retraité</option>
+            <option value="Sans activité professionnelle">Sans activité professionnelle</option>
+                      </select>
+              </div>
+        </div>
 
-
+        <div className='modif-input'>
+          <div className='profil-input'>
             <label htmlFor='Statut'>Statut<span>*</span></label>
             <select
             type="text"
@@ -210,16 +327,20 @@ const UpdateProfil = () => {
             <option value='Particulier'>Particulier</option>
             <option value='Société'>Société</option>
           </select>
+          </div>
 
-
+          <div className='profil-input'>
             <label htmlFor='Raison sociale'>Raison Sociale<span>*</span></label>
             <input
             type="text"
             defaultValue={userData.raisonS}
             onChange={(e) => setRaisonS(e.target.value)}
           />
-
-
+          </div>
+        </div>
+        
+        <div className='modif-input'>
+          <div className='profil-input'>
             <label htmlFor='Comment nous avez-vous connu?'>Comment nous avez-vous connu ?<span>*</span></label>
             <select
             type="text"
@@ -239,8 +360,8 @@ const UpdateProfil = () => {
             <option value='Facebook'>Facebook</option>
             <option value='HoverTheToP.fr'>HoverTheToP.fr</option>
           </select>
-
-
+          </div>
+          <div className='profil-input'>
             <label htmlFor='Votre broker'>Votre broker<span>*</span></label>
             <input
             type="text"
@@ -248,17 +369,22 @@ const UpdateProfil = () => {
             onChange={(e) => setBroker(e.target.value)}
             required
           />
-
+          </div>
+        </div>
         </>
       )}
 
       {/* gestion des boutons*/}
       {updateForm ? (
-        <button onClick={handleUpdate}>Valider la modification</button>
+        <div className="btn-modif-placement">
+        <button onClick={handleUpdate} className="btn-modif">Valider les modifications</button>
+        </div>
       ) : (
-        <button onClick={() => setUpdateForm(true)}>Modifier Nom</button>
+        <div className="btn-modif-placement">
+          <button onClick={setUpdateForm} className="btn-modif">Modifier les informations</button>
+        </div>
       )}
-      <div>
+      <div className="profil-creation">
         <h4>Membre depuis le : {DateParser(userData.createdAt)}</h4>
         <h4>Profil mis à jour le : {DateParser(userData.updatedAt)}</h4>
       </div>

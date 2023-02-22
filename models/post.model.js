@@ -6,6 +6,35 @@ const PostSchema = new mongoose.Schema(
             type: String,
             required: true
         },
+        lastName:{
+            type: String,
+            required: true,
+            minlength:3
+        },
+        firstName:{
+            type: String,
+            required: true,
+            minlength:3
+        },
+        statut:{
+            type: String,
+            required: true
+        },
+        // Etat-Province user
+
+        etatProv:{
+            type:String,
+            max: 1024,
+            minlength:3
+        },
+
+        // Pays user
+        pays:{
+            type:String,
+            required: true,
+            max: 1024,
+            minlength:3
+        },
         message:{
             type: String,
             trim: true,

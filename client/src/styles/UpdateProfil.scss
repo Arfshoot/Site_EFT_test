@@ -1,0 +1,126 @@
+@import './components/Colors.scss';
+@import './components/Mixin.scss';
+
+.profil-page{
+    // page d'affichage profil
+    .profil-nav{
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 1em;
+        border-bottom: 1px solid $Back-color5;
+        .nav-link{
+            margin:0;
+            text-decoration: none;
+            color: $Text-color1;
+            :hover{
+                color:$Text-color5;
+                border-bottom: 1px solid $Text-color2;
+            }
+        }
+    }   
+    .affichage-profil{
+        margin-top: 1em;
+        .infos-nonmodif{
+            display: flex;
+            margin-bottom: 5em;
+            .info-nm{
+                margin-left: 0;
+                margin-top: 0;
+                p{
+                    color:$Text-color6;
+                    margin-top: 0.5em;
+                }
+                .text{
+                    color: $Text-color2;
+                    margin-top: 0.5em;
+                    margin-bottom: 1em;
+                    width: 370px;
+                }
+                .profil-contact{
+                    @include button-yellow3;
+                    text-decoration: none;                    
+                }
+            }           
+        }        
+        .infos-profil{
+            margin-bottom: 2em;
+            align-items: center;
+            .info{
+                display:flex;
+                h4{
+                    margin-left:0;
+                    margin-bottom: 0.5em;
+                    width: 250px;
+                    margin-right: 9em;
+                }
+                p{
+                    color:$Text-color6;
+                    text-align: left;
+                    margin-left: 0em;                    
+                }
+            }
+        }
+    }
+    .btn-modif-placement{
+        display:flex;
+        margin-bottom: 0.5em;
+    .btn-modif{
+       @include button-yellow2;
+       
+    }
+}
+    .profil-creation{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0.5em;
+        h4{
+            color:$Text-color6;
+        }
+    }
+    //fin  page d'affichage profil
+
+    // page de modification profil
+    .modif-titre{
+        color : $Text-color2;
+        font-size: $Font-titrebloc;
+        margin: 0.5em;
+        margin-top:1em;
+    }
+    .modif-input{
+        margin-top: 1em;
+        display: flex;
+        margin-bottom: 1em;
+        .profil-input{
+            display: flex;
+            flex-direction: column;
+            margin: 0.5em;
+            width: 100%;
+            color:$Text-color7;
+            label{
+                margin-left:0;
+                color:$Text-color1;
+
+            }
+            input{
+                border: 2px solid $Text-color6;
+                padding: 0.5em;
+                border-radius: 5px;
+                margin-right: 1.5em;
+                margin-bottom: 1.5em;
+                margin: 0;
+            }
+            select{
+                border: 2px solid $Text-color6;
+                padding: 0.5em;
+                border-radius: 5px;
+                margin-right: 1.5em;
+                margin-bottom: 1.5em;
+                margin: 0;
+
+            }
+
+        }
+        
+
+    }
+}

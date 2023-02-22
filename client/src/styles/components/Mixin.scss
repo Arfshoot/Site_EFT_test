@@ -29,19 +29,36 @@
     color: black;
     
 }
+}
+@mixin button-yellow3{
+    background-color: $Text-color5;
+    padding-right:1em;
+    padding-left: 1em;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+    border-radius: 7px;
+    text-align: center;
+    border: 0;
+    color: $Text-color1;
+    font-size: $Font-text;
+    font-weight: 400;
+    
+    a{
+    text-decoration: none;
+    color: black;
+    
+}
 
 
 }
 @mixin button-dark{
     background-color:white;
     color: $Text-color1;
-    padding-right:0.8em;
-    padding-left: 0.8em;
     border-radius: 7px;
     padding: 0.3em;
     text-align: center;
     font-weight: 700;
-    width: 290px;
+    width: 110px;
     font-size: $Font-cta;
     margin-right: 1em;
     margin-left: 7em;

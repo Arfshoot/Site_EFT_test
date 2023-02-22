@@ -1,14 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 //js et scss
 import './../styles/Home.scss'
 
 // images
-import Avistest from './../images/AvisTest.png';
+
 import Compteur from './../images/Compteur.png';
 import LogoHerve from './../images/Logo-Herve.png';
+import Thread from '../components/Thread';
+import { useDispatch, useSelector } from 'react-redux';
+import { isEmpty } from '../components/Utils';
+import Card from '../components/Post/Card';
+import { getPosts } from '../actions/post.action';
+
+
+
+
+
 
 const Home = () => {
+
+    const [loadPost, setLoadPost] = useState(true)
+    const dispatch = useDispatch()
+    const posts = useSelector((state) => state.postReducer)
+
+
+    useEffect (() =>{
+        if(loadPost){
+            dispatch(getPosts())
+            setLoadPost(false)
+        }
+
+    }, [loadPost, dispatch])
+
+    
+
+    
     return (
         <div>
             <main>
@@ -18,7 +46,7 @@ const Home = () => {
                         <h1>Le mot du fondateur</h1>
                         <p>" En day trading : oubliez vos indicateurs classiques (des centaines) car ils ont le même point commun : <br/><span>ils indiquent tous le passé ! </span>"</p>
                         <div className='button-s1'>
-                        <NavLink to='/Abonnement'>Essai gratuit</NavLink></div>
+                        <NavLink to='/abonnement'>Essai gratuit</NavLink></div>
                         
                     </div>
                 </div>
@@ -44,8 +72,6 @@ const Home = () => {
                     <div className='bloc-img'> 
                         <img src={LogoHerve}></img>
                     </div>
-
-                    
 
                         <div className='bloc-text'> 
                             <h1>Entrez en Day Trading sur impulsion Efficient Trading et gagnez selon sa « méthode » !</h1>
@@ -78,14 +104,15 @@ const Home = () => {
                     <h2>Témoignages</h2>
                     <p>Efficient Trading utilise une méthode éprouvée et approuvée par ses utilisateurs. Depuis plus de 15 ans, cette méthode permet aux traders de rentabiliser leur investissement jour après jour, avec un taux de retour de plus d’1% par jour en moyenne. Rejoignez-les et vous serez convaincus vous aussi !</p>
                 </div>
-                <div className='bloc-img'>
-                    <img src={Avistest}></img>
-                    <img src={Avistest}></img>
-                    <img src={Avistest}></img>
-                    <img src={Avistest}></img>
-                    <img src={Avistest}></img>
+                <div>
+                <ul>
+                    {!isEmpty(posts[0]) &&
+                        posts.slice(0,6).map((post) => {
+                        return <Card post={post} key={post._id} />;
+                        })}
+                    </ul>
                 </div>
-                <div className='bouton-s3'><NavLink to='/Témoignages'>Voir plus de témoignages...</NavLink></div>
+                <div className='bouton-s3'><NavLink to='/temoignages'>Voir plus de témoignages...</NavLink></div>
             </section>
 
         </main>

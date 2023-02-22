@@ -60,12 +60,16 @@
     #submit{
         margin-bottom: 3em;
         @include button-yellow2;
+        
     
     }
     #reset{
-        @include button-dark
+        @include button-dark;
+        
+        
         
     }
+
     
        
     

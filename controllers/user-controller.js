@@ -2,6 +2,8 @@
 
 // appel base de données
 const UserModel = require('../models/user.model')
+// utilitaire mail
+
 
 // verification controlle que les id sont reconnue par la base
 const ObjectID = require('mongoose').Types.ObjectId
@@ -40,6 +42,7 @@ module.exports.updateUser = async (req, res) => {
           $set: {
             lastName : req.body.lastName,
             firstName : req.body.firstName,
+            secondName : req.body.secondName,
             adress : req.body.adress,
             complmtAdress : req.body.complmtAdress,
             ville : req.body.ville,
