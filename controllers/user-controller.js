@@ -40,6 +40,7 @@ module.exports.updateUser = async (req, res) => {
         { _id: req.params.id },
         {
           $set: {
+            
             lastName : req.body.lastName,
             firstName : req.body.firstName,
             secondName : req.body.secondName,
@@ -54,7 +55,9 @@ module.exports.updateUser = async (req, res) => {
             categorieSP : req.body.categorieSP,
             statut : req.body.statut,
             raisonS : req.body.raisonS,
-            broker : req.body.broker
+            broker : req.body.broker,
+            role : req.body.role,
+            pseudo : req.body.pseudo
             
           },
         },
@@ -69,5 +72,16 @@ module.exports.updateUser = async (req, res) => {
   
 
 // delete profil
+// Suppression d'un utilisateur par ID
+module.exports.deleteUser = async (req, res) => {
+  if (!ObjectID.isValid(req.params.id))
+    return res.status(400).send("ID unknown : " + req.params.id);
 
+  try {
+    await UserModel.remove({ _id: req.params.id }).exec();
+    res.status(200).json({ message: "Successfully deleted." });
+  } catch (err) {
+    return res.status(500).json({ message: err });
+  }
+};
 

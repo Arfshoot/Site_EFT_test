@@ -1,8 +1,10 @@
 // gestion des erreurs
 
 module.exports.signUpErrors = (err) => {
-  let errors = { email: "", password: "" };
+  let errors = {  pseudo: "", email: "", password: "" };
 
+  if (err.message.includes("pseudo"))
+    errors.pseudo = "le pseudo existe déjà";
 
   if (err.message.includes("email")) errors.email = "Email incorrect";
 

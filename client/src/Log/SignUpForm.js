@@ -5,7 +5,7 @@ import axios from "axios";
 
 // js et scss
 import './../styles/SignUpForm.scss'
-import { NavLink, Switch } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 
 // images
 import Connexion from './../images/Connexion-SignUP.png'
@@ -34,10 +34,12 @@ const SignUpForm = () => {
     const [raisonS, setRaisonS] = useState('')
     const [connu, setConnu] = useState('')
     const [broker, setBroker] = useState('')
+    const [pseudo, setPseudo] = useState('')
 
     const handleRegister = async (e) => {
       e.preventDefault();
       const terms = document.getElementById('terms')
+      const pseudoError = document.querySelector('.pseudo.error')
       const emailError = document.querySelector('.email.error')
       const passwordError = document.querySelector('.password.error')
       const passwordConfirmationError = document.querySelector('.passwordconfirmation.error')
@@ -76,7 +78,8 @@ const SignUpForm = () => {
             statut,
             raisonS,
             connu,
-            broker
+            broker,
+            pseudo
             
           },
           
@@ -86,6 +89,7 @@ const SignUpForm = () => {
             if (res.data.errors) {
               emailError.innerHTML = res.data.errors.email;
               passwordError.innerHTML = res.data.errors.password;
+              pseudoError.innerHTML= res.data.errors.pseudo
             } else {
               setFormSubmit(true);  
              
@@ -130,6 +134,15 @@ const SignUpForm = () => {
                 <h2 >Identifiant</h2>
               </div>
                 <div className='identifiants'>
+                <div className='input-error'>
+                <div className='input'> 
+                      <label htmlFor='pseudo'>Votre pseudo<span>*</span></label>
+                      <input type='text' placeholder='ActionTrader' id='pseudo' required 
+                      onChange = {(e) => setPseudo(e.target.value)}
+                      value={pseudo} />
+                      </div>
+                      <div className='pseudo error'></div>
+                    </div>
                     {/*Email*/}
                     <div className='input-error'>
                       <div className='input'>
@@ -152,7 +165,7 @@ const SignUpForm = () => {
                     <div className='input-error'>
                     {/*Confimation password*/}
                     <div className='input'> 
-                      <label htmlFor='Confimation mot de passe'>Confirmation du mot de passe<span>*</span></label>
+                      <label htmlFor='Confimation mot de passe'>Confirmation mot de passe<span>*</span></label>
                       <input type="password" placeholder='************' id='Confimation mot de passe' onChange = {(e) => setPasswordConfirmation(e.target.value)}
                       value={passwordConfirmation} required />
                     </div>

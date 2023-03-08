@@ -1,0 +1,134 @@
+.all-forex{
+  padding-top:140px;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(104, 104, 104);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.container{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.msgContainer{
+  width: 75%;
+  height: 70vh;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  overflow-y:scroll;
+  
+}
+.msgContainerAdmin{
+  width: 75%;
+  height: 70vh;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  overflow-y:scroll;
+}
+.newUserContainer{
+  margin: 0;
+  
+
+}
+.chatTitle{
+  text-align: center;
+  margin: 25px 0 50px 0;
+  color: white;
+  margin-right: 10px;
+}
+
+/* user typing */
+#isWritting{
+  color: rgb(241, 7, 7);
+  font-style: italic;
+}
+
+/* form */
+.all-forex > form {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  margin-left: 20%;
+}
+form > input[type="text"]{
+  display: inline-block;
+  width: 50%;
+  height: 35px;
+  border: none;
+}
+form > input[type="submit"]{
+  padding: 9px;
+  border: none;
+}
+
+/* User comes and quit */
+.newUser{
+  color: white;
+  font-style: italic;
+  width: 500px;
+}
+.quitUser{
+  color: white;
+  font-style: italic;
+  width: 500px;
+}
+
+/* Messages */
+.message{
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 10px;
+  max-width: 45%;
+}
+.newMessageMe{
+  background-color: blue;
+  margin-left: 55%;
+  margin-top: 2%;
+}
+.newMessageAll{
+  background-color: white;
+  margin-top: 2%;
+}
+.whisper{
+  background-color:red;
+  margin-top: 2%;
+}
+
+/* Messages from databse */
+.oldMessages{
+  background-color: white;
+  margin-top: 2%;
+}
+.oldWhispers{
+  background-color: red;
+  margin-top: 2%;
+}
+
+
+/* Channels */
+.channelList{
+  color:white;
+  width: 25%;
+}
+.elementList {
+  width: 60%;
+  background-color: grey;
+  padding: 20px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.elementList:hover {
+  
+  background-color: rgb(105, 105, 105);
+  transition: 0.5s;
+  cursor: pointer;
+}
+.inChannel {
+  background-color: rgb(105, 105, 105);
+  transition: 0.5s;
+}

@@ -13,6 +13,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { isEmpty } from '../components/Utils';
 import Card from '../components/Post/Card';
 import { getPosts } from '../actions/post.action';
+import { getUser } from '../actions/user.actions'; 
+
+
+
 
 
 
@@ -24,19 +28,18 @@ const Home = () => {
     const [loadPost, setLoadPost] = useState(true)
     const dispatch = useDispatch()
     const posts = useSelector((state) => state.postReducer)
-
+   
 
     useEffect (() =>{
         if(loadPost){
             dispatch(getPosts())
             setLoadPost(false)
+   
         }
-
+       
     }, [loadPost, dispatch])
 
-    
 
-    
     return (
         <div>
             <main>
@@ -59,6 +62,7 @@ const Home = () => {
                         </div>
                         <div className='date'>  
                                 <p>12/12/22</p>
+                                
                             </div>
                         <div className='retour'>
                             <p>Retour sur inverstissement sur 7 jours</p><div className='chevron'><i className="fa-solid fa-chevron-right"></i></div>

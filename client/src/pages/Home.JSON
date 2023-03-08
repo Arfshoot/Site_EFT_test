@@ -1,0 +1,28 @@
+{
+    "fr": {
+      "home": {
+        "motDuFondateur":{
+            "title" : "Le mot du fondateur",
+            "text" : " En day trading : oubliez vos indicateurs classiques (des centaines) car ils ont le même point commun : <br/><span>ils indiquent tous le passé !"
+        },
+        "essaiGratuit": "Essai gratuit",
+        "retourSurInvestissement": "Retour sur inverstissement quotidien"
+      },
+      "home2": {
+        "title": "Entrez en Day Trading sur impulsion Efficient Trading et gagnez selon sa « méthode » ! us",
+        "text1": "Il s’agit de l’application systématique de l’indicateur créé par Efficient Trading qui est la détection du bon instrument, dans la bonne direction, au bon moment. Mais ce n’est pas suffisant : pour assurer la performance du trader,<br/> <span>cela implique obligatoirement l’utilisation systématique d’un ordre intelligent : ordre qui intègre dans son déclenchement des objectifs multiples et un stop, dont le setup vous sera donné par nos traders. </span>",
+        "text2": "Il s’agit de l’application systématique de l’indicateur créé par Efficient Trading qui est la détection du bon instrument, dans la bonne direction, au bon moment. Mais ce n’est pas suffisant : pour assurer la performance du trader.",
+        "button":"Essai gratuit",
+        "CV":{
+            "title":"Hervé Lambert, fondateur du site.",
+            "text": "Hervé Lambert, diplômé de NEOMA et d’Anglais des Affaires, a démarré sa carrière en tant que Broker sur les marchés aux techniques complexes (CEE/URSS)chez Montenay SA, alors principal Broker européen de matières premières agricole physiques. Il occupe ensuite plusieurs postes de manager à Paris et à Genève, toujours dans le domaine du Front ou Middle-Office boursier pour les salles de marchés. ",
+            "text2":"En 2010, il quitte son poste de Directeur Général France de WHSelfinvest, leader Européen des Brokers-on-line de produits dérivés pour mettre ses 25 ans d’expertise au service des traders intraday particuliers et professionnels. Il fonde vega-traders.com, maintenant efficient-trading.com, unique fournisseur européen, non robotisé de positions de trading en temps réel sur indices et Forex, avec de telles performances quotidiennes."
+        }
+      },
+      "home3":{
+        "title": "Témoignages",
+        "text": "Efficient Trading utilise une méthode éprouvée et approuvée par ses utilisateurs. Depuis plus de 15 ans, cette méthode permet aux traders de rentabiliser leur investissement jour après jour, avec un taux de retour de plus d’1% par jour en moyenne. Rejoignez-les et vous serez convaincus vous aussi !",
+        "button":"Voir plus de témoignages..."
+      }
+    }
+  }

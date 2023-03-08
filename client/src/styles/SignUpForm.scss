@@ -74,6 +74,7 @@
         .identifiants{
             display: flex;
             flex-direction: row;
+            align-items: flex-start;
             
             .input-error{
                 display: flex;

@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 // model user champ par champ pour inscription et page user + enregistrement dans la bd
 const userSchema = new mongoose.Schema(
     {
+
         // Nom user
         lastName: {
             type: String,
@@ -152,12 +153,28 @@ const userSchema = new mongoose.Schema(
             max:30,
             minlength:3
         },
+        pseudo : {
+            type:String,
+            required:true,
+            unique:true,
+            max:30,
+            minlength:3
+        },
+        role: {
+            type: String,
+            enum: ['admin', 'user'],
+            default: 'user'
+        },
+
+      
         // recupération de l'ip et doit etre unique 
         userIp : {
             type:String,
             unique:true,
 
-        }
+        },
+
+
     },
     // recupération de la date et heure de la creation du compte user
     {

@@ -32,6 +32,7 @@ const UpdateProfil = () => {
   const [connu, setConnu] = useState(userData.connu);
   const [broker, setBroker] = useState(userData.broker);
   const [userIp, setUserIp] = useState(userData.userIp);
+  
 
   const handleUpdate = () => {
     dispatch(updateLastName(userData._id, lastName));
@@ -81,6 +82,10 @@ const UpdateProfil = () => {
           </div>
           {/*Partie 1*/}
             <div className='infos-profil'>
+              <div className='info'>
+              <h4>Pseudo</h4>
+              <p >{userData.pseudo}</p>
+              </div>
               <div className='info'>
               <h4>Nom</h4>
               <p >{userData.lastName}</p>

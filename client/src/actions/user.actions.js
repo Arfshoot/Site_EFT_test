@@ -18,6 +18,7 @@ export const UPDATE_SATUT = "UPDATE_STATUT"
 export const UPDATE_RAISONS = "UPDATE_RAISONS"
 export const UPDATE_CONNU = "UPDATE_CONNU"
 export const UPDATE_BROKER = "UPDATE_BROKER"
+export const UPDATE_ROLE = "UPDATE_ROLE"
 export const UPDATE_USERIP = "UPDATE_USERIP"
  
 
@@ -298,6 +299,22 @@ export const updateBroker= (userId, broker) => {
     })
     .then((res) => {
       dispatch({ type: UPDATE_BROKER, payload: broker });
+    })
+    .catch((err) => console.log(err));
+  };
+};
+
+// recuperation du Role
+
+export const updateRole= (userId, role) => {
+  return (dispatch) => {
+    return axios({
+      method: "put",
+      url: `${process.env.REACT_APP_API_URL}api/user/`+userId,
+      data: { role },
+    })
+    .then((res) => {
+      dispatch({ type: UPDATE_ROLE, payload: role });
     })
     .catch((err) => console.log(err));
   };
