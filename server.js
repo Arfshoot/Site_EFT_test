@@ -64,6 +64,7 @@ const Chat = mongoose.model('Salle-Msg');
 const Room = mongoose.model('room');
 
 // connexion socket
+
 io.on('connection', (socket) => {
 
   socket.on('pseudo', (pseudo) => {
@@ -100,13 +101,7 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
       socket.broadcast.emit('quitUser', socket.pseudo);
     });
-        // writting  / not writting
-    /*socket.on('writting', (pseudo) => {
-      socket.broadcast.emit('writting', pseudo)
-    })
-    socket.on('writting', () => {
-      socket.broadcast.emit('notWritting')
-    })*/
+
 
     });
   });

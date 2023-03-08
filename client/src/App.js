@@ -4,6 +4,7 @@ import axios from "axios";
 import Routes from './components/Routes'
 import { useDispatch } from 'react-redux';
 import { getUser } from "./actions/user.actions";
+import { getUsers } from "./actions/users.actions";
 
 
 // check si l'utilisateur est connecté en analysant le token (JWT) "Stockage" 
@@ -25,7 +26,10 @@ const App = () => {
     };
     fetchToken();
 
-    if (uid) dispatch(getUser(uid));
+    if (uid) {
+      dispatch(getUser(uid));
+      dispatch(getUsers());
+    }
   }, [uid, dispatch]);
 
 

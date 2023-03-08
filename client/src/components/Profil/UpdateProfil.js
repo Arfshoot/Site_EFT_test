@@ -13,7 +13,6 @@ const UpdateProfil = () => {
   const userData = useSelector((state) => state.userReducer);
   const [updateForm, setUpdateForm] = useState(false);
   const dispatch = useDispatch();
-
   const [lastName, setlastName] = useState(userData.lastName);
   const [firstName, setfirstName] = useState(userData.firstName);
   const [secondName, setsecondName] = useState(userData.secondName);

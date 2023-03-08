@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { isEmpty } from '../components/Utils';
 import Card from '../components/Post/Card';
 import { getPosts } from '../actions/post.action';
-import { getUser } from '../actions/user.actions'; 
+import { getUsers } from '../actions/users.actions'; 
 
 
 
@@ -26,9 +26,12 @@ import { getUser } from '../actions/user.actions';
 const Home = () => {
 
     const [loadPost, setLoadPost] = useState(true)
+   
     const dispatch = useDispatch()
     const posts = useSelector((state) => state.postReducer)
+
    
+
 
     useEffect (() =>{
         if(loadPost){

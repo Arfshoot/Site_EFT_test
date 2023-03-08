@@ -10,7 +10,7 @@ const DateParser = (num) => {
 
 export default DateParser;
 // recupération date post temoignages (affichage)
-export const dateParser = (num) => {
+export  const dateParser = (num) => {
   let options = {
   year: "numeric",
   month: "short",

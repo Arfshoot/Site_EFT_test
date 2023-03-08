@@ -5,18 +5,17 @@ import { getUser } from '../../actions/user.actions';
 import { UidContext } from './../../components/AppContext';
 import './../../styles/Salle-forex.scss';
 
+
 const FOREX = () => {
   const uid = useContext(UidContext);
-  const [loadUser, setLoadUser] = useState(true);
-  const [users, setUsers] = useState([]);
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userReducer);
-  const lastName = userData.lastName;
   const isAdmin = uid && userData.role === 'admin' ? true : false;
-  
+  const moment = require('moment')
   const socket = io('http://localhost:4000', {
     transports: ['websocket'],
   });
+
 
 /*============== Socket io ==================*/
 
@@ -44,6 +43,13 @@ const FOREX = () => {
     });
     
     document.title = pseudo + ' - ' + document.title;
+
+
+
+
+
+
+
     // ============ Event ========== //
 
     // transmet le pseudo et la connection d'un user a l'admin
@@ -98,20 +104,10 @@ const FOREX = () => {
   }
   
 /*=================== Fonction chat ===================*/
-    // writting
-/*
-    const writting = () => {
-   
-      socket.emit("writting", pseudo);
-    };
-    
-    const notWritting = () => {
-      socket.emit("notWritting");
-    };
-    
-*/
+
     function createElementFunction(element, content) {
     const newElement = document.createElement('div');
+    const formattedTimestamp = moment(content.timestamp).format('   HH:mm:ss , YYYY-MM-DD');
 
     switch (element) {
       case 'newUser':
@@ -121,24 +117,24 @@ const FOREX = () => {
         break; 
       case 'newMessageMe':
         newElement.classList.add(element, 'message')
-        newElement.textContent = pseudo + ':' + content;
+        newElement.textContent = pseudo + ' : ' + content +  formattedTimestamp;
         document.getElementById('msgContainerAdmin').appendChild(newElement);
         break;
       case 'newMessageAll':
         newElement.classList.add(element, 'message')
-        newElement.textContent = content.pseudo + ':' + content.message;
+        newElement.textContent = content.pseudo + ' : ' + content.message +  formattedTimestamp;
         document.getElementById('msgContainer').appendChild(newElement);
         break;
       case 'oldMessages':
         newElement.classList.add(element, 'message')
-        newElement.textContent = content.sender + ':' + content.content;
+        newElement.textContent = content.sender + ' : ' + content.content +  formattedTimestamp;
         document.getElementById('msgContainer').appendChild(newElement);
         break;
-      case 'oldMessagesMe':
-        newElement.classList.add('newMessageMe', 'message')
-        newElement.textContent =  content.sender + ':' + content.content;
-        document.getElementById('msgContainerAdmin').appendChild(newElement);
-        break;
+        case 'oldMessagesMe':
+          newElement.classList.add('newMessageMe', 'message');
+          newElement.textContent = content.sender + ' : ' + content.content + ' - ' + formattedTimestamp;
+          document.getElementById('msgContainerAdmin').appendChild(newElement);
+          break;
 
      /* case "writting":
         document.getElementById("isWritting").textContent = `${content} est en train d'écrire`;
