@@ -14,8 +14,10 @@ import Temoignages from '../../pages/Temoignages';
 import Faq from '../../pages/Faq';
 import Footer from '../Footer';
 import Navbar from '../Navbar';
-import Forex from '../../pages/Salles/Salles.js';
-
+import ChoixSalle from '../../pages/Salles/index.js';
+import Indice from '../../pages/Salles/Indices'
+import Forex from '../../pages/Salles/Salles'
+import Abonnement from '../../pages/Abonnement';
 
 const index = () => {
   
@@ -28,10 +30,13 @@ const index = () => {
             <Route path='/login' exact component={SignInForm}/>
             <Route path='/register' exact component={SignUpForm}/>
             <Route path="/profil" exact component={Profil} />
-            <Route path="/salles" exact component={Forex} />
+            <Route path="/choix-de-la-salle" exact component={ChoixSalle} />
+            <Route path="/Salle-Indice" exact component={Indice} />
+            <Route path="/Salle-Forex" exact component={Forex} />
             <Route path="/temoignages" exact component={Temoignages} />
             <Route path='/faq'exact component={Faq} />
             <Route path="/contact" exact component={Contact} />
+            <Route path="/abonnement" exact component={Abonnement} />
         </Switch>
         <Footer/>
       </Router>

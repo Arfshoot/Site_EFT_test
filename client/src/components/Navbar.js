@@ -42,7 +42,7 @@ const Navbar = () => {
                         <ul>
                             <div className="Nav-Log1">
                                 <li>
-                                    <NavLink exact to="/salles">
+                                    <NavLink exact to="/choix-de-la-salle">
                                         <p className='btn-salle'>Accès aux salles</p>
                                     </NavLink>
                                 </li>

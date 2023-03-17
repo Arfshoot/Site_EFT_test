@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
 const moment = require('moment');
 
-var SalleMsgSchema = new mongoose.Schema({
-  _id_room: {
-    type: String
-  },
+var SalleForex = new mongoose.Schema({
+
   sender: String,
   receiver: String,
   content: String,
@@ -12,10 +10,10 @@ var SalleMsgSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
     get: function(value) {
-      return moment(value).format('YYYY-MM-DD, HH:mm');
+      return moment(value).format('HH:mm');
     }
   }
 });
 
-mongoose.model('Salle-Msg', SalleMsgSchema);
+mongoose.model('SalleForex', SalleForex);
    

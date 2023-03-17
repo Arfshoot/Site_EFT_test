@@ -19,6 +19,40 @@
     align-items: center;
     @include Blocprice;
 
+   .overlay{
+    padding-top:1em;
+    .subscription-form{
+      border:2px solid $Text-color2;
+      border-radius: 10px 10px 10px;
+      padding: 0.5em;
+    }
+    form{
+     
+      margin-bottom:0;
+    }
+   }
+   .button-overlay{
+    display: flex;
+    justify-content:space-between;
+    button{
+      margin-left: 0;
+      margin-right: 0;
+    }
+   }
+   .Title-box{
+    padding-top:1em;
+    margin-bottom:0;
+    h2{
+      margin-bottom:0.5em;
+    }
+    
+   }
+   .Text-box{
+    margin-top:0;
+    p{
+      margin: 0.5em;
+    }
+   }
     
     .Button-box{
         width:280px;

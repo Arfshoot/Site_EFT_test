@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import io from 'socket.io-client';
 import { getUser } from '../../actions/user.actions';
 import { UidContext } from '../../components/AppContext';
-import './../../styles/Salle-forex.scss';
+import './../../styles/Salle-indice.scss';
 
 // import js et scss et images
 import openposition from './../../images/salles/openpositions.png'
 import barretrade from './../../images/salles/trade-exemple.png'
 import publicAnnonce from './../../images/salles/Public announce.png'
-const FOREX = () => {
+const Indice = () => {
   const uid = useContext(UidContext);
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userReducer);
@@ -35,21 +35,21 @@ const FOREX = () => {
     // On demande le pseudo + edit de l'onglet de la page avec le pseudo
     var pseudo;
 
-    do {
-      pseudo = prompt('quel est ton nom ?');
-    } while (!pseudo);
+    //do {
+    //  pseudo = prompt('quel est ton nom ?');
+    //} while (!pseudo);
     
     socket.emit('pseudo', pseudo);
     
-    socket.on('pseudoError', (message) => {
-      alert(message);
-      document.location.href = '/'; // redirection vers une page d'erreur
-    });
+    //socket.on('pseudoError', (message) => {
+      //alert(message);
+     // document.location.href = '/'; // redirection vers une page d'erreur
+    //});
     
-    socket.on('pseudoValid', (message) => {
-     alert(message);
-       //code pour accéder au service
-    });
+    //socket.on('pseudoValid', (message) => {
+    //  alert(message);
+      // code pour accéder au service
+    //});
     
     document.title = pseudo + ' - ' + document.title;
 
@@ -62,45 +62,33 @@ const FOREX = () => {
     // ============ Event ========== //
 
     // transmet le pseudo et la connection d'un user a l'admin
-    socket.on('newUserForex', (pseudo) => {
-      createElementFunction('newUserForex', pseudo);
+    socket.on('newUser', (pseudo) => {
+      createElementFunction('newUser', pseudo);
       
     });
 
     // message all
-    socket.on("newMessageAllForex", (content) => {
-      createElementFunction('newMessageAllForex', content)
+    socket.on("newMessageAllIndice", (content) => {
+      createElementFunction('newMessageAllIndice', content)
     });
     // vieux message
-    socket.on('oldMessageForex', (messages) => {
+    socket.on('oldMessageIndice', (messages) => {
       messages.forEach( message => {
         if(message.sender === pseudo) {
-          createElementFunction('oldMessagesMeForex', message)
+          createElementFunction('oldMessagesMeIndice', message)
         } else {
-          createElementFunction('oldMessagesForex', message)
+          createElementFunction('oldMessagesIndice', message)
         }
       })
       
     })
 
     // écoute du user quit
-    socket.on('quitUserForex', (pseudo) => {
-      createElementFunction('quitUserForex', pseudo);
+    socket.on('quitUser', (pseudo) => {
+      createElementFunction('quitUserIndice', pseudo);
     });
 
-    // message annonce 
-    function createElementFunction(pseudo, message) {
-      // Créer une nouvelle div avec l'ID spécifié
-      const newDiv = document.createElement('div');
-      newDiv.setAttribute('id', pseudo);
-          // Ajouter le message à la div
-    const messageNode = document.createTextNode(message);
-    newDiv.appendChild(messageNode);
-    
-    // Ajouter la nouvelle div à la page
-    const containerDiv = document.getElementById('annoncepublicadmin');
-    containerDiv.appendChild(newDiv);
-  }
+
 
 
 
@@ -114,69 +102,67 @@ const FOREX = () => {
     const formattedTimestamp = moment(content.timestamp).format('HH:mm:ss');
 
     switch (element) {
-      case 'newUserForex':
+      case 'newUser':
         newElement.classList.add(element, 'message');
         newElement.textContent = content + ' a rejoint le chat ';
         document.getElementById('msgContainerAdmin').appendChild(newElement);
         
         
         break; 
-      case 'newMessageMeForex':
+      case 'newMessageMeIndice':
         newElement.classList.add(element, 'message')
         newElement.textContent = "[" + formattedTimestamp + "] " + '' + pseudo + ' : ' + content;
         document.getElementById('msgContainerAdmin').appendChild(newElement);
         
         
         break;
-      case 'newMessageAllForex':
+      case 'newMessageAllIndice':
         newElement.classList.add(element, 'message')
         newElement.textContent = "[" + formattedTimestamp + "] " + '' + content.pseudo + ' : ' + content.message;
         document.getElementById('msgContainer').appendChild(newElement);
         scrollToBottom();
         break;
-      case 'oldMessageForex':
+      case 'oldMessageIndice':
         newElement.classList.add(element, 'message')
         newElement.textContent = "[" + formattedTimestamp + "] " + '' + content.sender + ' : ' + content.content   ;
-        document.getElementById('msgContainerAdmin').appendChild(newElement);
+        document.getElementById('msgContainer').appendChild(newElement);
         scrollToBottom();
         
         break;
-        case 'oldMessagesMeForex':
+        case 'oldMessagesMeIndice':
           newElement.classList.add('newMessageMe', 'message');
           newElement.textContent =  "[" + formattedTimestamp + "] " + '' + content.sender + ' : ' + content.content + ' - ' ;
           document.getElementById('msgContainerAdmin').appendChild(newElement);
           scrollToBottom();
          
           break;
-      case 'quitUserForex':
+      case 'quitUserIndice':
         newElement.classList.add(element, 'message');
         newElement.textContent = content + ' a quitté le chat ';
         document.getElementById('msgContainerAdmin').appendChild(newElement);
         scrollToBottom();
         
         break; 
-        
-          
   }
 }
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const textInput = document.getElementById('msgInputForex').value;
-    document.getElementById('msgInputForex').value = '';
+    const textInput = document.getElementById('msgInputIndice').value;
+    document.getElementById('msgInputIndice').value = '';
   
     if (textInput.length > 0) {
-      socket.emit('newMessageForex', textInput);
-      createElementFunction('newMessageMeForex', textInput);
+      socket.emit('newMessageIndice', textInput);
+      createElementFunction('newMessageMeIndice', textInput);
     } else {
       return false;
     }
   }
   return (
-      <div className='all-forex'>
+      <div className='all-Indice'>
         
         {!isAdmin && (
           <>
-          
+
           <div className='chat-container'>
             <div className="entete-salle">
               <div className="open-position">
@@ -191,7 +177,7 @@ const FOREX = () => {
               </div>
             </div>
             <div className="titresalle">
-                <h1 className='titre'>Forex trading room</h1>
+                <h1 className='titre'>Indice trading room</h1>
               </div>
           </div>
             <div className='msgContainer' id='msgContainer'>           
@@ -209,14 +195,14 @@ const FOREX = () => {
     <div className='pannel'>
       <button onClick={() => {
         const textInput = "Message envoyé par le bouton direct";
-        socket.emit('newMessageForex', textInput);
-        createElementFunction('annonceplublicadmin', textInput);
+        socket.emit('newMessageIndice', textInput);
+        createElementFunction('newMessageAdminIndice', textInput);
       }}>Envoyer un message direct</button>
 
       <select onChange={(e) => {
         const textInput = `Option sélectionnée: ${e.target.value}`;
-        socket.emit('newMessageForex', textInput);
-        createElementFunction('newMessageAdminForex', textInput);
+        socket.emit('newMessageIndice', textInput);
+        createElementFunction('newMessageAdminIndice', textInput);
       }}>
         <option value="Option 1">Option 1</option>
         <option value="Option 2">Option 2</option>
@@ -228,9 +214,9 @@ const FOREX = () => {
       <button onClick={() => {
         const optionalText = document.getElementById('optionalTextInput').value;
         const textInput = `Message envoyé avec texte optionnel: ${optionalText}`;
-        socket.emit('newMessageForex', textInput);
-        createElementFunction('newMessageAdminForex', textInput);
-      }}></button>
+        socket.emit('newMessageIndice', textInput);
+        createElementFunction('newMessageAdminIndice', textInput);
+      }}>Envoyer avec texte optionnel</button>
 
       <form onSubmit={(e) => {
         e.preventDefault();
@@ -238,8 +224,8 @@ const FOREX = () => {
         document.getElementById('directTextInput').value = '';
 
         if (textInput.length > 0) {
-          socket.emit('newMessageForex', textInput);
-          createElementFunction('newMessageAdminForex', textInput);
+          socket.emit('newMessageIndice', textInput);
+          createElementFunction('newMessageAdminIndice', textInput);
         } else {
           return false;
         }
@@ -264,7 +250,7 @@ const FOREX = () => {
         </div>
       </div>
       <div className="titresalle">
-        <h1 className='titre'>Forex trading room</h1>
+        <h1 className='titre'>Indice trading room</h1>
       </div>
       <div className='msgContainerAdmin' id='msgContainerAdmin'>           
       </div> 
@@ -272,13 +258,13 @@ const FOREX = () => {
         <div className="img-public">
           <img src={publicAnnonce} alt="img-hautparleur"></img>
         </div>
-        <div className="annonceplublicadmin" id="annonceplublicadmin"></div>       
+        <div className="annonceplublicadmin">texte</div>       
         <div>
 
         </div>
       </div>
       <form onSubmit={handleFormSubmit} className="form-admin" >
-        <input type='text' placeholder='Votre message' id='msgInputForex' />
+        <input type='text' placeholder='Votre message' id='msgInputIndice' />
         <button type='submit'>Envoyer</button>
       </form>
     </div>
@@ -289,4 +275,4 @@ const FOREX = () => {
   );
 }
 
-export default FOREX;
+export default Indice;

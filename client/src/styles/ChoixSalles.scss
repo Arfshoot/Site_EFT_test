@@ -1,0 +1,92 @@
+@import './components/Colors.scss';
+@import './components/Mixin.scss';
+
+
+
+
+.All-choixSalles{
+    padding-top: 140px;
+    margin-right: 35em;
+    margin-left: 35em;
+    
+    h1{
+        
+        margin-bottom:1em;
+        color:$Text-color2;
+        margin-top: 2em;
+        font-family: $Font-fam2;
+
+    }
+    .allcadre{
+        display: flex;
+        margin-top: 3em;
+        
+        
+       .cadre{
+        display: flex;
+        flex-direction: column;
+        text-align: center; 
+        margin-right: 5em;
+        
+       
+        
+        .titrecadre{
+            color:white;
+            
+            font-size:$Font-titrebloc;
+            background-color: $Text-color7;
+            margin: 0;
+            text-align: left;
+            padding: 1em;
+            border-radius: 10px 10px 0px 0px;
+        }
+        .corpcadre{
+            width: 430px;
+            border: 1px solid $Text-color7 ;
+            border-radius: 0px 0px 10px 10px;
+                .text-cadre{
+                    color:$Text-color7;
+                    font-size: $Font-titrebloc;
+                    
+                }
+                .text-cadre2{
+                    padding-bottom: 0.5em;
+                    color:$Text-color7;
+                    font-size: $Font-titrebloc;
+                }
+                .prix-cadre{
+                    color:$Text-color7;
+                    font-size: 3em; 
+                    font-weight: bold;
+                }
+        }
+       
+        .btn-abonnement{
+            @include button-yellow2;
+            translate:0% +50% ;
+        }
+        .bas-de-cadre{ 
+            padding-top: 0.5em;
+            text-align: none;
+            margin-left: 1em;
+                ul{
+                padding: 0;
+                padding-top: 2em;
+                display: flex;
+                flex-direction: column;
+                    li{
+                        margin-left: 0;
+                        color:$Text-color7;
+                        
+                        
+                    }  
+    }
+        
+
+        }
+        }
+
+    }
+      
+
+    }

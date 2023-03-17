@@ -13,7 +13,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { isEmpty } from '../components/Utils';
 import Card from '../components/Post/Card';
 import { getPosts } from '../actions/post.action';
-import { getUsers } from '../actions/users.actions'; 
 
 
 
