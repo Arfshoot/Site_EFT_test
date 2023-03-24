@@ -35,6 +35,7 @@ export const getUser = (uid) => {
   };
 };
 
+
 // recuperation du lastname
 
 export const updateLastName = (userId, lastName) => {
@@ -50,6 +51,7 @@ export const updateLastName = (userId, lastName) => {
     .catch((err) => console.log(err));
   };
 };
+
 
 // recuperation du firstname
 
@@ -67,6 +69,7 @@ export const updateFirstName = (userId, firstName) => {
   };
 };
 
+
 // recuperation du secondname
 
 export const updateSecondName= (userId, secondName) => {
@@ -82,6 +85,7 @@ export const updateSecondName= (userId, secondName) => {
     .catch((err) => console.log(err));
   };
 };
+
 
 // recuperation du EMAIL
 
@@ -99,6 +103,7 @@ export const updateEmail= (userId, email) => {
   };
 };
 
+
 // recuperation du adress
 
 export const updateAdress= (userId, adress) => {
@@ -115,6 +120,7 @@ export const updateAdress= (userId, adress) => {
   };
 };
 
+
 // recuperation du COMPLMTADRESS
 
 export const updateComplmtAdress= (userId, complmtAdress) => {
@@ -130,6 +136,8 @@ export const updateComplmtAdress= (userId, complmtAdress) => {
     .catch((err) => console.log(err));
   };
 };
+
+
 // recuperation du VILLE
 
 export const updateVille= (userId, ville) => {
@@ -145,6 +153,8 @@ export const updateVille= (userId, ville) => {
     .catch((err) => console.log(err));
   };
 };
+
+
 // recuperation du codepostal
 
 export const updateCodePostal= (userId, codePostal) => {
@@ -160,6 +170,8 @@ export const updateCodePostal= (userId, codePostal) => {
     .catch((err) => console.log(err));
   };
 };
+
+
 // recuperation du etatprov
 
 export const updateEtatProv= (userId, etatProv) => {
@@ -175,6 +187,7 @@ export const updateEtatProv= (userId, etatProv) => {
     .catch((err) => console.log(err));
   };
 };
+
 
 // recuperation du PAYS
 
@@ -192,6 +205,7 @@ export const updatePays= (userId, pays) => {
   };
 };
 
+
 // recuperation du phone
 
 export const updatePhone= (userId, phone) => {
@@ -207,6 +221,7 @@ export const updatePhone= (userId, phone) => {
     .catch((err) => console.log(err));
   };
 };
+
 
 // recuperation du age
 
@@ -224,6 +239,7 @@ export const updateAge= (userId, age) => {
   };
 };
 
+
 // recuperation du categorieSP
 
 export const updateCategorieSP= (userId, categorieSP) => {
@@ -239,6 +255,7 @@ export const updateCategorieSP= (userId, categorieSP) => {
     .catch((err) => console.log(err));
   };
 };
+
 
 // recuperation du statut
 
@@ -256,6 +273,7 @@ export const updateStatut= (userId, statut) => {
   };
 };
 
+
 // recuperation du raisonS
 
 export const updateRaisonS= (userId, raisonS) => {
@@ -271,6 +289,7 @@ export const updateRaisonS= (userId, raisonS) => {
     .catch((err) => console.log(err));
   };
 };
+
 
 // recuperation du connu
 
@@ -288,6 +307,7 @@ export const updateConnu= (userId, connu) => {
   };
 };
 
+
 // recuperation du broker
 
 export const updateBroker= (userId, broker) => {
@@ -304,6 +324,7 @@ export const updateBroker= (userId, broker) => {
   };
 };
 
+
 // recuperation du Role
 
 export const updateRole= (userId, role) => {
@@ -319,6 +340,7 @@ export const updateRole= (userId, role) => {
     .catch((err) => console.log(err));
   };
 };
+
 
 // recuperation de USER IP
 

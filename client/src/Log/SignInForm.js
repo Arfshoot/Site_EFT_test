@@ -91,7 +91,7 @@ const SignInForm = () => {
         <NavLink to='/register' className="forgot-register"alt="pas-inscrit">Pas encore de compte ?</NavLink>
         <br />
         <input type="submit" value="Connexion" id='btn-connexion'/>
-        <div className="note"><p>Note : Vega-Traders n'autorise pas l'ouverture de plusieurs sessions simultanées. Si ceci se produit, vous serez déconnecté.</p></div>
+        <div className="note"><p>Note : Efficient Trading n'autorise pas l'ouverture de plusieurs sessions simultanées. Si ceci se produit, vous serez déconnecté.</p></div>
         </div>
         
       </form>
