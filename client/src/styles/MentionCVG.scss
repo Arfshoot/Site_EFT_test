@@ -1,38 +1,39 @@
 @import './components/Colors.scss';
 @import './components/Mixin.scss';
-.faq-container{
+.mention-container{
     padding-top: 140px;
     margin-left: 20em;
     margin-right: 20em;
 
-    .faq-title {
+    .mention-title {
         color: $Text-color2;
         margin:2em;
         margin-left: 0.5em;
         font-family: $Font-fam2;
 
     }
-    .faq-placement{
+    .mention-placement{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
     .card{
         width:600px;
-        
+        margin-bottom:1em;
         margin: 0.5em;
-    .faq-sous-titre{
+    .mention-sous-titre{
         color: $Text-color2;
         padding: 0.5em;
         border: 1px solid $Text-color6;
         border-radius: 10px 10px 0 0;
 
     }
-    .faq-text{
+    .mention-text{
         padding: 0.5em;
         text-align: justify;
         border: 1px solid $Text-color6;
         border-radius: 0 0 10px 10px;
-        height: 300px;
+        height: 250px;
+        
 
     }
 }

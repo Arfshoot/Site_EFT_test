@@ -35,21 +35,21 @@ const Indice = () => {
     // On demande le pseudo + edit de l'onglet de la page avec le pseudo
     var pseudo;
 
-    //do {
-    //  pseudo = prompt('quel est ton nom ?');
-    //} while (!pseudo);
+    do {
+      pseudo = prompt('quel est ton nom ?');
+    } while (!pseudo);
     
     socket.emit('pseudo', pseudo);
     
-    //socket.on('pseudoError', (message) => {
-      //alert(message);
-     // document.location.href = '/'; // redirection vers une page d'erreur
-    //});
+    socket.on('pseudoError', (message) => {
+      alert(message);
+      document.location.href = '/'; // redirection vers une page d'erreur
+    });
     
-    //socket.on('pseudoValid', (message) => {
-    //  alert(message);
-      // code pour accéder au service
-    //});
+    socket.on('pseudoValid', (message) => {
+     alert(message);
+       //code pour accéder au service
+    });
     
     document.title = pseudo + ' - ' + document.title;
 
@@ -62,8 +62,8 @@ const Indice = () => {
     // ============ Event ========== //
 
     // transmet le pseudo et la connection d'un user a l'admin
-    socket.on('newUser', (pseudo) => {
-      createElementFunction('newUser', pseudo);
+    socket.on('newUserIndice', (pseudo) => {
+      createElementFunction('newUserIndice', pseudo);
       
     });
 
@@ -84,11 +84,23 @@ const Indice = () => {
     })
 
     // écoute du user quit
-    socket.on('quitUser', (pseudo) => {
+    socket.on('quitUserIndice', (pseudo) => {
       createElementFunction('quitUserIndice', pseudo);
     });
 
-
+    // message annonce 
+    function createElementFunction(pseudo, message) {
+      // Créer une nouvelle div avec l'ID spécifié
+      const newDiv = document.createElement('div');
+      newDiv.setAttribute('id', pseudo);
+          // Ajouter le message à la div
+    const messageNode = document.createTextNode(message);
+    newDiv.appendChild(messageNode);
+    
+    // Ajouter la nouvelle div à la page
+    const containerDiv = document.getElementById('annoncepublicadmin');
+    containerDiv.appendChild(newDiv);
+  }
 
 
 
@@ -102,7 +114,7 @@ const Indice = () => {
     const formattedTimestamp = moment(content.timestamp).format('HH:mm:ss');
 
     switch (element) {
-      case 'newUser':
+      case 'newUserIndice':
         newElement.classList.add(element, 'message');
         newElement.textContent = content + ' a rejoint le chat ';
         document.getElementById('msgContainerAdmin').appendChild(newElement);
@@ -123,14 +135,14 @@ const Indice = () => {
         scrollToBottom();
         break;
       case 'oldMessageIndice':
-        newElement.classList.add(element, 'message')
+        newElement.classList.add( element, 'messages')
         newElement.textContent = "[" + formattedTimestamp + "] " + '' + content.sender + ' : ' + content.content   ;
-        document.getElementById('msgContainer').appendChild(newElement);
+        document.getElementById('msgContainerAdmin').appendChild(newElement);
         scrollToBottom();
         
         break;
         case 'oldMessagesMeIndice':
-          newElement.classList.add('newMessageMe', 'message');
+          newElement.classList.add('newMessageMeIndice', 'messages');
           newElement.textContent =  "[" + formattedTimestamp + "] " + '' + content.sender + ' : ' + content.content + ' - ' ;
           document.getElementById('msgContainerAdmin').appendChild(newElement);
           scrollToBottom();
@@ -141,8 +153,9 @@ const Indice = () => {
         newElement.textContent = content + ' a quitté le chat ';
         document.getElementById('msgContainerAdmin').appendChild(newElement);
         scrollToBottom();
-        
         break; 
+        
+          
   }
 }
   const handleFormSubmit = (e) => {
@@ -162,7 +175,7 @@ const Indice = () => {
         
         {!isAdmin && (
           <>
-
+          
           <div className='chat-container'>
             <div className="entete-salle">
               <div className="open-position">
@@ -193,16 +206,22 @@ const Indice = () => {
        {isAdmin && (
   <>
     <div className='pannel'>
-      <button onClick={() => {
-        const textInput = "Message envoyé par le bouton direct";
-        socket.emit('newMessageIndice', textInput);
-        createElementFunction('newMessageAdminIndice', textInput);
-      }}>Envoyer un message direct</button>
+
+    <button onClick={() => {
+    const textInput = "●";
+    socket.emit('newMessageIndice', textInput);
+    createElementFunction('newMessageMeIndice', textInput);
+    const audio = new Audio('../../Son/WEAPWhip_Fouet 1 (ID 2949)_LS.mp3');
+    audio.play();
+    
+  }}>Envoyer un message direct</button>
+
+
 
       <select onChange={(e) => {
         const textInput = `Option sélectionnée: ${e.target.value}`;
         socket.emit('newMessageIndice', textInput);
-        createElementFunction('newMessageAdminIndice', textInput);
+        createElementFunction('newMessageMeIndice', textInput);
       }}>
         <option value="Option 1">Option 1</option>
         <option value="Option 2">Option 2</option>
@@ -215,8 +234,8 @@ const Indice = () => {
         const optionalText = document.getElementById('optionalTextInput').value;
         const textInput = `Message envoyé avec texte optionnel: ${optionalText}`;
         socket.emit('newMessageIndice', textInput);
-        createElementFunction('newMessageAdminIndice', textInput);
-      }}>Envoyer avec texte optionnel</button>
+        createElementFunction('newMessageMeIndice', textInput);
+      }}></button>
 
       <form onSubmit={(e) => {
         e.preventDefault();
@@ -225,7 +244,7 @@ const Indice = () => {
 
         if (textInput.length > 0) {
           socket.emit('newMessageIndice', textInput);
-          createElementFunction('newMessageAdminIndice', textInput);
+          createElementFunction('newMessageMeIndice', textInput);
         } else {
           return false;
         }
@@ -258,7 +277,7 @@ const Indice = () => {
         <div className="img-public">
           <img src={publicAnnonce} alt="img-hautparleur"></img>
         </div>
-        <div className="annonceplublicadmin">texte</div>       
+        <div className="annonceplublicadmin" id="annonceplublicadmin"></div>       
         <div>
 
         </div>

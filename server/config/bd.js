@@ -10,3 +10,9 @@ mongoose
     .then(()=> console.log('Connecté à mongodb'))
     // si erreur nous la signale
     .catch((err)=> console.log('Connexion échouée', err))
+
+
+
+
+
+    

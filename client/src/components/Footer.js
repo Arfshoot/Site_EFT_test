@@ -11,7 +11,7 @@ const Footer = () => {
     return (
         <div className="All-Footer">
             <div className="Footer-P1">
-                <NavLink className='P1-link' to="/mentions-legales">Mentions légales</NavLink>
+                <NavLink className='P1-link' to="/mentions-légales">Mentions légales</NavLink>
                 <NavLink className='P1-link' to="/politique-de-confidentialité">Politique de confidentialité</NavLink>
                 <NavLink className='P1-link' to="/contact">Contact</NavLink>
             </div>

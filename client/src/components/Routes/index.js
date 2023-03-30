@@ -18,6 +18,9 @@ import ChoixSalle from '../../pages/Salles/index.js';
 import Indice from '../../pages/Salles/Indices'
 import Forex from '../../pages/Salles/Salles'
 import Abonnement from '../../pages/Abonnement';
+import CVG from '../../pages/Mentions/CVG';
+import Admin from '../../pages/Admin/Admin';
+import ListUsers from '../../pages/Admin/ListUsers';
 
 const index = () => {
   
@@ -37,6 +40,9 @@ const index = () => {
             <Route path='/faq'exact component={Faq} />
             <Route path="/contact" exact component={Contact} />
             <Route path="/abonnement" exact component={Abonnement} />
+            <Route path="/mentions-légales" exact component={CVG}/>
+            <Route path="/admin" exact component={Admin}/>
+            <Route path="/List-Users" exact component={ListUsers}/>
         </Switch>
         <Footer/>
       </Router>

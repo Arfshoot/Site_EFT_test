@@ -33,10 +33,10 @@ export const getPosts = (num) => {
   };
 };
 
-export const addPost = (data) => {
+export const addPost = () => {
   return (dispatch) => {
     return axios
-      .post(`${process.env.REACT_APP_API_URL}api/post/`, data)
+      .post(`${process.env.REACT_APP_API_URL}api/post/`)
       .then((res) => {
         if (res.data.errors) {
           dispatch({ type: GET_POST_ERRORS, payload: res.data.errors });

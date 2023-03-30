@@ -135,14 +135,14 @@ const FOREX = () => {
         scrollToBottom();
         break;
       case 'oldMessageForex':
-        newElement.classList.add(element, 'message')
+        newElement.classList.add( element, 'messages')
         newElement.textContent = "[" + formattedTimestamp + "] " + '' + content.sender + ' : ' + content.content   ;
         document.getElementById('msgContainerAdmin').appendChild(newElement);
         scrollToBottom();
         
         break;
         case 'oldMessagesMeForex':
-          newElement.classList.add('newMessageMe', 'message');
+          newElement.classList.add('newMessageMeForex', 'messages');
           newElement.textContent =  "[" + formattedTimestamp + "] " + '' + content.sender + ' : ' + content.content + ' - ' ;
           document.getElementById('msgContainerAdmin').appendChild(newElement);
           scrollToBottom();
@@ -153,7 +153,6 @@ const FOREX = () => {
         newElement.textContent = content + ' a quitté le chat ';
         document.getElementById('msgContainerAdmin').appendChild(newElement);
         scrollToBottom();
-        
         break; 
         
           
@@ -207,16 +206,22 @@ const FOREX = () => {
        {isAdmin && (
   <>
     <div className='pannel'>
-      <button onClick={() => {
-        const textInput = "Message envoyé par le bouton direct";
-        socket.emit('newMessageForex', textInput);
-        createElementFunction('annonceplublicadmin', textInput);
-      }}>Envoyer un message direct</button>
+
+    <button onClick={() => {
+    const textInput = "●";
+    socket.emit('newMessageForex', textInput);
+    createElementFunction('newMessageMeForex', textInput);
+    const audio = new Audio('../../Son/WEAPWhip_Fouet 1 (ID 2949)_LS.mp3');
+    audio.play();
+    
+  }}>Envoyer un message direct</button>
+
+
 
       <select onChange={(e) => {
         const textInput = `Option sélectionnée: ${e.target.value}`;
         socket.emit('newMessageForex', textInput);
-        createElementFunction('newMessageAdminForex', textInput);
+        createElementFunction('newMessageMeForex', textInput);
       }}>
         <option value="Option 1">Option 1</option>
         <option value="Option 2">Option 2</option>
@@ -229,7 +234,7 @@ const FOREX = () => {
         const optionalText = document.getElementById('optionalTextInput').value;
         const textInput = `Message envoyé avec texte optionnel: ${optionalText}`;
         socket.emit('newMessageForex', textInput);
-        createElementFunction('newMessageAdminForex', textInput);
+        createElementFunction('newMessageMeForex', textInput);
       }}></button>
 
       <form onSubmit={(e) => {
@@ -239,7 +244,7 @@ const FOREX = () => {
 
         if (textInput.length > 0) {
           socket.emit('newMessageForex', textInput);
-          createElementFunction('newMessageAdminForex', textInput);
+          createElementFunction('newMessageMeForex', textInput);
         } else {
           return false;
         }

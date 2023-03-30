@@ -21,10 +21,10 @@ require('./config/bd')
 // CORS 
 
 const corsOptions = {
-  origin: process.env.CLIENT_URL,
+  origin: [process.env.CLIENT_URL],
   credentials: true,
   
-  'allowedHeaders': ['sessionId', 'Content-Type'],
+  'allowedHeaders': ['sessionId', 'Content-Type', "All"],
   'exposedHeaders': ['sessionId'],
   'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
   'preflightContinue': false,
@@ -136,7 +136,7 @@ ioIndice.on('connection', (socket) => {
         socket.pseudo = pseudo;  
         socket.emit('pseudoValid', 'Pseudo valide'); //pseudo valide
         socket.pseudo = pseudo;  
-        socket.broadcast.emit('newUser', pseudo) 
+        socket.broadcast.emit('newUserIndice', pseudo) 
       }else{
         socket.emit('pseudoError', 'Pseudo invalide'); // pseudo invalide 
       }
@@ -151,7 +151,6 @@ ioIndice.on('connection', (socket) => {
       // message enregistrer en base
       socket.on('newMessageIndice', (message) => {
         var indice = new Indice();
-        
         indice.content = message;
         indice.sender = socket.pseudo;
         indice.timestamp = Date.now(); // Ajouter la date et l'heure actuelles
@@ -162,10 +161,14 @@ ioIndice.on('connection', (socket) => {
     socket.on('disconnect', () => {
       socket.broadcast.emit('quitUserIndice', socket.pseudo);
     });
+
+
     });
   });
 
 });
+
+
 
 
 httpServer.listen(process.env.PORT, () => {

@@ -65,11 +65,11 @@ const Navbar = () => {
                                     </NavLink>
                                 </li>
                                 <Logout  className='Logout'/>
-                                <li>
+                                {/*<li>
                                     <NavLink exact to="/">
                                         <img className='img-padd' src={langue} alt="Langues"/>
                                     </NavLink>
-                                </li>
+                                </li>*/}
                                 {isAdmin && ( // Affiche uniquement si l'utilisateur est un administrateur
                                     <li>
                                         <NavLink exact to="/admin">
@@ -108,28 +108,22 @@ const Navbar = () => {
                                 <li>
                                     <NavLink exact to="/login">
 
-                                        <img src={Connexion} alt="Langues"/>
+                                        <img src={Connexion} alt="Longin"/>
 
                                     </NavLink>
                                 </li>
                                 <li>
                                     <NavLink exact to="/register">
 
-                                        <img src={Inscription} alt="Langues"/>
+                                        <img src={Inscription} alt="SignUp"/>
 
                                     </NavLink>
                                 </li>
-                    <li>
-                    <NavLink exact to="/">
-                        <select class="lang-select">
-                            <option value="fr">Français</option>
-                            <option value="en">English</option>
-                            <option value="es">Español</option>
-                            <option value="de">Deutsch</option>
-                        
-                        </select>
-                    </NavLink>
-                    </li>
+                                {/*<li>
+                                    <NavLink exact to="/">
+                                        <img className='img-padd' src={langue} alt="Langues"/>
+                                    </NavLink>
+                                 </li>*/}
                     </div>
                 </ul>
             </div>
