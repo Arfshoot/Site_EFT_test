@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import io from 'socket.io-client';
 import { getUser } from '../../actions/user.actions';
@@ -9,15 +9,20 @@ import './../../styles/Salle-forex.scss';
 import openposition from './../../images/salles/openpositions.png'
 import barretrade from './../../images/salles/trade-exemple.png'
 import publicAnnonce from './../../images/salles/Public announce.png'
+
+
+
+
 const FOREX = () => {
   const uid = useContext(UidContext);
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userReducer);
   const isAdmin = uid && userData.role === 'admin' ? true : false;
   const moment = require('moment')
-  const socket = io('http://localhost:4000', {
-    transports: ['websocket'],
-  });
+// utilisez des ports différents pour les connexions des clients
+const socket = io('http://localhost:4001', {
+  transports: ['websocket'],
+});
   
   function scrollToBottom() {
     const chatDiv = document.getElementById('msgContainer');
@@ -27,38 +32,32 @@ const FOREX = () => {
 
 
 /*============== Socket io ==================*/
-
+ const pseudo = userData.pseudo
     socket.on('connect', () => {
       console.log('Connected to server');
-      socket.emit('getUsers');
+      socket.emit('pseudo', pseudo);
     });
     // On demande le pseudo + edit de l'onglet de la page avec le pseudo
-    var pseudo;
+   
 
-    do {
-      pseudo = prompt('quel est ton nom ?');
-    } while (!pseudo);
-    
-    socket.emit('pseudo', pseudo);
-    
-    socket.on('pseudoError', (message) => {
-      alert(message);
-      document.location.href = '/'; // redirection vers une page d'erreur
-    });
-    
-    socket.on('pseudoValid', (message) => {
-     alert(message);
-       //code pour accéder au service
-    });
-    
+
     document.title = pseudo + ' - ' + document.title;
 
 
 
 
 
+    // ========= Boutons =========== // 
+    const audioRef = useRef(null);
 
-
+    const onClickButton = () => {
+      const audio = audioRef.current;
+    
+      const textinput =  "<div>●</div>"; 
+      
+      socket.emit('newMessageForex', textinput);
+      createElementFunction('newMessageMeForex', textinput );
+    };
     // ============ Event ========== //
 
     // transmet le pseudo et la connection d'un user a l'admin
@@ -118,8 +117,7 @@ const FOREX = () => {
         newElement.classList.add(element, 'message');
         newElement.textContent = content + ' a rejoint le chat ';
         document.getElementById('msgContainerAdmin').appendChild(newElement);
-        
-        
+
         break; 
       case 'newMessageMeForex':
         newElement.classList.add(element, 'message')
@@ -128,6 +126,7 @@ const FOREX = () => {
         
         
         break;
+
       case 'newMessageAllForex':
         newElement.classList.add(element, 'message')
         newElement.textContent = "[" + formattedTimestamp + "] " + '' + content.pseudo + ' : ' + content.message;
@@ -207,14 +206,11 @@ const FOREX = () => {
   <>
     <div className='pannel'>
 
-    <button onClick={() => {
-    const textInput = "●";
-    socket.emit('newMessageForex', textInput);
-    createElementFunction('newMessageMeForex', textInput);
-    const audio = new Audio('../../Son/WEAPWhip_Fouet 1 (ID 2949)_LS.mp3');
-    audio.play();
-    
-  }}>Envoyer un message direct</button>
+   
+    <div>
+    <audio ref={audioRef} src='../../Son/Bouton-vert.mp3' />
+    <button onClick={onClickButton}>Envoyer un message direct</button>
+  </div>
 
 
 

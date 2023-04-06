@@ -10,6 +10,8 @@ const  mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
 const app = express();
 const httpServer = http.createServer(app);
+const httpServer1 = http.createServer(app);
+const httpServer2 = http.createServer(app);
 const { Server: SocketIOServer } = require('socket.io');
 
 
@@ -61,8 +63,9 @@ const Indice = mongoose.model('SalleIndice')
 
 // connexion socket//
 // instance de SocketIO pour la salle de chat Forex
-const ioForex = new SocketIOServer(httpServer, {
+const ioForex = new SocketIOServer(httpServer1, {
   cors: {
+    path: '/salle-forex', // nom de route différent
     origin: process.env.CLIENT_URL,
     methods: ['GET', 'POST'],
     allowedHeaders: ['sessionId', 'Content-Type'],
@@ -114,9 +117,10 @@ ioForex.on('connection', (socket) => {
 });
 
 // instance de SocketIO pour la salle de chat Indice
-const ioIndice = new SocketIOServer(httpServer, {
-  path: '/salle-indice', // nom de route différent
+const ioIndice = new SocketIOServer(httpServer2, {
+  
   cors: {
+    path: '/salle-indice', // nom de route différent
     origin: process.env.CLIENT_URL,
     methods: ['GET', 'POST'],
     allowedHeaders: ['sessionId', 'Content-Type'],
@@ -173,4 +177,11 @@ ioIndice.on('connection', (socket) => {
 
 httpServer.listen(process.env.PORT, () => {
   console.log(`Server is listening on port ${process.env.PORT}`);
+});
+httpServer1.listen(4001, () => {
+  console.log(`Server is listening on port 4001`);
+});
+
+httpServer2.listen(4002, () => {
+  console.log(`Server is listening on port 4002`);
 });

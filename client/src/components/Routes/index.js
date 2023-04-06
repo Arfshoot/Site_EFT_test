@@ -15,7 +15,7 @@ import Faq from '../../pages/Faq';
 import Footer from '../Footer';
 import Navbar from '../Navbar';
 import ChoixSalle from '../../pages/Salles/index.js';
-import Indice from '../../pages/Salles/Indices'
+import Indice from '../../pages/Salles/Indices.js'
 import Forex from '../../pages/Salles/Salles'
 import Abonnement from '../../pages/Abonnement';
 import CVG from '../../pages/Mentions/CVG';

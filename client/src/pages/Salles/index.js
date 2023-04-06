@@ -19,7 +19,7 @@ return (
         <p className='prix-cadre'>€ 12.12</p>
         <p className='text-cadre2'>par mois d'abonnement</p>    
     <button className="btn-abonnement">
-        <NavLink to='/Salle-Forex'>Acceder à la salle</NavLink>
+        <NavLink to='/Salle-Forex' >Acceder à la salle</NavLink>
     </button>
 </div>
 <div className="bas-de-cadre">
@@ -37,7 +37,7 @@ return (
         <p className='prix-cadre'>€ 12.12</p>
         <p className='text-cadre2'>par mois d'abonnement</p>
     <button className="btn-abonnement">
-        <NavLink to='/Salle-Indice'>Acceder à la salle</NavLink>
+        <NavLink to='/Salle-Indice' >Acceder à la salle</NavLink>
     </button>
 </div>
 <div className="bas-de-cadre">
