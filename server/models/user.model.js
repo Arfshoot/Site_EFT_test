@@ -132,7 +132,7 @@ const userSchema = new mongoose.Schema(
 
         // Raison social user
 
-        raisonS:{
+        raison:{
             type:String,
             max:30,
             minlength:2

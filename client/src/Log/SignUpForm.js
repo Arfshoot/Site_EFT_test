@@ -44,7 +44,7 @@ const SignUpForm = () => {
       const passwordError = document.querySelector('.password.error')
       const passwordConfirmationError = document.querySelector('.passwordconfirmation.error')
       const termsError = document.querySelector('.terms.error')
-      console.log(terms)
+      console.log("Passage par les vérification")
       passwordConfirmationError.innerHTML = "";
       termsError.innerHTML = "";
   
@@ -56,45 +56,51 @@ const SignUpForm = () => {
         if (!terms.checked)
           termsError.innerHTML = "Veuillez valider les conditions générales";
       } else {
-        await axios({
-          
-          method: "POST",
-          url: `${process.env.REACT_APP_API_URL}api/user/register`,
-          data: {
-            email,
-            password,
-            lastName,
-            firstName,
-            secondName,
-            adress,
-            complmtAdress,
-            ville,
-            codePostal,
-            etatProv,
-            pays,
-            phone,
-            age,
-            categorieSP,
-            statut,
-            raisonS,
-            connu,
-            broker,
-            pseudo
-            
-          },
-          
+          //Message Console pour debug
+          console.log("Passage par axios")
+          await axios({          
+            method: "POST",
+            url: `${process.env.REACT_APP_API_URL}api/user/register`,
+            data: {
+              email,
+              password,
+              lastName,
+              firstName,
+              secondName,
+              adress,
+              complmtAdress,
+              ville,
+              codePostal,
+              etatProv,
+              pays,
+              phone,
+              age,
+              categorieSP,
+              statut,
+              raisonS,
+              connu,
+              broker,
+              pseudo
+            },
         })
         
           .then((res) => {            
             if (res.data.errors) {
+               //Message Console pour debug
+              console.log("Passage red.data.errors")
+              console.log(res.data.errors)
+              
               emailError.innerHTML = res.data.errors.email;
               passwordError.innerHTML = res.data.errors.password;
               pseudoError.innerHTML= res.data.errors.pseudo
+              
             } else {
+              //Message Console pour debug
+              console.log("Submission au server")
               setFormSubmit(true);  
-             
             }
           })
+          //Affichage de l'erreur
           .catch((err) => console.log(err));
          
       }
@@ -218,7 +224,7 @@ const SignUpForm = () => {
 
                     {/*Complément d'adresse*/}
                     <div className='input'> 
-                      <label htmlFor='Complément adresse'>Complément d'adresse</label>
+                      <label htmlFor='ComplémentAdresse'>Complément d'adresse</label>
                       <input type='text' placeholder='Batiment 2' id='ComplémentAdresse'
                       onChange = {(e) => setComplmtAdress(e.target.value)}
                       value={complmtAdress} /> 
@@ -229,7 +235,7 @@ const SignUpForm = () => {
                   <div className='All-input'>
                     <div className='input'> 
                       <label htmlFor='Ville'>Ville<span>*</span></label>
-                      <input type="text" placeholder='Rennes' id='Ville' required 
+                      <input type="text" placeholder='Paris' id='Ville' required 
                       onChange = {(e) => setVille(e.target.value)}
                       value={ville}/>
                     </div>
@@ -237,15 +243,15 @@ const SignUpForm = () => {
                     {/*Code postal*/}
                     <div className='input'> 
                       <label htmlFor='CodePostal'>Code Postal<span>*</span></label>
-                      <input type='text'placeholder='35000' id='CodePostal' required
+                      <input type='text'placeholder='75001' id='CodePostal' required
                       onChange = {(e) => setCodePostal(e.target.value)}
                       value={codePostal}/>
                     </div>
 
                     {/*Etat / province*/}
                     <div className='input'> 
-                      <label htmlFor='État / Province'>État / Province</label>
-                      <input type='text' placeholder='Quebec' id='État / Province'
+                      <label htmlFor='ÉtatProvince'>État / Province</label>
+                      <input type='text' placeholder='IDF' id='ÉtatProvince'
                       onChange = {(e) => setEtatProv(e.target.value)}
                       value={etatProv} />
                     </div>
@@ -259,7 +265,6 @@ const SignUpForm = () => {
                       onChange = {(e) => setPays(e.target.value)}
                     value={pays}>
                     <option value="France" selected="selected">France </option>
-
                     <option value="Afghanistan">Afghanistan </option>
                     <option value="Afrique_Centrale">Afrique_Centrale </option>
                     <option value="Afrique_du_sud">Afrique_du_Sud </option>
@@ -563,7 +568,7 @@ const SignUpForm = () => {
 
                     {/*Statut*/}
                     <div className='input'>
-                      <label htmlFor="Satut">Satut<span>*</span></label>
+                      <label htmlFor="Statut">Statut<span>*</span></label>
                       <select id="Statut" required 
                       onChange = {(e) => setStatut(e.target.value)}
                     value={statut}>
@@ -585,7 +590,7 @@ const SignUpForm = () => {
                     {/*Connu*/}
                   <div className='All-input'>
                     <div className='input'>
-                      <label htmlFor='Connu?'>Comment nous avez-vous connus ?<span>*</span></label>
+                      <label htmlFor='Connu'>Comment nous avez-vous connus ?<span>*</span></label>
                       <select id="Connu" required 
                       onChange = {(e) => setConnu(e.target.value)}
                     value={connu}>
@@ -617,7 +622,7 @@ const SignUpForm = () => {
                 {/*Checkbox conditions*/}
                 <div className='Bouton-Condition'>
                     <input type='checkbox' id='terms' ></input>
-                    <label htmlFor='Conditions'>J'accepte les <a href='/mentions-légales' target='_blank' rel='noopener noreferrer'>conditions générales</a></label>
+                    <label htmlFor='terms'>J'accepte les <a href='/mentions-légales' target='_blank' rel='noopener noreferrer'>conditions générales</a></label>
                     <div className='terms error'></div>
                 </div>
                 <div className='Form-button-bottom'> 
