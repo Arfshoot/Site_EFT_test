@@ -8,6 +8,9 @@ import './../styles/Abonnement.scss';
 import PrixP from './../images/PrixP.png';
 import PrixG from './../images/PrixG.png';
 
+// Import Ogone
+import './../components/Ogone/CreatePayment.js';
+
 export default function Abonnement() {
   const [showSubscriptionOverlay, setShowSubscriptionOverlay] = useState(false);
   const [showSubscriptionOverlayIndice, setShowSubscriptionOverlayIndice] = useState(false);
