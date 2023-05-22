@@ -4,7 +4,9 @@ import { GET_USER, UPDATE_ADRESS, UPDATE_AGE, UPDATE_BROKER, UPDATE_CATEGORIESP,
 
 
 
-const initialState = {};
+const initialState = {
+  lastName: '', // Ajoutez cette ligne pour initialiser lastName avec une chaîne vide
+};
 
 
 

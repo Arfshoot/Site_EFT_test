@@ -22,6 +22,13 @@ export const UPDATE_ROLE = "UPDATE_ROLE"
 export const UPDATE_USERIP = "UPDATE_USERIP"
  
 
+export const setUserData = (userData) => {
+  return {
+    type: 'SET_USER_DATA',
+    payload: userData,
+  };
+};
+
 // recupération des user
 export const getUser = (uid) => {
   return (dispatch) => {

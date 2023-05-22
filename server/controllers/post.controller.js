@@ -15,20 +15,20 @@ module.exports.readPost = (req, res) => {
 
 
 // creation d'un post
-  module.exports.createPost = async (req, res) => {
-    const newPost = new postModel({
-      posterId: req.body.posterId,
-      message: req.body.message,
+module.exports.createPost = async (req, res) => {
+  const newPost = new postModel({
+    posterId: req.body.posterId,
+    message: req.body.message,
+  });
 
-    });
-
-    try {
+  try {
     const post = await newPost.save();
     return res.status(200).json(post);
-    }catch (err) {
-      return res.status(400).send(err)
-    }
+  } catch (err) {
+    return res.status(400).send(err);
   }
+};
+
 
 // modification d'un post
 module.exports.updatePost = (req, res) => {

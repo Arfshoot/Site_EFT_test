@@ -17,6 +17,18 @@
         font-family: $Font-fam2;
 
     }
+    h2{
+        color:$Text-color2;
+    }
+    .desc-titre{
+        text-decoration: underline;
+        font-weight: bold;
+    }
+    .desc{
+        font-size: 1em;
+        color: red;
+        
+    }
     .allcadre{
         display: flex;
         margin-top: 3em;

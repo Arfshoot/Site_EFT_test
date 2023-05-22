@@ -15,5 +15,5 @@ var SalleForex = new mongoose.Schema({
   }
 });
 
-mongoose.model('SalleForex', SalleForex);
+module.exports = mongoose.model('SalleForex', SalleForex)
    

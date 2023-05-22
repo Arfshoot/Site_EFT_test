@@ -15,5 +15,5 @@ var SalleIndice = new mongoose.Schema({
   }
 });
 
-mongoose.model('SalleIndice', SalleIndice);
+module.exports = mongoose.model('SalleIndice', SalleIndice)
    

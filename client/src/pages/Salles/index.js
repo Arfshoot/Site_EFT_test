@@ -9,8 +9,12 @@ const index = () => {
 //const isPremium = UseSelector(state => state.user.isPremium); // ou tout autre nom d'objet ou de propriété selon votre implémentation
 return (
 <div className='All-choixSalles'>
-<h1 className="titrechoixsalle">Choisissez une salle</h1>
+<h1 className="titrechoixsalle">Choisissez une salle</h1> 
+<h2 className="horaires">Horaires des Salles</h2> 
+<p className='desc-titre'>Ouvert de 8h à 12h et de 14h à 18h</p>
+<p className="desc">il n'est pas utile de rejoindre les salles hors des horaires d'ouverture</p> 
 <div className="allcadre">
+   
 <div className='cadre'>
 <div className="titrecadre"><p>Salle Forex</p></div>
 

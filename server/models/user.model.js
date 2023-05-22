@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema(
             required: true,
             minlength:3,
             maxLength:25,
-            trimp: true
+            trim: true
 
         },
 
@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema(
             required: true,
             minlength:3,
             maxLength:25,
-            trimp: true
+            trim: true
 
         },
         // deuxieme prénom user
@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema(
             type: String,
             minlength:3,
             maxLength:25,
-            trimp: true
+            trim: true
 
         },
         //email user
@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema(
             unique:true,
             validate: [isEmail],
             lowercase:true,
-            trimp:true,
+            trim:true,
         },
 
         // mot de passe user
@@ -170,7 +170,7 @@ const userSchema = new mongoose.Schema(
         // recupération de l'ip et doit etre unique 
         userIp : {
             type:String,
-            unique:true,
+            unique: true,
 
         },
 

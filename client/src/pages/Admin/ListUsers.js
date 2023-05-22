@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsers } from '../../actions/users.actions';
 
+
 import './../../styles/ListUsers.scss';
 
 export default function ListUsers() {
@@ -22,22 +23,24 @@ export default function ListUsers() {
       <div>
       <table>
           <thead>
-            <tr>Liste des Membres</tr>
-            <td>Nom</td>
-            <td>Prénom</td>
-            <td>Email</td>
-            <td>Adresse</td>
-            <td>Ville</td>
-            <td>Code Postal</td>
-            <td>Pays</td>
-            <td>Age</td>
-            <td>Statut</td>
-            <td>Connu ?</td>
-            <td>Nom</td>
-            <td>Nom</td>
-            <td>Nom</td>
-            <td>Nom</td>       
-          </thead>
+        <tr>
+          <th>Liste des Membres</th>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Email</th>
+          <th>Adresse</th>
+          <th>Ville</th>
+          <th>Code Postal</th>
+          <th>Pays</th>
+          <th>Age</th>
+          <th>Statut</th>
+          <th>Connu ?</th>
+          <th>Nom</th>
+          <th>Nom</th>
+          <th>Nom</th>
+          <th>Nom</th>
+        </tr>
+      </thead>
           <tbody>{users.map((user) => (
             <tr>
             <td key={user.id}>{user.lastName}</td>
@@ -56,7 +59,6 @@ export default function ListUsers() {
             <td key={user.id}>{user.pseudo}</td>
             </tr>
           ))}</tbody>
-
         </table>
       </div>
     </div>
