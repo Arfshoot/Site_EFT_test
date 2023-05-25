@@ -48,6 +48,97 @@ app.get('/jwtid', requireAuth, (req, res) => {
 // Routes
 app.use('/api/user', userRoutes);
 app.use('/api/post', postRoutes);
+// reset pwd
+const crypto = require("crypto");
+
+// Function to generate a random reset token
+const generateResetToken = () => {
+  return crypto.randomBytes(20).toString("hex");
+};
+
+app.post("/api/user/reset-password", (req, res) => {
+  const { email } = req.body;
+
+  // Vérifiez si l'utilisateur existe dans la base de données
+  User.findOne({ email }, (err, user) => {
+    if (err || !user) {
+      return res.status(400).json({ message: "Utilisateur non trouvé." });
+    }
+
+    // Générez un jeton de réinitialisation du mot de passe
+    const resetToken = generateResetToken();
+
+    // Enregistrez le jeton de réinitialisation du mot de passe et la date d'expiration dans la base de données pour l'utilisateur
+    user.resetPasswordToken = resetToken;
+    user.resetPasswordExpires = Date.now() + 3600000; // 1 heure d'expiration du jeton
+    user.save((err) => {
+      if (err) {
+        return res.status(500).json({ message: "Erreur lors de la sauvegarde du jeton de réinitialisation du mot de passe." });
+      }
+
+      // Envoyez l'e-mail de réinitialisation du mot de passe à l'utilisateur
+      sendResetPasswordEmail(user.email, resetToken);
+
+      return res.status(200).json({ message: "Un e-mail de réinitialisation du mot de passe a été envoyé." });
+    });
+  });
+});
+const sendResetPasswordEmail = (email, resetToken) => {
+  // Logic to send the reset password email
+  // You can use a library like Nodemailer to send the email
+  
+  // Example using Nodemailer
+  const nodemailer = require("nodemailer");
+  const transporter = nodemailer.createTransport({
+    host: 'mail.infomaniak.com',
+    port: 465,
+    secure: false,
+    auth: {
+      user: 'user.infomaniak',
+      pass: 'pwd.infomaniak',
+    },
+  });
+  
+  const mailOptions = {
+    from: 'your-email@example.com',
+    to: email,
+    subject: 'Reset Your Password',
+    text: `Click the following link to reset your password: ${resetToken}`,
+  };
+  
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log('Error sending email:', error);
+    } else {
+      console.log('Reset password email sent:', info.response);
+    }
+  });
+};
+
+
+app.post("/api/user/reset-password/:token", (req, res) => {
+const { token } = req.params;
+const { password } = req.body;
+
+// Trouvez l'utilisateur avec le jeton de réinitialisation du mot de passe correspondant
+User.findOne({ resetPasswordToken: token, resetPasswordExpires: { $gt: Date.now() } }, (err, user) => {
+  if (err || !user) {
+    return res.status(400).json({ message: "Jeton de réinitialisation du mot de passe non valide ou expiré." });
+  }
+
+  // Mettez à jour le mot de passe de l'utilisateur avec le nouveau mot de passe
+  user.password = password;
+  user.resetPasswordToken = undefined;
+  user.resetPasswordExpires = undefined;
+  user.save((err) => {
+    if (err) {
+      return res.status(500).json({ message: "Erreur lors de la réinitialisation du mot de passe." });
+    }
+
+    return res.status(200).json({ message: "Le mot de passe a été réinitialisé avec succès." });
+  });
+});
+});
 
 // ============================ Socket.io ===================================== //
 // enregistremen du pseudo 

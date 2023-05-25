@@ -33,6 +33,10 @@ router.delete('/:id', (req, res) => {
       res.status(401).send('Unauthorized');
     }
   });
+
+  
+
+  
 router.get('/:id', userController.userInfo)
 router.put("/:id", userController.updateUser);
 

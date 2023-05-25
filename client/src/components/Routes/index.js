@@ -21,6 +21,7 @@ import Abonnement from '../../pages/Abonnement';
 import CVG from '../../pages/Mentions/CVG';
 import Admin from '../../pages/Admin/Admin';
 import ListUsers from '../../pages/Admin/ListUsers';
+import ResetPasswordForm from '../../Log/ResetPasswordForm';
 
 const index = () => {
   
@@ -31,6 +32,7 @@ const index = () => {
         <Switch>
             <Route path="/" exact component={Home} />
             <Route path='/login' exact component={SignInForm}/>
+            <Route exact path="/reset-password" component={ResetPasswordForm} />
             <Route path='/register' exact component={SignUpForm}/>
             <Route path="/profil" exact component={Profil} />
             <Route path="/choix-de-la-salle" exact component={ChoixSalle} />

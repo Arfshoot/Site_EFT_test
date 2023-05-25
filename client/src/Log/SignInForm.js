@@ -87,7 +87,7 @@ const SignInForm = () => {
         />
         <div className="password error"></div>
         <br/>
-        <a className="forgot-register" href='#' alt="rest-password">Mot de passe oublié</a>
+        <a className="forgot-register" href="/reset-password">Mot de passe oublié</a>
         <NavLink to='/register' className="forgot-register"alt="pas-inscrit">Pas encore de compte ?</NavLink>
         <br />
         <input type="submit" value="Connexion" id='btn-connexion'/>
