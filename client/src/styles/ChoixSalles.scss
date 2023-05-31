@@ -8,14 +8,13 @@
     padding-top: 140px;
     margin-right: 35em;
     margin-left: 35em;
+    padding-bottom: 180px;
     
-    h1{
-        
+    h1{     
         margin-bottom:1em;
         color:$Text-color2;
         margin-top: 2em;
         font-family: $Font-fam2;
-
     }
     h2{
         color:$Text-color2;
@@ -26,22 +25,19 @@
     }
     .desc{
         font-size: 1em;
-        color: red;
-        
+        color: red;       
     }
     .allcadre{
         display: flex;
         margin-top: 3em;
-        
-        
+              
        .cadre{
         display: flex;
         flex-direction: column;
         text-align: center; 
         margin-right: 5em;
         
-       
-        
+              
         .titrecadre{
             color:white;
             
@@ -58,8 +54,7 @@
             border-radius: 0px 0px 10px 10px;
                 .text-cadre{
                     color:$Text-color7;
-                    font-size: $Font-titrebloc;
-                    
+                    font-size: $Font-titrebloc;   
                 }
                 .text-cadre2{
                     padding-bottom: 0.5em;
@@ -72,7 +67,6 @@
                     font-weight: bold;
                 }
         }
-       
         .btn-abonnement{
             @include button-yellow2;
             translate:0% +50% ;
@@ -89,16 +83,9 @@
                     li{
                         margin-left: 0;
                         color:$Text-color7;
-                        
-                        
                     }  
     }
-        
-
         }
         }
-
-    }
-      
-
+    }  
     }

@@ -264,7 +264,7 @@ const SignUpForm = () => {
                       <select name='Pays' id='Pays' required 
                       onChange = {(e) => setPays(e.target.value)}
                     value={pays}>
-                    <option value="France" selected="selected">France </option>
+                    
                     <option value="Afghanistan">Afghanistan </option>
                     <option value="Afrique_Centrale">Afrique_Centrale </option>
                     <option value="Afrique_du_sud">Afrique_du_Sud </option>
@@ -280,7 +280,6 @@ const SignUpForm = () => {
                     <option value="Australie">Australie </option>
                     <option value="Autriche">Autriche </option>
                     <option value="Azerbaidjan">Azerbaidjan </option>
-
                     <option value="Bahamas">Bahamas </option>
                     <option value="Bangladesh">Bangladesh </option>
                     <option value="Barbade">Barbade </option>
@@ -299,7 +298,7 @@ const SignUpForm = () => {
                     <option value="Bulgarie">Bulgarie </option>
                     <option value="Burkina_Faso">Burkina_Faso </option>
                     <option value="Burundi">Burundi </option>
-
+                    <option value="France">France </option>
                     <option value="Caiman">Caiman </option>
                     <option value="Cambodge">Cambodge </option>
                     <option value="Cameroun">Cameroun </option>

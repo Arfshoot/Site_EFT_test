@@ -56,7 +56,7 @@ document.title = pseudo + ' - ' + document.title;
     const onClickButton = () => {
       const audio = audioRef.current;
       audio.play();
-      const textInput = "●";
+      const textInput = "BUY";
       
       socket.emit('newMessageIndice', textInput);
       createElementFunction('newMessageMeIndice', textInput);
@@ -214,8 +214,6 @@ document.title = pseudo + ' - ' + document.title;
     <audio ref={audioRef} src='../../Son/Bouton-vert.mp3' />
     <button onClick={onClickButton}>Envoyer un message direct</button>
   </div>
-
-
 
       <select onChange={(e) => {
         const textInput = `Option sélectionnée: ${e.target.value}`;

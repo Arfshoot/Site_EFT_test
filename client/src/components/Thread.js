@@ -64,6 +64,7 @@ const Thread = () => {
         </ul>
         
         <form onSubmit={handlePostSubmit}>
+          {/*
           <input
             type="text"
             name="nom"
@@ -80,7 +81,9 @@ const Thread = () => {
             onChange={(e) => setMessage(e.target.value)}
           ></textarea>
           <button type="submit">Ajouter</button>
-        </form>
+        
+          */}
+          </form>
       </div>
     );
   };
