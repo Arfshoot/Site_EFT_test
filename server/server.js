@@ -25,7 +25,6 @@ require('./config/bd')
 const corsOptions = {
   origin: [process.env.CLIENT_URL],
   credentials: true,
-  
   'allowedHeaders': ['sessionId', 'Content-Type', "All"],
   'exposedHeaders': ['sessionId'],
   'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
