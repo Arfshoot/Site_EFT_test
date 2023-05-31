@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 // le +process.env.DB_USER_PASS renvois a notre .env avec nos données d'auth
 mongoose 
-    .connect('mongodb://' + process.env.DB_USER_PASS + '@' + process.env.DB_URL,
+    .connect('mongodb+srv://arf:FBfTGlcgmmhxIeAG@base-eft.vajdbvv.mongodb.net/EFT',
     {
         useNewUrlParser: true,
     }

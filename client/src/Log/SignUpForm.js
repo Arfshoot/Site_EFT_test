@@ -35,6 +35,11 @@ const SignUpForm = () => {
     const [connu, setConnu] = useState('')
     const [broker, setBroker] = useState('')
     const [pseudo, setPseudo] = useState('')
+    const [showPassword, setShowPassword] = useState(false);
+
+    const toggleShowPassword = () => {
+      setShowPassword(!showPassword);
+    };
 
     const handleRegister = async (e) => {
       e.preventDefault();
@@ -163,8 +168,9 @@ const SignUpForm = () => {
                     <div className='input-error'>
                     <div className='input'> 
                       <label htmlFor='Mot de passe'>Mot de passe<span>*</span></label>
-                      <input type="password" placeholder='************' id='Mot de passe' onChange = {(e) => setPassword(e.target.value)}
+                      <input type={showPassword ? 'text' : 'password'} placeholder='************' id='Mot de passe' onChange = {(e) => setPassword(e.target.value)}
                       value={password} required />
+                       <button onClick={toggleShowPassword}>{showPassword ? 'Hide' : 'Show'} Password</button>
                     </div>
                     <div className='password error'></div>
                     </div>
@@ -172,8 +178,9 @@ const SignUpForm = () => {
                     {/*Confimation password*/}
                     <div className='input'> 
                       <label htmlFor='Confimation mot de passe'>Confirmation mot de passe<span>*</span></label>
-                      <input type="password" placeholder='************' id='Confimation mot de passe' onChange = {(e) => setPasswordConfirmation(e.target.value)}
+                      <input type={showPassword ? 'text' : 'password'} placeholder='************' id='Confimation mot de passe' onChange = {(e) => setPasswordConfirmation(e.target.value)}
                       value={passwordConfirmation} required />
+                       <button onClick={toggleShowPassword}>{showPassword ? 'Hide' : 'Show'} Password</button>
                     </div>
                     <div className='passwordconfirmation error'></div>
                 </div>
@@ -580,7 +587,7 @@ const SignUpForm = () => {
                     {/*Raison Sociale*/}
                     <div className='input'>
                       <label htmlFor='RaisonSociale'>Raison Sociale</label>
-                      <input type='text' placeholder='SARL' id='RaisonSociale' 
+                      <input type='text' placeholder='SARL' id='RaisonSociale' required
                       onChange = {(e) => setRaisonS(e.target.value)}
                       value={raisonS}/>
                     </div>
