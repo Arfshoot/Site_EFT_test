@@ -28,7 +28,49 @@ module.exports.userInfo = async (req, res) => {
         else console.log('Id Inconnue : ' + err)
     }).select('-password')
 }
+// Block user by ID
+module.exports.blockUser = async (req, res) => {
+  if (!ObjectID.isValid(req.params.id))
+    return res.status(400).send('ID unknown : ' + req.params.id);
 
+  try {
+    const user = await UserModel.findByIdAndUpdate(
+      req.params.id,
+      { blocked: true },
+      { new: true }
+    );
+
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    res.status(200).json(user);
+  } catch (err) {
+    return res.status(500).json({ message: err });
+  }
+};
+
+// Unblock user by ID
+module.exports.unblockUser = async (req, res) => {
+  if (!ObjectID.isValid(req.params.id))
+    return res.status(400).send('ID unknown : ' + req.params.id);
+
+  try {
+    const user = await UserModel.findByIdAndUpdate(
+      req.params.id,
+      { blocked: false },
+      { new: true }
+    );
+
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    res.status(200).json(user);
+  } catch (err) {
+    return res.status(500).json({ message: err });
+  }
+};
 // modification des infos user
 
 module.exports.updateUser = async (req, res) => {
