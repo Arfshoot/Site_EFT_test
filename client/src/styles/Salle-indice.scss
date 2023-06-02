@@ -10,11 +10,21 @@
   width: 50%;
   
   .pannel{
+     
+    display: flex;
+
     
-    background-color: red;
-    position: absolute;
-    left:0%; 
+
     
+    .Bouton{
+      border: 2px solid red;
+      button{
+        font-weight: bold;
+        
+        margin: 0.5em;
+      }
+    }
+
     
   }
 

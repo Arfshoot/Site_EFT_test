@@ -200,11 +200,8 @@ ioForex.on('connection', (socket) => {
     socket.on('disconnect', () => {
       socket.broadcast.emit('quitUserForex', socket.pseudo);
     });
-
-
     });
   });
-
 });
 
 // instance de SocketIO pour la salle de chat Indice

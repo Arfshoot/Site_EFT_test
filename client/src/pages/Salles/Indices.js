@@ -19,6 +19,7 @@ const Indice = () => {
   const userData = useSelector((state) => state.userReducer);
   const isAdmin = uid && userData.role === 'admin' ? true : false;
   const moment = require('moment')
+  
 // utilisez des ports différents pour les connexions des clients
 const socket = io('http://localhost:4002', {
   transports: ['websocket'],
@@ -31,7 +32,7 @@ const socket = io('http://localhost:4002', {
 
 
 
-/*============== Socket io ==================*/
+
 /*============== Socket io ==================*/
 const pseudo = userData.pseudo
 socket.on('connect', () => {
@@ -57,6 +58,42 @@ document.title = pseudo + ' - ' + document.title;
       const audio = audioRef.current;
       audio.play();
       const textInput = "BUY";
+      
+      socket.emit('newMessageIndice', textInput);
+      createElementFunction('newMessageMeIndice', textInput);
+    };
+    
+    const onClickButton2 = () => {
+      const audio = audioRef.current;
+      audio.play();
+      const textInput = "SELL";
+      
+      socket.emit('newMessageIndice', textInput);
+      createElementFunction('newMessageMeIndice', textInput);
+    };
+
+    const onClickButton3 = () => {
+      const audio = audioRef.current;
+      audio.play();
+      const textInput = "Green";
+      
+      socket.emit('newMessageIndice', textInput);
+      createElementFunction('newMessageMeIndice', textInput);
+    };
+
+    const onClickButton4 = () => {
+      const audio = audioRef.current;
+      audio.play();
+      const textInput = "Orange";
+      
+      socket.emit('newMessageIndice', textInput);
+      createElementFunction('newMessageMeIndice', textInput);
+    };
+
+    const onClickButton5 = () => {
+      const audio = audioRef.current;
+      audio.play();
+      const textInput = "Red";
       
       socket.emit('newMessageIndice', textInput);
       createElementFunction('newMessageMeIndice', textInput);
@@ -210,29 +247,45 @@ document.title = pseudo + ' - ' + document.title;
     <div className='pannel'>
 
    
-    <div>
-    <audio ref={audioRef} src='../../Son/Bouton-vert.mp3' />
-    <button onClick={onClickButton}>Envoyer un message direct</button>
-  </div>
+    <div className='Bouton'>
+      <audio ref={audioRef} src="../audio/BuyNow.mp3" />
+      <button onClick={onClickButton}>BUY</button>
+    </div>  
+    
+     <div className='Bouton'>
+      <audio ref={audioRef} src="../audio/BuyNow.mp3" />
+      <button onClick={onClickButton2}>SELL</button>
+    </div>
+
+    <div className='Bouton'>
+      <audio ref={audioRef} src="../audio/BuyNow.mp3" />
+      <button onClick={onClickButton3}>Green</button>
+    </div>
+
+    <div className='Bouton'>
+      <audio ref={audioRef} src="../audio/BuyNow.mp3" />
+      <button onClick={onClickButton4}>Orange</button>
+    </div>
+
+    <div className='Bouton'>
+      <audio ref={audioRef} src="../audio/BuyNow.mp3" />
+      <button onClick={onClickButton5}>Red</button>
+    </div>
+
 
       <select onChange={(e) => {
-        const textInput = `Option sélectionnée: ${e.target.value}`;
+        const textInput = `${e.target.value}`;
         socket.emit('newMessageIndice', textInput);
         createElementFunction('newMessageMeIndice', textInput);
       }}>
-        <option value="Option 1">Option 1</option>
-        <option value="Option 2">Option 2</option>
-        <option value="Option 3">Option 3</option>
+        <option value=""></option>
+        <option value="Bonjour !">Bonjour !</option>
+        <option value="Bon appétit">Bon appétit</option>
+        <option value="A demain">A demain</option>
       </select>
 
-      <input type='text' placeholder='Texte optionnel' id='optionalTextInput' />
+      
 
-      <button onClick={() => {
-        const optionalText = document.getElementById('optionalTextInput').value;
-        const textInput = `Message envoyé avec texte optionnel: ${optionalText}`;
-        socket.emit('newMessageIndice', textInput);
-        createElementFunction('newMessageMeIndice', textInput);
-      }}></button>
 
       <form onSubmit={(e) => {
         e.preventDefault();
@@ -247,7 +300,7 @@ document.title = pseudo + ' - ' + document.title;
         }
       }}>
         <input type='text' placeholder='Message direct' id='directTextInput' />
-        <button type='submit'>Envoyer directement dans le chat</button>
+        <button type='submit'>Envoyer</button>
       </form>
     </div>
 
@@ -279,10 +332,6 @@ document.title = pseudo + ' - ' + document.title;
 
         </div>
       </div>
-      <form onSubmit={handleFormSubmit} className="form-admin" >
-        <input type='text' placeholder='Votre message' id='msgInputIndice' />
-        <button type='submit'>Envoyer</button>
-      </form>
     </div>
   </>
 )}

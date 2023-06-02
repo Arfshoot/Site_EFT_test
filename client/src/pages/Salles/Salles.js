@@ -50,13 +50,49 @@ const socket = io('http://localhost:4001', {
     // ========= Boutons =========== // 
     const audioRef = useRef(null);
 
-    const onClickButton = () => {
+       const onClickButton = () => {
       const audio = audioRef.current;
-    
-      const textinput =  "<div>●</div>"; 
+      audio.play();
+      const textInput = "BUY";
       
-      socket.emit('newMessageForex', textinput);
-      createElementFunction('newMessageMeForex', textinput );
+      socket.emit('newMessageForex', textInput);
+      createElementFunction('newMessageMeForex', textInput);
+    };
+    
+    const onClickButton2 = () => {
+      const audio = audioRef.current;
+      audio.play();
+      const textInput = "SELL";
+      
+      socket.emit('newMessageForex', textInput);
+      createElementFunction('newMessageMeForex', textInput);
+    };
+
+    const onClickButton3 = () => {
+      const audio = audioRef.current;
+      audio.play();
+      const textInput = "Green";
+      
+      socket.emit('newMessageForex', textInput);
+      createElementFunction('newMessageMeForex', textInput);
+    };
+
+    const onClickButton4 = () => {
+      const audio = audioRef.current;
+      audio.play();
+      const textInput = "Orange";
+      
+      socket.emit('newMessageForex', textInput);
+      createElementFunction('newMessageMeForex', textInput);
+    };
+
+    const onClickButton5 = () => {
+      const audio = audioRef.current;
+      audio.play();
+      const textInput = "Red";
+      
+      socket.emit('newMessageForex', textInput);
+      createElementFunction('newMessageMeForex', textInput);
     };
     // ============ Event ========== //
 
@@ -159,8 +195,8 @@ const socket = io('http://localhost:4001', {
 }
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const textInput = document.getElementById('msgInputForex').value;
-    document.getElementById('msgInputForex').value = '';
+    const textInput = document.getElementById('annonceplublicadmin').value;
+    document.getElementById('annonceplublicadmin').value = '';
   
     if (textInput.length > 0) {
       socket.emit('newMessageForex', textInput);
@@ -197,6 +233,7 @@ const socket = io('http://localhost:4001', {
             <div className="publicAnnonce">
               <div className="img-public">
                 <img src={publicAnnonce} alt="img-hautparleur"></img>
+                
               </div>
               <div className="annonceplublicadmin">texte</div>           
             </div>
@@ -206,32 +243,45 @@ const socket = io('http://localhost:4001', {
   <>
     <div className='pannel'>
 
-   
-    <div>
-    <audio ref={audioRef} src='../../Son/Bouton-vert.mp3' />
-    <button onClick={onClickButton}>Envoyer un message direct</button>
-  </div>
+     <div className='Bouton'>
+      <audio ref={audioRef} src="../audio/BuyNow.mp3" />
+      <button onClick={onClickButton}>BUY</button>
+    </div>  
+    
+     <div className='Bouton'>
+      <audio ref={audioRef} src="../audio/BuyNow.mp3" />
+      <button onClick={onClickButton2}>SELL</button>
+    </div>
+
+    <div className='Bouton'>
+      <audio ref={audioRef} src="../audio/BuyNow.mp3" />
+      <button onClick={onClickButton3}>Green</button>
+    </div>
+
+    <div className='Bouton'>
+      <audio ref={audioRef} src="../audio/BuyNow.mp3" />
+      <button onClick={onClickButton4}>Orange</button>
+    </div>
+
+    <div className='Bouton'>
+      <audio ref={audioRef} src="../audio/BuyNow.mp3" />
+      <button onClick={onClickButton5}>Red</button>
+    </div>
 
 
 
       <select onChange={(e) => {
-        const textInput = `Option sélectionnée: ${e.target.value}`;
+        const textInput = `${e.target.value}`;
         socket.emit('newMessageForex', textInput);
         createElementFunction('newMessageMeForex', textInput);
       }}>
-        <option value="Option 1">Option 1</option>
-        <option value="Option 2">Option 2</option>
-        <option value="Option 3">Option 3</option>
+        <option value=""></option>
+        <option value="Bonjour !">Bonjour !</option>
+        <option value="Bon appétit">Bon appétit</option>
+        <option value="A demain">A demain</option>
       </select>
 
-      <input type='text' placeholder='Texte optionnel' id='optionalTextInput' />
 
-      <button onClick={() => {
-        const optionalText = document.getElementById('optionalTextInput').value;
-        const textInput = `Message envoyé avec texte optionnel: ${optionalText}`;
-        socket.emit('newMessageForex', textInput);
-        createElementFunction('newMessageMeForex', textInput);
-      }}></button>
 
       <form onSubmit={(e) => {
         e.preventDefault();
@@ -246,7 +296,7 @@ const socket = io('http://localhost:4001', {
         }
       }}>
         <input type='text' placeholder='Message direct' id='directTextInput' />
-        <button type='submit'>Envoyer directement dans le chat</button>
+        <button type='submit'>Envoyer</button>
       </form>
     </div>
 
@@ -272,16 +322,14 @@ const socket = io('http://localhost:4001', {
       <div className="publicAnnonce">
         <div className="img-public">
           <img src={publicAnnonce} alt="img-hautparleur"></img>
+          <input type="text" name="Annonce"></input>
         </div>
-        <div className="annonceplublicadmin" id="annonceplublicadmin"></div>       
+        <div className="annonceplublicadmin" id="annonceplublicadmin">
+          </div>       
         <div>
 
         </div>
       </div>
-      <form onSubmit={handleFormSubmit} className="form-admin" >
-        <input type='text' placeholder='Votre message' id='msgInputForex' />
-        <button type='submit'>Envoyer</button>
-      </form>
     </div>
   </>
 )}

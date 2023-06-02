@@ -57,8 +57,7 @@ module.exports.updateUser = async (req, res) => {
             raisonS : req.body.raisonS,
             broker : req.body.broker,
             role : req.body.role,
-            pseudo : req.body.pseudo
-            
+            pseudo : req.body.pseudo 
           },
         },
         // paramètre obligatoire pour un put
