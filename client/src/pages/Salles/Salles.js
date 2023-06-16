@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import io from 'socket.io-client';
 import { getUser } from '../../actions/user.actions';
 import { UidContext } from '../../components/AppContext';
+import { ProductID } from '../../components/AppContext';
 import './../../styles/Salle-forex.scss';
 
 // import js et scss et images
@@ -23,14 +24,13 @@ import Sound_DAX from './audio/dax.mp3';
 import Sound_BUND from './audio/bund.mp3';
 import Sound_EURDOL from './audio/eurodollar.mp3';
 
-
-
 const FOREX = () => {
   const uid = useContext(UidContext);
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userReducer);
   const isAdmin = uid && userData.role === 'admin' ? true : false;
   const moment = require('moment')
+
 // utilisez des ports différents pour les connexions des clients
 const socket = io('http://localhost:4001', {
   transports: ['websocket'],

@@ -24,7 +24,6 @@ import Sound_DAX from './audio/dax.mp3';
 import Sound_BUND from './audio/bund.mp3';
 import Sound_EURDOL from './audio/eurodollar.mp3';
 
-
 const Indice = () => {
   const product = useContext(ProductID);
   const uid = useContext(UidContext);
@@ -45,8 +44,6 @@ const socket = io('http://localhost:4002', {
   }
 
 
-
-
 /*============== Socket io ==================*/
 const pseudo = userData.pseudo
 socket.on('connect', () => {
@@ -65,8 +62,8 @@ document.title = pseudo + ' - ' + document.title;
     // ========= Boutons =========== // 
     const onClickSend = (Value) => {
       const textInput = Value;
-      socket.emit('newMessageForex', textInput);
-      createElementFunction('newMessageMeForex', textInput);
+      socket.emit('newMessageIndice', textInput);
+      createElementFunction('newMessageMeIndice', textInput);
     }
 
     
