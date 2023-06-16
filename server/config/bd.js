@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 // le +process.env.DB_USER_PASS renvois a notre .env avec nos données d'auth
 mongoose 
-    .connect('mongodb+srv://arf:FBfTGlcgmmhxIeAG@base-eft.vajdbvv.mongodb.net/EFT',
+     .connect(process.env.DB_CONNECT_URL,
     {
         useNewUrlParser: true,
     }
     )
     // check si c bon connecter
-    .then(()=> console.log('Connecté à mongodb'))
+    .then(()=> console.log('Connecté à la base de données mongodb.'))
     // si erreur nous la signale
-    .catch((err)=> console.log('Connexion échouée', err))
+    .catch((err)=> console.log('Connexion échouée à la base de données mongodb:', err))
 
 
 

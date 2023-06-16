@@ -10,6 +10,18 @@ import openposition from './../../images/salles/openpositions.png'
 import barretrade from './../../images/salles/trade-exemple.png'
 import publicAnnonce from './../../images/salles/Public announce.png'
 
+//Import des sons
+import Sound_default from './audio/new-message.mp3';
+import Sound_Buy from './audio/buyBund.mp3'
+import Sound_Sell from './audio/sellBund.mp3'
+import Sound_Green from './audio/green.mp3'
+import Sound_Orange from './audio/orange.mp3'
+import Sound_Red from './audio/red.mp3'
+import Sound_GOLong from './audio/goLong.mp3';
+import Sound_GOShort from './audio/goShort.mp3';
+import Sound_DAX from './audio/dax.mp3';
+import Sound_BUND from './audio/bund.mp3';
+import Sound_EURDOL from './audio/eurodollar.mp3';
 
 
 
@@ -22,11 +34,13 @@ const FOREX = () => {
 // utilisez des ports différents pour les connexions des clients
 const socket = io('http://localhost:4001', {
   transports: ['websocket'],
+  protocol: ['ws']
 });
   
   function scrollToBottom() {
     const chatDiv = document.getElementById('msgContainer');
-    chatDiv.scrollTop = chatDiv.scrollHeight - chatDiv.clientHeight;
+    const maxScrollTop = 0; //chatDiv.scrollHeight - chatDiv.clientHeight; 
+    //chatDiv.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
   }
 
 
@@ -34,7 +48,7 @@ const socket = io('http://localhost:4001', {
 /*============== Socket io ==================*/
  const pseudo = userData.pseudo
     socket.on('connect', () => {
-      console.log('Connected to server');
+      console.log('Connected Salle Forex to the server');
       socket.emit('pseudo', pseudo);
     });
     // On demande le pseudo + edit de l'onglet de la page avec le pseudo
@@ -44,57 +58,18 @@ const socket = io('http://localhost:4001', {
     document.title = pseudo + ' - ' + document.title;
 
 
-
+   
 
 
     // ========= Boutons =========== // 
-    const audioRef = useRef(null);
+    const onClickSend = (Value) => {
+      const textInput = Value;
+      socket.emit('newMessageForex', textInput);
+      createElementFunction('newMessageMeForex', textInput);
+    }
 
-       const onClickButton = () => {
-      const audio = audioRef.current;
-      audio.play();
-      const textInput = "BUY";
-      
-      socket.emit('newMessageForex', textInput);
-      createElementFunction('newMessageMeForex', textInput);
-    };
-    
-    const onClickButton2 = () => {
-      const audio = audioRef.current;
-      audio.play();
-      const textInput = "SELL";
-      
-      socket.emit('newMessageForex', textInput);
-      createElementFunction('newMessageMeForex', textInput);
-    };
 
-    const onClickButton3 = () => {
-      const audio = audioRef.current;
-      audio.play();
-      const textInput = "Green";
-      
-      socket.emit('newMessageForex', textInput);
-      createElementFunction('newMessageMeForex', textInput);
-    };
-
-    const onClickButton4 = () => {
-      const audio = audioRef.current;
-      audio.play();
-      const textInput = "Orange";
-      
-      socket.emit('newMessageForex', textInput);
-      createElementFunction('newMessageMeForex', textInput);
-    };
-
-    const onClickButton5 = () => {
-      const audio = audioRef.current;
-      audio.play();
-      const textInput = "Red";
-      
-      socket.emit('newMessageForex', textInput);
-      createElementFunction('newMessageMeForex', textInput);
-    };
-    // ============ Event ========== //
+  // ============ Event ========== //
 
     // transmet le pseudo et la connection d'un user a l'admin
     socket.on('newUserForex', (pseudo) => {
@@ -137,38 +112,69 @@ const socket = io('http://localhost:4001', {
     containerDiv.appendChild(newDiv);
   }
 
-
-
-  
-
-  
 /*=================== Fonction chat ===================*/
 
     function createElementFunction(element, content) {
     const newElement = document.createElement('div');
     const formattedTimestamp = moment(content.timestamp).format('HH:mm:ss');
-
+    // Select Sound to be played
+    var audio = new Audio(Sound_default);
+    switch (content){
+      case "BUY":
+        audio = new Audio(Sound_Buy);
+        break;
+      case "SELL":
+        audio = new Audio(Sound_Sell);
+        break;
+      case "Green":
+        audio = new Audio(Sound_Green);
+        break;
+      case "Orange":
+        audio = new Audio(Sound_Orange);
+        break;
+      case "Red":
+        audio = new Audio(Sound_Red);
+        break;
+      case "GO Long":
+        audio = new Audio(Sound_GOLong);
+        break;
+      case "GO Short":
+        audio = new Audio(Sound_GOShort);
+        break;
+      case "Ready for DAX":
+        audio = new Audio(Sound_DAX);
+        break;
+      case "Ready for BUND":
+        audio = new Audio(Sound_BUND);
+        break;
+      case "Ready for EUR/DOL":
+        audio = new Audio(Sound_EURDOL);
+        break;
+      default:
+        // audio = new Audio(Sound_default);         
+    }
     switch (element) {
       case 'newUserForex':
         newElement.classList.add(element, 'message');
         newElement.textContent = content + ' a rejoint le chat ';
         document.getElementById('msgContainerAdmin').appendChild(newElement);
-
+        if (audio !== undefined) audio.play();
         break; 
       case 'newMessageMeForex':
         newElement.classList.add(element, 'message')
         newElement.textContent = "[" + formattedTimestamp + "] " + '' + pseudo + ' : ' + content;
         document.getElementById('msgContainerAdmin').appendChild(newElement);
-        
-        
+        if (audio !== undefined) audio.play();
         break;
 
       case 'newMessageAllForex':
         newElement.classList.add(element, 'message')
         newElement.textContent = "[" + formattedTimestamp + "] " + '' + content.pseudo + ' : ' + content.message;
         document.getElementById('msgContainer').appendChild(newElement);
+        if (audio !== undefined) audio.play();
         scrollToBottom();
         break;
+
       case 'oldMessageForex':
         newElement.classList.add( element, 'messages')
         newElement.textContent = "[" + formattedTimestamp + "] " + '' + content.sender + ' : ' + content.content   ;
@@ -187,6 +193,7 @@ const socket = io('http://localhost:4001', {
         newElement.classList.add(element, 'message');
         newElement.textContent = content + ' a quitté le chat ';
         document.getElementById('msgContainerAdmin').appendChild(newElement);
+        if (audio !== undefined) audio.play();
         scrollToBottom();
         break; 
         
@@ -243,33 +250,201 @@ const socket = io('http://localhost:4001', {
   <>
     <div className='pannel'>
 
-     <div className='Bouton'>
-      <audio ref={audioRef} src="../audio/BuyNow.mp3" />
-      <button onClick={onClickButton}>BUY</button>
-    </div>  
+      <div className='Text'>
+          <h2>Tickers</h2>
+      </div>
+
+      <div className='Bouton'>
+        <button onClick={() => onClickSend('Ready For EUR/GBP')}>EUR/GBP</button>
+      </div>
     
-     <div className='Bouton'>
-      <audio ref={audioRef} src="../audio/BuyNow.mp3" />
-      <button onClick={onClickButton2}>SELL</button>
+      <div className='Bouton'>
+        <button onClick={() => onClickSend('Ready For GBP/USD')}>GBP/USD</button>
+      </div>
+      
+      <div className='Bouton'>
+        <button onClick={() => onClickSend('Ready for USD/JPY')}>USD/JPY</button>
+      </div>
+    
+      <div className='Bouton'>
+        <button onClick={() => onClickSend('Ready for EUR/DOL')}>EUR/DOL</button>
+      </div>
+      
+      <div className='Bouton'>
+        <button onClick={() => onClickSend('Ready for EUR/CHF')}>EUR/CHF</button>
+      </div>
+    
+      <div className='Bouton'>
+        <button onClick={() => onClickSend('Ready for AUD/USD')}>AUD/USD</button>
+      </div>
+      
+      <div className='Bouton'>
+        <button onClick={() => onClickSend('Ready for EUR/JPY')}>EUR/JPY</button>
+      </div>
+
+      <div className='Bouton'>
+        <button onClick={() => onClickSend('Cancel READY Signal')}>Cancel READY Signal</button>
+      </div>  
+     
+
+      <div className='Text'>
+        <h2>Current value</h2>
+      </div>
+
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        const textInput = document.getElementById('Pricepoint').value;
+        document.getElementById('Pricepoint').value = '';
+
+        if (textInput.length > 0) {
+          socket.emit('newMessageIndice', textInput);
+          createElementFunction('newMessageMeIndice', textInput);
+        } else {
+          return false;
+        }
+      }}>
+        <input type='text' placeholder='Current Value' id='Pricepoint' />
+      </form>
+
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        const textInput = document.getElementById('FutrePricepoint').value;
+        document.getElementById('FutrePricepoint').value = '';
+
+        if (textInput.length > 0) {
+          socket.emit('newMessageIndice', textInput);
+          createElementFunction('newMessageMeIndice', textInput);
+        } else {
+          return false;
+        }
+      }}>
+        <input type='text' placeholder='Future Value' id='FutrePricepoint' />
+      </form>
+
+      <div className='Bouton'>
+          <button onClick={() => onClickSend('Buy Market')}>BUY Market</button>
+      </div>  
+    
+      <div className='Bouton'>
+        <button oonClick={() => onClickSend('Sell Market')}>SELL MARKET</button>
+      </div>
+
+    <div className='Bouton'>
+      <button onClick={() => onClickSend('GAMBLE')}>THIS IS GAMBLE</button>
+    </div>
+    
+    <div className='Text'>
+        <h2>Signals</h2>
     </div>
 
     <div className='Bouton'>
-      <audio ref={audioRef} src="../audio/BuyNow.mp3" />
-      <button onClick={onClickButton3}>Green</button>
+      <button onClick={() => onClickSend('Green')}>Green</button>
     </div>
 
     <div className='Bouton'>
-      <audio ref={audioRef} src="../audio/BuyNow.mp3" />
-      <button onClick={onClickButton4}>Orange</button>
+      <button onClick={() => onClickSend('Orange')}>Orange</button>
     </div>
 
     <div className='Bouton'>
-      <audio ref={audioRef} src="../audio/BuyNow.mp3" />
-      <button onClick={onClickButton5}>Red</button>
+      <button onClick={() => onClickSend('Red')}>Red</button>
+    </div>
+
+    <div className='Bouton'>
+      <button onClick={() => onClickSend('Reinforce')}>Reinforce Position</button>
+    </div>
+
+    <div className='Bouton'>
+      <button onClick={() => onClickSend('Objective')}>Objective</button>
+    </div>
+
+    <div className='Bouton'>
+      <button onClick={() => onClickSend('RSELLPlus')}>RSELL+</button>
+    </div>
+
+    <div className='Bouton'>
+      <button onClick={() => onClickSend('RSELL')}>RSELL</button>
     </div>
 
 
+    <div className='Bouton'>
+      <button onClick={() => onClickSend('RBUYPlus')}>RBUY+</button>
+    </div>
 
+    <div className='Bouton'>
+      <button onClick={() => onClickSend('RBUY')}>RBUY</button>
+    </div>
+
+
+    <div className='Text'>
+      <h1>Information Lots</h1>
+      <input type='text' placeholder='(X)' id='X' />
+      <h3>=</h3>
+      <input type='text' placeholder='(A)' id='A' />
+      <h3>+</h3> 
+      <input type='text' placeholder='(B)' id='B' />
+      <h3>+</h3>
+      <input type='text' placeholder='(C)' id='C' />
+    </div>
+
+    <div className='Bouton'>
+      <button onClick={() => onClickSend('SendLOT')}>SEND</button>
+    </div>
+
+    <div className='Bouton'>
+      <button onClick={() => onClickSend('ResetLOT')}>RESET</button>
+    </div>
+
+
+    <div className='Bouton'>
+      <button onClick={()=>onClickSend('GO Long')}>GO LONG</button>
+    </div>
+
+    <div className='Bouton'>
+      <button onClick={() => onClickSend('Think Little Profit')}>Little</button>
+    </div>
+
+    <div className='Bouton'>
+      <button onClick={() => onClickSend('Think BIG profit')}>BIG</button>
+    </div>
+    
+    <div className='Bouton'>
+      <button onClick={() => onClickSend('Exit Long')}>EXIT LONG</button>
+    </div>
+
+
+    <div className='Bouton'>
+      <button onClick={() => onClickSend('Go short')}>GO SHORT</button>
+    </div> 
+     
+    <div className='Bouton'>
+      <button onClick={() => onClickSend('Think Little Profit')}>Little</button>
+    </div>
+
+    <div className='Bouton'>
+      <button onClick={() => onClickSend('Think BIG profit')}>BIG</button>
+    </div>
+     
+    <div className='Bouton'>
+      <button onClick={() => onClickSend('Thint Short')}>EXIT SHORT</button>
+    </div> 
+
+    <div className='Bouton'>
+      <button onClick={()=>onClickSend('ThinkProfiThink Profit')}>Think Profit</button>
+    </div>
+    
+    <div className='Bouton'>
+      <button onClick={()=>onClickSend('Cancel')}>Cancel READY Signal</button>
+    </div> 
+
+    <div className='Bouton'>
+      <button onClick={() => onClickSend('Jingle')}>Jingle</button>
+    </div>
+
+    <div className='Bouton'>
+      <button onClick={() => onClickSend('Stop @ entry price')}>STOP @ ENTRY PRICE</button>
+    </div> 
+
+    
       <select onChange={(e) => {
         const textInput = `${e.target.value}`;
         socket.emit('newMessageForex', textInput);

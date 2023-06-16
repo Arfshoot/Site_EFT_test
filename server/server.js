@@ -25,11 +25,12 @@ require('./config/bd')
 const corsOptions = {
   origin: [process.env.CLIENT_URL],
   credentials: true,
-  'Access-Control-Allow-Origin': [process.env.CLIENT_URL],
+  crossorigin:true,
+  'Access-Control-Allow-Origin': true,
   'allowedHeaders': ['sessionId', 'Content-Type', "All"],
   'exposedHeaders': ['sessionId'],
   'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  'preflightContinue': false,
+  'preflightContinue': true,
   optionsSuccessStatus: 204,
 }  
 app.use(cors(corsOptions));
@@ -141,7 +142,7 @@ User.findOne({ resetPasswordToken: token, resetPasswordExpires: { $gt: Date.now(
 });
 
 // ============================ Socket.io ===================================== //
-// enregistremen du pseudo 
+// enregistrement du pseudo 
 //On va cherche les models 
 
 require ('./models/salleForex.model.js');
@@ -157,10 +158,12 @@ const Indice = mongoose.model('SalleIndice')
 const ioForex = new SocketIOServer(httpServer1, {
   cors: {
     path: '/salle-forex', // nom de route différent
+    credentials: true,
     origin: process.env.CLIENT_URL,
+    crossorigin:true,
+    'Access-Control-Allow-Origin': true,
     methods: ['GET', 'POST'],
-    allowedHeaders: ['sessionId', 'Content-Type'],
-    credentials: true
+    allowedHeaders: ['sessionId', 'Content-Type']
   }
 });
 
@@ -210,9 +213,11 @@ const ioIndice = new SocketIOServer(httpServer2, {
   cors: {
     path: '/salle-indice', // nom de route différent
     origin: process.env.CLIENT_URL,
+    credentials: true,
+    crossorigin:true,
+    'Access-Control-Allow-Origin': true,
     methods: ['GET', 'POST'],
     allowedHeaders: ['sessionId', 'Content-Type'],
-    credentials: true
   }
 });
 
@@ -263,13 +268,13 @@ ioIndice.on('connection', (socket) => {
 
 
 
-httpServer.listen(process.env.PORT, () => {
-  console.log(`Server is listening on port ${process.env.PORT}`);
+httpServer.listen(process.env.PORT_API, () => {
+  console.log(`Server API is listening on port ${process.env.PORT_API}`);
 });
-httpServer1.listen(4001, () => {
-  console.log(`Server is listening on port 4001`);
+httpServer1.listen(process.env.PORT_Forex, () => {
+  console.log(`Server Forex is listening on port ${process.env.PORT_Forex}`);
 });
 
-httpServer2.listen(4002, () => {
-  console.log(`Server is listening on port 4002`);
+httpServer2.listen(process.env.PORT_Indices, () => {
+  console.log(`Server Indices is listening on port ${process.env.PORT_Indices}`);
 });
