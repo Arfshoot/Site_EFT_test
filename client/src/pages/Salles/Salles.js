@@ -12,17 +12,82 @@ import barretrade from './../../images/salles/trade-exemple.png'
 import publicAnnonce from './../../images/salles/Public announce.png'
 
 //Import des sons
-import Sound_default from './audio/new-message.mp3';
-import Sound_Buy from './audio/buyBund.mp3'
-import Sound_Sell from './audio/sellBund.mp3'
-import Sound_Green from './audio/green.mp3'
-import Sound_Orange from './audio/orange.mp3'
-import Sound_Red from './audio/red.mp3'
-import Sound_GOLong from './audio/goLong.mp3';
-import Sound_GOShort from './audio/goShort.mp3';
-import Sound_DAX from './audio/dax.mp3';
-import Sound_BUND from './audio/bund.mp3';
-import Sound_EURDOL from './audio/eurodollar.mp3';
+import Sound_default from './audio/message.mp3';
+import Sound_buyNow from './audio/BuyNow.mp3';
+import Sound_TheVTSignals from './audio/TheVTSignals.mp3';
+import Sound_ThinkBigProfit from './audio/ThinkBigProfit.mp3';
+import Sound_ThinkLittleProfit from './audio/ThinkLittleProfit.mp3';
+import Sound_australiandollar from './audio/australiandollar.mp3';
+import Sound_bund from './audio/bund.mp3';
+import Sound_buyAustraliandollar from './audio/buyAustraliandollar.mp3';
+import Sound_buyBund from './audio/buyBund.mp3';
+import Sound_buyCable from './audio/buyCable.mp3';
+import Sound_buyCac from './audio/buyCac.mp3';
+import Sound_buyDax from './audio/buyDax.mp3';
+import Sound_buyDollarswissfranc from './audio/buyDollarswissfranc.mp3';
+import Sound_buyDollaryen from './audio/buyDollaryen.mp3';
+import Sound_buyDowjones from './audio/buyDowjones.mp3';
+import Sound_buyEurodollar from './audio/buyEurodollar.mp3';
+import Sound_buyEuropound from './audio/buyEuropound.mp3';
+import Sound_buyEuroyen from './audio/buyEuroyen.mp3';
+import Sound_buyFootsee from './audio/buyFootsee.mp3';
+import Sound_buyGold from './audio/buyGold.mp3';
+import Sound_buyNasdaq from './audio/buyNasdaq.mp3';
+import Sound_buySilver from './audio/buySilver.mp3';
+import Sound_buyWti from './audio/buyWti.mp3';
+import Sound_cable from './audio/cable.mp3';
+import Sound_cac from './audio/cac.mp3';
+import Sound_circus from './audio/circus.mp3';
+import Sound_circus_1 from './audio/circus_1.mp3';
+import Sound_circus_2 from './audio/circus_2.mp3';
+import Sound_dax from './audio/dax.mp3';
+import Sound_dollarswissfranc from './audio/dollarswissfranc.mp3';
+import Sound_dollaryen from './audio/dollaryen.mp3';
+import Sound_dowjones from './audio/dowjones.mp3';
+import Sound_eurodollar from './audio/eurodollar.mp3';
+import Sound_europond from './audio/europond.mp3';
+import Sound_europound from './audio/europound.mp3';
+import Sound_euroyen from './audio/euroyen.mp3';
+import Sound_exit from './audio/exit.mp3';
+import Sound_firework from './audio/firework.mp3';
+import Sound_footsee from './audio/footsee.mp3';
+import Sound_goLong from './audio/goLong.mp3';
+import Sound_goShort from './audio/goShort.mp3';
+import Sound_gold from './audio/gold.mp3';
+import Sound_goodbye from './audio/goodbye.mp3';
+import Sound_green from './audio/green.mp3';
+import Sound_im from './audio/im.mp3';
+import Sound_message from './audio/message.mp3';
+import Sound_nasdaq from './audio/nasdaq.mp3';
+import Sound_new_message from './audio/new-message.mp3';
+import Sound_objective from './audio/objective.mp3';
+import Sound_orange from './audio/orange.mp3';
+import Sound_ready from './audio/ready.mp3';
+import Sound_red from './audio/red.mp3';
+import Sound_reinforcePosition from './audio/reinforcePosition.mp3';
+import Sound_reinforcedPosition from './audio/reinforcedPosition.mp3';
+import Sound_sellNow from './audio/sellBund.mp3';
+import Sound_sellAustraliandollar from './audio/sellAustraliandollar.mp3';
+import Sound_sellBund from './audio/sellBund.mp3';
+import Sound_sellCable from './audio/sellCable.mp3';
+import Sound_sellCac from './audio/sellCac.mp3';
+import Sound_sellDax from './audio/sellDax.mp3';
+import Sound_sellDollarswissfranc from './audio/sellDollarswissfranc.mp3';
+import Sound_sellDollaryen from './audio/sellDollaryen.mp3';
+import Sound_sellDowjones from './audio/sellDowjones.mp3';
+import Sound_sellEurodollar from './audio/sellEurodollar.mp3';
+import Sound_sellEuropound from './audio/sellEuropound.mp3';
+import Sound_sellEuroyen from './audio/sellEuroyen.mp3';
+import Sound_sellFootsee from './audio/sellFootsee.mp3';
+import Sound_sellGold from './audio/sellGold.mp3';
+import Sound_sellNasdaq from './audio/sellNasdaq.mp3';
+import Sound_sellSilver from './audio/sellSilver.mp3';
+import Sound_sellWti from './audio/sellWti.mp3';
+import Sound_silver from './audio/silver.mp3';
+import Sound_stayAside from './audio/stayAside.mp3';
+import Sound_stop_entry_price from './audio/stop_entry_price.mp3';
+import Sound_wti from './audio/wti.mp3';
+
 
 const FOREX = () => {
   const uid = useContext(UidContext);
@@ -31,21 +96,15 @@ const FOREX = () => {
   const isAdmin = uid && userData.role === 'admin' ? true : false;
   const moment = require('moment')
 
+
+/*============== Socket io ==================*/
 // utilisez des ports différents pour les connexions des clients
 const socket = io('http://localhost:4001', {
   transports: ['websocket'],
   protocol: ['ws']
 });
-  
-  function scrollToBottom() {
-    const chatDiv = document.getElementById('msgContainer');
-    const maxScrollTop = 0; //chatDiv.scrollHeight - chatDiv.clientHeight; 
-    //chatDiv.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
-  }
 
 
-
-/*============== Socket io ==================*/
  const pseudo = userData.pseudo
     socket.on('connect', () => {
       console.log('Connected Salle Forex to the server');
@@ -53,13 +112,17 @@ const socket = io('http://localhost:4001', {
     });
     // On demande le pseudo + edit de l'onglet de la page avec le pseudo
    
-
-
     document.title = pseudo + ' - ' + document.title;
 
+/*============== Gestion de la salles ==================*/
 
-   
-
+    // Affichage du dernier message
+    function scrollToBottom() {
+      const chatDiv = document.getElementById('msgContainer');
+      //const maxScrollTop = chatDiv.scrollHeight - chatDiv.clientHeight; 
+      //chatDiv.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+    }
+  
 
     // ========= Boutons =========== // 
     const onClickSend = (Value) => {
@@ -121,34 +184,34 @@ const socket = io('http://localhost:4001', {
     var audio = new Audio(Sound_default);
     switch (content){
       case "BUY":
-        audio = new Audio(Sound_Buy);
+        audio = new Audio(Sound_buyNow);
         break;
       case "SELL":
-        audio = new Audio(Sound_Sell);
+        audio = new Audio(Sound_sellNow);
         break;
       case "Green":
-         audio = new Audio(Sound_Green);
+         audio = new Audio(Sound_green);
         break;
       case "Orange":
-         audio = new Audio(Sound_Orange);
+         audio = new Audio(Sound_orange);
         break;
       case "Red":
-         audio = new Audio(Sound_Red);
+         audio = new Audio(Sound_red);
         break;
       case "GO Long":
-      audio = new Audio(Sound_GOLong);
+      audio = new Audio(Sound_goLong);
         break;
       case "GO Short":
-        audio = new Audio(Sound_GOShort);
+        audio = new Audio(Sound_goShort);
         break;
       case "Ready for DAX":
-        audio = new Audio(Sound_DAX);
+        audio = new Audio(Sound_dax);
         break;
       case "Ready for BUND":
-        audio = new Audio(Sound_BUND);
+        audio = new Audio(Sound_bund);
         break;
       case "Ready for EUR/DOL":
-      audio = new Audio(Sound_EURDOL);
+      audio = new Audio(Sound_eurodollar);
         break;
       default:
         // audio = new Audio(Sound_default);         
@@ -300,7 +363,7 @@ const socket = io('http://localhost:4001', {
 
       <div className='CurrentValue'>
         <div className='Text'>
-          <h2><span>1. </span>Current value</h2>
+          <h2>Current value</h2>
         </div>
 
         <form onSubmit={(e) => {
@@ -391,10 +454,6 @@ const socket = io('http://localhost:4001', {
       </div>
     </div>
 
-
-
-
-
     <div className='Lots'>
       <h2>Information Lots</h2>
       <div className='Lots-input'>
@@ -437,6 +496,7 @@ const socket = io('http://localhost:4001', {
                 <button onClick={() => onClickSend('Think BIG profit')}>BIG</button>
               </div>
           </div>
+          
           <div className='Exit-Long'>
             <br></br>
             <div className='Bouton'>
