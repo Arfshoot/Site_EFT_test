@@ -252,201 +252,254 @@ function createElementFunction(element, content) {
           </>
         )}
        {isAdmin && ( <>
-    <div className='pannel'>
-      
-    <div className='Text'>
-        <h2>Tickers</h2>
-    </div>
-
-    <div className='Bouton'>
-        <button onClick={() => onClickSend('Ready For BUND')}>BUND</button>
-      </div>
-    
-      <div className='Bouton'>
-        <button onClick={() => onClickSend('Ready For CAC')}>CAC</button>
-      </div>
-      
-      <div className='Bouton'>
-        <button onClick={() => onClickSend('Ready for DAX')}>DAX</button>
-      </div>
-    
-      <div className='Bouton'>
-        <button onClick={() => onClickSend('Ready for FTSE')}>FTSE</button>
-      </div>
-      
-      <div className='Bouton'>
-        <button onClick={() => onClickSend('Ready for DJ')}>DJ</button>
-      </div>
-    
-      <div className='Bouton'>
-        <button onClick={() => onClickSend('Ready for Nsdq')}>Nsdq</button>
-      </div>
-      
-      <div className='Bouton'>
-        <button onClick={() => onClickSend('Cancel READY Signal')}>Cancel READY Signal</button>
-      </div>  
-      
+        <div className='pannel'>
+      <div className='Tickers'>
       <div className='Text'>
-        <h2>Current value</h2>
+          <h2>Tickers</h2>
+      </div>
+        <div className='button-tickers1'>
+            <div className='Bouton'>
+              <button onClick={() => onClickSend('Ready For EUR/GBP')}>EUR/GBP</button>
+            </div>
+          
+            <div className='Bouton'>
+              <button onClick={() => onClickSend('Ready For GBP/USD')}>GBP/USD</button>
+            </div>
+            
+            <div className='Bouton'>
+              <button onClick={() => onClickSend('Ready for USD/JPY')}>USD/JPY</button>
+            </div>
+          
+            <div className='Bouton'>
+              <button onClick={() => onClickSend('Ready for EUR/DOL')}>EUR/DOL</button>
+            </div>
+        </div>
+          <div className='button-tickers2'>
+              <div className='Bouton'>
+                <button onClick={() => onClickSend('Ready for EUR/CHF')}>EUR/CHF</button>
+              </div>
+            
+              <div className='Bouton'>
+                <button onClick={() => onClickSend('Ready for AUD/USD')}>AUD/USD</button>
+              </div>
+              
+              <div className='Bouton'>
+                <button onClick={() => onClickSend('Ready for EUR/JPY')}>EUR/JPY</button>
+              </div>
+
+        </div>
+        <div className='button-tickers3'>
+          
+        <div className='Bouton-Buy'>
+            <button onClick={() => onClickSend('Buy Market')}>BUY Market</button>
+        </div>  
+      
+        <div className='Bouton-sell'>
+          <button onClick={() => onClickSend('Sell Market')}>SELL MARKET</button>
+        </div>
+        </div>
       </div>
 
-      <form onSubmit={(e) => {
-        e.preventDefault();
-        const textInput = document.getElementById('Pricepoint').value;
-        document.getElementById('Pricepoint').value = '';
 
-        if (textInput.length > 0) {
-          socket.emit('newMessageIndice', textInput);
-          createElementFunction('newMessageMeIndice', textInput);
-        } else {
-          return false;
-        }
-      }}>
-        <input type='text' placeholder='Current Value' id='Pricepoint' />
-      </form>
 
-      <form onSubmit={(e) => {
-        e.preventDefault();
-        const textInput = document.getElementById('FutrePricepoint').value;
-        document.getElementById('FutrePricepoint').value = '';
+      <div className='CurrentValue'>
+        <div className='Text'>
+          <h2><span>1. </span>Current value</h2>
+        </div>
 
-        if (textInput.length > 0) {
-          socket.emit('newMessageIndice', textInput);
-          createElementFunction('newMessageMeIndice', textInput);
-        } else {
-          return false;
-        }
-      }}>
-        <input type='text' placeholder='Future Value' id='FutrePricepoint' />
-      </form>
+        <form onSubmit={(e) => {
+          e.preventDefault();
+          const textInput = document.getElementById('Pricepoint').value;
+          document.getElementById('Pricepoint').value = '';
+
+          if (textInput.length > 0) {
+            socket.emit('newMessageIndice', textInput);
+            createElementFunction('newMessageMeIndice', textInput);
+          } else {
+            return false;
+          }
+        }}>
+          <input  className='Form-Value' type='text' placeholder='Current Value' id='Pricepoint' />
+        </form>
 
       <div className='Bouton'>
-          <button onClick={() => onClickSend('Buy Market')}>BUY Market</button>
-      </div>  
-    
-      <div className='Bouton'>
-        <button oonClick={() => onClickSend('Sell Market')}>SELL MARKET</button>
+        <button onClick={() => onClickSend('GAMBLE')}>THIS IS GAMBLE</button>
+      </div>
+    </div>
+
+
+
+    <div className='Future-value'>
+      <h2>Future Value</h2>
+        <form onSubmit={(e) => {
+              e.preventDefault();
+              const textInput = document.getElementById('FutrePricepoint').value;
+              document.getElementById('FutrePricepoint').value = '';
+
+              if (textInput.length > 0) {
+                socket.emit('newMessageIndice', textInput);
+                createElementFunction('newMessageMeIndice', textInput);
+              } else {
+                return false;
+              }
+            }}>
+              <input type='text' placeholder='Future Value' id='FutrePricepoint' />
+            </form>
+
+          <div className='Future-value-color'>  
+            <div className='Bouton-green'>
+              <button onClick={() => onClickSend('Green')}>Green</button>
+            </div>
+
+            <div className='Bouton-orange'>
+              <button onClick={() => onClickSend('Orange')}>Orange</button>
+            </div>
+
+            <div className='Bouton-red'>
+              <button onClick={() => onClickSend('Red')}>Red</button>
+            </div>
+          </div>
       </div>
 
-    <div className='Bouton'>
-      <button onClick={() => onClickSend('GAMBLE')}>THIS IS GAMBLE</button>
-    </div>
-    
-    <div className='Text'>
-        <h2>Signals</h2>
-    </div>
 
-    <div className='Bouton'>
-      <button onClick={() => onClickSend('Green')}>Green</button>
-    </div>
 
-    <div className='Bouton'>
-      <button onClick={() => onClickSend('Orange')}>Orange</button>
-    </div>
+    <div className='Premium'>
+      <div className='Text'>
+          <h2>Premium</h2>
+      </div>
 
-    <div className='Bouton'>
-      <button onClick={() => onClickSend('Red')}>Red</button>
-    </div>
+      <div className='Bouton-renforce'>
+        <button onClick={() => onClickSend('Reinforce')}>Reinforce Position</button>
+      </div>
 
-    <div className='Bouton'>
-      <button onClick={() => onClickSend('Reinforce')}>Reinforce Position</button>
-    </div>
+      {/*<div className='Bouton'>
+        <button onClick={() => onClickSend('Objective')}>Objective</button>
+          </div>*/}
+      <div><h2>Objective</h2></div>
+      <div className='Placement-Boutton-Color'>
+        <div className='Bouton-1'>
+          <button onClick={() => onClickSend('RSELLPlus')}></button>
+        </div>
 
-    <div className='Bouton'>
-      <button onClick={() => onClickSend('Objective')}>Objective</button>
-    </div>
+        <div className='Bouton-2'>
+          <button onClick={() => onClickSend('RSELL')}></button>
+        </div>
 
-    <div className='Bouton'>
-      <button onClick={() => onClickSend('RSELLPlus')}>RSELL+</button>
-    </div>
+        <div className='Bouton-3'>
+          <button onClick={() => onClickSend('RBUYPlus')}></button>
+        </div>
 
-    <div className='Bouton'>
-      <button onClick={() => onClickSend('RSELL')}>RSELL</button>
+        <div className='Bouton-4'>
+          <button onClick={() => onClickSend('RBUY')}></button>
+        </div>
+      </div>
     </div>
 
 
-    <div className='Bouton'>
-      <button onClick={() => onClickSend('RBUYPlus')}>RBUY+</button>
+
+
+
+    <div className='Lots'>
+      <h2>Information Lots</h2>
+      <div className='Lots-input'>
+          <h3>X</h3>
+          <input type='text' placeholder='(X)' id='X' />
+          <h3>= A</h3>
+          <input type='text' placeholder='(A)' id='A' />
+          <h3>+ B</h3> 
+          <input type='text' placeholder='(B)' id='B' />
+          <h3>+ C</h3>
+          <input type='text' placeholder='(C)' id='C' />
+      </div>
+      <div className='Lots-Bouton'>
+          <div className='Bouton'>
+          <button onClick={() => onClickSend('SendLOT')}>SEND</button>
+        </div>
+
+        <div className='Bouton-reset'>
+          <button onClick={() => onClickSend('ResetLOT')}>RESET</button>
+        </div>
     </div>
-
-    <div className='Bouton'>
-      <button onClick={() => onClickSend('RBUY')}>RBUY</button>
-    </div>
-
-
-    <div className='Text'>
-      <h1>Information Lots</h1>
-      <input type='text' placeholder='(X)' id='X' />
-      <h3>=</h3>
-      <input type='text' placeholder='(A)' id='A' />
-      <h3>+</h3> 
-      <input type='text' placeholder='(B)' id='B' />
-      <h3>+</h3>
-      <input type='text' placeholder='(C)' id='C' />
-    </div>
-
-    <div className='Bouton'>
-      <button onClick={() => onClickSend('SendLOT')}>SEND</button>
-    </div>
-
-    <div className='Bouton'>
-      <button onClick={() => onClickSend('ResetLOT')}>RESET</button>
-    </div>
-
-
-    <div className='Bouton'>
-      <button onClick={()=>onClickSend('GO Long')}>GO LONG</button>
-    </div>
-
-    <div className='Bouton'>
-      <button onClick={() => onClickSend('Think Little Profit')}>Little</button>
-    </div>
-
-    <div className='Bouton'>
-      <button onClick={() => onClickSend('Think BIG profit')}>BIG</button>
-    </div>
-    
-    <div className='Bouton'>
-      <button onClick={() => onClickSend('Exit Long')}>EXIT LONG</button>
     </div>
 
 
-    <div className='Bouton'>
-      <button onClick={() => onClickSend('Go short')}>GO SHORT</button>
+
+<div className='Signals'>
+      <div className='Long'>
+        <h2>Long Signals</h2>
+        <div className='Go-long'>
+            <div className='Bouton'>
+              <button onClick={()=>onClickSend('GO Long')}>GO LONG</button>
+            </div>
+        </div>
+          <div className='profits'>
+            <h2>Profits</h2>
+              <div className='Bouton'>
+                <button onClick={() => onClickSend('Think Little Profit')}>Little</button>
+              </div>
+              <div className='Bouton'>
+                <button onClick={() => onClickSend('Think BIG profit')}>BIG</button>
+              </div>
+          </div>
+          <div className='Exit-Long'>
+            <br></br>
+            <div className='Bouton'>
+              <button onClick={() => onClickSend('Exit Long')}>EXIT LONG</button>
+            </div>
+          </div>
+      </div>
+
+      <div className='Short'>
+      <h2>Shorts Signals</h2>
+      <div className='Go-short'>
+          <div className='Bouton'>
+            <button onClick={() => onClickSend('Go short')}>GO SHORT</button>
+          </div> 
+      </div>    
+      <div className='profits'>
+            <h2>Profits</h2>
+              <div className='Bouton'>
+                <button onClick={() => onClickSend('Think Little Profit')}>Little</button>
+              </div>
+              <div className='Bouton'>
+                <button onClick={() => onClickSend('Think BIG profit')}>BIG</button>
+              </div>
+          </div>
+          <div className='Think-profit'>
+              <div className='Bouton'>
+                <button onClick={()=>onClickSend('ThinkProfiThink Profit')}>Think Profit</button>
+              </div>
+          </div>
+          <div className='Exit-short'>
+              <div className='Bouton'>
+                <button onClick={() => onClickSend('Thint Short')}>EXIT SHORT</button>
+              </div>
+          </div> 
+
+
+      </div>
     </div> 
-     
-    <div className='Bouton'>
-      <button onClick={() => onClickSend('Think Little Profit')}>Little</button>
-    </div>
-
-    <div className='Bouton'>
-      <button onClick={() => onClickSend('Think BIG profit')}>BIG</button>
-    </div>
-     
-    <div className='Bouton'>
-      <button onClick={() => onClickSend('Thint Short')}>EXIT SHORT</button>
-    </div> 
-
-    <div className='Bouton'>
-      <button onClick={()=>onClickSend('ThinkProfiThink Profit')}>Think Profit</button>
-    </div>
-    
-    <div className='Bouton'>
-      <button onClick={()=>onClickSend('Cancel')}>Cancel READY Signal</button>
-    </div> 
-
-    <div className='Bouton'>
+    <div className='Others'>
+        <h2>Others signals</h2>
+          <div className='Bouton'>
+            <button onClick={()=>onClickSend('Cancel')}>Cancel READY Signal</button>
+          </div>
+          <div className='Bouton'>
       <button onClick={() => onClickSend('Jingle')}>Jingle</button>
     </div>
 
+    </div>  
+
+
+
+<div className='Instant-message'>
+  
+  <div>
+ 
     <div className='Bouton'>
       <button onClick={() => onClickSend('Stop @ entry price')}>STOP @ ENTRY PRICE</button>
     </div> 
-
-    <div className='Text'>
-      <h2>Instant-message</h2>
-    </div>
-
+        
       <select onChange={(e) => {
         const textInput = `${e.target.value}`;
         socket.emit('newMessageIndice', textInput);
@@ -457,7 +510,9 @@ function createElementFunction(element, content) {
         <option value="Bon appétit">Bon appétit</option>
         <option value="A demain">A demain</option>
       </select>
-      
+    </div>
+
+    <div>
       <form onSubmit={(e) => {
         e.preventDefault();
         const textInput = document.getElementById('directTextInput').value;
@@ -470,10 +525,12 @@ function createElementFunction(element, content) {
           return false;
         }
       }}>
-        <input type='text' placeholder='Message direct' id='directTextInput' />
+        <input type='text' placeholder='   Message direct' id='directTextInput' />
         <button type='submit'>Envoyer</button>
       </form>
+      </div>
     </div>
+</div>
 
 
     <div className='chat-container'>

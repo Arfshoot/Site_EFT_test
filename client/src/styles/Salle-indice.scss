@@ -8,25 +8,475 @@
   border-top: none;
   margin-top: 0;
   width: 50%;
-  
   .pannel{
-     
+    overflow-y: auto;
+    height: 830px;
+    
+   width: 450px;
+   position: absolute;
+   left: 0%;
+   background-color:#1B263B;
+   padding: 10px;
+   // Tickers
+   .Tickers{
+    background-color:#0D1B2A;
+    border-radius: 10px;
+    padding: 15px;
+    
+    h2{
+      margin-top: -60px;
+      color: white;
+      font-size:18px;
+      font-weight: normal;
+    }
     display: flex;
-
-    
-
-    
-    .Bouton{
-      border: 2px solid red;
+    .button-tickers1{
+      width:225px;
+      display:flex;
+      flex-wrap: wrap;
+      border-right: #ffffff 1px solid;
+      
+    button{
+      border-radius: 10px;
+      width: 80px;
+      height: 29px;
+      border: #1B263B 1px solid;
+      background-color:#1B263B;
+      color: #0063A7;
+      margin: 2px;
+    }
+    }
+    .button-tickers2{
+      
+      width:225px;
+      display:flex;
+      flex-wrap: wrap;
       button{
-        font-weight: bold;
-        
-        margin: 0.5em;
+        border-radius: 10px;
+        border: #1B263B 1px solid;
+        width: 80px;
+        height: 29px;
+        background-color:#1B263B;
+        color:#0063A7;
+        margin: 2px;
       }
     }
+    .button-tickers3{
+      width:225px;
+      display:flex;
+      flex-wrap: wrap;
+      .Bouton-Buy{
+        button{
+        border-radius: 10px;
+        border: #14B052 1px solid;
+        width: 100px;
+        height: 29px;
+        background-color:#1B263B;
+        color:#ffffff;
+        margin: 2px;
+        }
+        
+      }
+      .Bouton-sell{
+          button{
+        border-radius: 10px;
+        border: #B40C3E 1px solid;
+        width: 100px;
+        height: 29px;
+        background-color:#1B263B;
+        color:#ffffff;
+        margin: 2px;
+          }
+      }
+    }
+   }
+   // Cuurrent Value
+   .CurrentValue{
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #0D1B2A;
+    padding: 10px;
+    text-align: center;
+    h2{
+      text-align: start;
+      margin-bottom: 5px;
+      span{
+        color: #ffffff;
+        
+      }
+      color:white;
+      font-weight: normal;
+      font-size: 18px;
+    }
+    .Form-Value{
+      border-radius: 10px;
+      border: #0063A7 1px solid;
+      background-color:#1B263B;
+      width: 400px;
+      color: #ffffff;
+    }
+    button{
+      margin-top:5px ;
+      width: 250px;
+      border: #B40C3E 1px solid;
+      border-radius: 10px;
+      background-color:#B40C3E;
+      color: #ffffff;
+    }
+   }
+   // Future value
+    .Future-value{
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #0D1B2A;
+    padding: 10px;
+    text-align: center;
+      h2{
+        color: #ffffff;
+        font-weight: normal;
+        font-size:18px;
+        text-align: start;
+        margin-bottom:5px;
+      }
+      form{
+        input{
+          border-radius: 10px;
+          border: #0063A7 1px solid;
+          background-color:#1B263B;
+          width: 400px;
+          color: #ffffff;
+        }
+      }
+      .Future-value-color{
+        display: flex;
+        .Bouton-green{
+          button{
+            margin-top:5px ;
+            width: 100px;
+            border: #14B052 1px solid;
+            border-radius: 10px;
+            background-color:#14B052;
+            color: #ffffff;
+          }
+        }
+        .Bouton-orange{
+          button{
+            margin-top:5px ;
+            width: 100px;
+            border: #CC5906 1px solid;
+            border-radius: 10px;
+            background-color:#CC5906;
+            color: #ffffff;
+          }
+        }
+        .Bouton-red{
+          button{
+            margin-top:5px ;
+            width: 100px;
+            border: #B40C3E 1px solid;
+            border-radius: 10px;
+            background-color:#B40C3E;
+            color: #ffffff;
+          }
+        }
+      }
 
-    
+    }
+    // Premium
+    .Premium{
+      margin: 5px;
+      border-radius: 10px;
+      background-color: #0D1B2A;
+      padding: 10px;
+      text-align: center;
+      h2{
+        color: #ffffff;
+        font-weight: normal;
+        font-size:18px;
+        text-align: start;
+        margin-bottom:5px;
+      }
+      .Bouton-renforce{
+        
+        button{
+        
+        margin-top:5px ;
+        width: 200px;
+        border: #0063A7 1px solid;
+        border-radius: 10px;
+        background-color:#1B263B;
+        color: #ffffff;
+      }
+      }
+      .Placement-Boutton-Color{
+        display: flex;
+      .Bouton-1 {
+        button {
+          margin-top: 5px;
+          width: 100px;
+          height: 48px;
+          border: #0D1B2A 1px solid;
+          border-radius: 10px;
+          background-image: url('./../images/Sellmarket+.png');
+          background-repeat: no-repeat;
+          background-size: cover;
+          color: #ffffff;
+          padding: 0;
+        }
+      }
+      
+      .Bouton-2{
+        button{
+          margin-top: 5px;
+          width: 100px;
+          height: 48px;
+          border: #0D1B2A 1px solid;
+          border-radius: 10px;
+          background-image: url('./../images/Sellmarket.png');
+          background-repeat: no-repeat;
+          background-size: cover;
+          color: #ffffff;
+          padding: 0;
+      }
+      }
+      .Bouton-3{
+        button{
+          margin-top: 5px;
+          width: 100px;
+          height: 48px;
+          border: #0D1B2A 1px solid;
+          border-radius: 10px;
+          background-image: url('./../images/Buymarket+.png');
+          background-repeat: no-repeat;
+          background-size: cover;
+          color: #ffffff;
+          padding: 0;
+      }
+      }
+      .Bouton-4{
+        button{
+          margin-top: 5px;
+          width: 100px;
+          height: 48px;
+          border: #0D1B2A 1px solid;
+          border-radius: 10px;
+          background-image: url('./../images/Buymarket.png');
+          background-repeat: no-repeat;
+          background-size: cover;
+          color: #ffffff;
+          padding-left: 0;
+      }
+      }
+    }
+    }
+    //Lots
+  .Lots{
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #0D1B2A;
+    padding: 10px;
+    text-align: center;
+    h2{
+      color: #ffffff;
+        font-weight: normal;
+        font-size:18px;
+        text-align: start;
+        margin-bottom:5px;
+    }
+    h3{
+      color: #ffffff;
+        font-weight: normal;
+        font-size:18px;
+        text-align: start;
+        margin-bottom:5px;
+    }
+    .Lots-input{
+      display: flex;
+      input{
+        background-color: #1B263B;
+        color:white;
+        width: 50px;
+        height: 30px;
+        border-radius: 10px;
+        border: 1px solid #0063A7;
+
+      }
+    }
+    .Lots-Bouton{
+      display: flex;
+      button{
+        
+        margin-top:5px ;
+        width: 130px;
+        border: #0063A7 1px solid;
+        border-radius: 10px;
+        background-color:#1B263B;
+        color: #ffffff;
+      }
+      .Bouton-reset{
+        button{
+        
+          margin-top:5px ;
+          width: 130px;
+          border: #0063A7 1px solid;
+          border-radius: 10px;
+          background-color:#0063A7;
+          color: #ffffff;
+        }
+      }
+    }
   }
+  // Signals
+ .Signals{
+  margin: 5px;
+  border-radius: 10px;
+  background-color: #0D1B2A;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  h2{
+    color: #ffffff;
+        font-weight: normal;
+        font-size:18px;
+        
+        margin-bottom:5px;
+  }
+  .Long {
+    border-right:1px solid #ffffff ;
+    padding: 5px;
+
+  }
+  .Go-long{
+    
+    button{
+      margin-top:5px ;
+      width: 200px;
+      border: #14B052 1px solid;
+      border-radius: 10px;
+      background-color:#14B052;
+      color: #ffffff;
+    }
+   
+  }
+  .profits{
+    display: flex;
+    h2{
+      font-size:14px;
+    }
+    button{
+        
+      margin-top:5px ;
+      width: 70px;
+      border: #0063A7 1px solid;
+      border-radius: 10px;
+      background-color:#1B263B;
+      color: #ffffff;
+      margin: 5px;
+    }
+
+  }
+  .Exit-Long{
+    button{
+        
+      margin-top:10px ;
+      width: 200px;
+      border: #14B052 1px solid;
+      border-radius: 10px;
+      background-color:#1B263B;
+      color: #ffffff;
+    }
+
+  }
+  .Short{
+    margin-left: 2px;
+    padding: 5px;
+    .Go-short{
+      button{
+        margin-top:5px ;
+        width: 200px;
+        border: #B40C3E 1px solid;
+        border-radius: 10px;
+        background-color:#B40C3E;
+        color: #ffffff;
+      }
+    }
+    .Think-profit{
+      button{
+          
+        margin-top:5px ;
+        width: 200px;
+        border: #ccc906 1px solid;
+        border-radius: 10px;
+        background-color:#1B263B;
+        color: #ffffff;
+      }
+  
+    }
+    .Exit-short{
+      button{
+          
+        margin-top:5px ;
+        width: 200px;
+        border: #B40C3E 1px solid;
+        border-radius: 10px;
+        background-color:#1B263B;
+        color: #ffffff;
+      }
+  
+    }
+  }
+ }
+// Others
+.Others{
+  margin: 5px;
+  border-radius: 10px;
+  background-color: #0D1B2A;
+  padding: 10px;
+  text-align: center;
+  h2{
+    color: #ffffff;
+        font-weight: normal;
+        font-size:18px;
+        text-align: start;
+        margin-bottom:5px;
+  }
+  button{
+    margin-top:5px ;
+    width: 400px;
+    border: #6C6B9E 1px solid;
+    border-radius: 10px;
+    background-color:#1B263B;
+    color: #ffffff;
+  }
+}
+// instant messages
+.Instant-message{
+  margin: 5px;
+  border-radius: 10px;
+  background-color: #0D1B2A;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  h2{
+    color: #ffffff;
+        font-weight: normal;
+        font-size:18px;
+        margin-bottom:5px;
+  }
+
+  button, input, select{
+    
+    margin-top:5px ;
+    width:200px;
+    border: #0063A7 1px solid;
+    border-radius: 10px;
+    background-color:#1B263B;
+    color: #ffffff;
+    padding: 0;
+  }
+}
+
+}
 
   
   .open-position{
@@ -85,5 +535,6 @@
     width: 82%;
   }
 }
+
 
 }
