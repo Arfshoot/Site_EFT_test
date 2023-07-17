@@ -14,14 +14,6 @@ import { isEmpty } from '../components/Utils';
 import Card from '../components/Post/Card';
 import { getPosts } from '../actions/post.action';
 
-
-
-
-
-
-
-
-
 const Home = () => {
 
     const [loadPost, setLoadPost] = useState(true)
@@ -60,10 +52,10 @@ const Home = () => {
                     <div className='bloc-bac-compteur'>
                         <div className='compteur'>
                             <img src={Compteur}></img>
-                            <p>+ 1.03 %</p>
+                            <p>+ 0.83 %</p>
                         </div>
                         <div className='date'>  
-                                <p>12/12/22</p>
+                                <p>05/07/23</p>
                                 
                             </div>
                         <div className='retour'>
@@ -80,12 +72,12 @@ const Home = () => {
                     </div>
 
                         <div className='bloc-text'> 
-                            <h1>Entrez en Day Trading sur impulsion Efficient Trading et gagnez selon sa « méthode » !</h1>
-                            <p className='text-1'>Il s’agit de l’application systématique de l’indicateur créé par Efficient Trading qui est la détection du bon instrument, dans la bonne direction, au bon moment. Mais ce n’est pas suffisant : pour assurer la performance du trader,<br/> <span>cela implique obligatoirement l’utilisation systématique d’un ordre intelligent : ordre qui intègre dans son déclenchement des objectifs multiples et un stop, dont le setup vous sera donné par nos traders. </span></p>
+                            <h1>Avec la méthode Efficient Trading, entrez sur impulsion et gagnez en day-trading !</h1>
+                            <p className='text-1'>Il s’agit d’utiliser systématiquement l’indicateur « <b>Hormê Index</b> », créé par Efficient Trading, qui détecte et permet de prendre <b>le bon instrument, dans la bonne direction, au bon moment</b>. Les performances réalisées, affichées sur la page d’accueil (indices uniquement), y sont contraintes.  <br/> <span>cela implique obligatoirement l’utilisation systématique d’un ordre intelligent : ordre qui intègre dans son déclenchement des objectifs multiples et un stop, dont le setup vous sera donné par nos traders., en tant que membre. Il intègre, dans son déclenchement, des objectifs multiples et un stop. </span></p>
                             <br/>
                             <div className='bloc-text2-btn'>
                             <div  className='text-2'>
-                            <p>Il s’agit de l’application systématique de l’indicateur créé par Efficient Trading qui est la détection du bon instrument, dans la bonne direction, au bon moment. Mais ce n’est pas suffisant : pour assurer la performance du trader.</p>
+                            <p>Attention : les gains affichés sont uniquement obtenus avec l’application systématique de la méthode Efficient Trading.</p>
                             </div>
                             <div className='bouton-s2'><NavLink to='/abonnement'>Essai gratuit</NavLink></div>
                             </div>

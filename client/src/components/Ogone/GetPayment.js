@@ -37,7 +37,7 @@ class GetPayment extends React.Component {
                   },
                   "customer": {
                     "device": {
-                      "ipAddressCountryCode": "BE"
+                      "ipAddressCountryCode": "FR"
                     }
                   },
                   "cardPaymentMethodSpecificOutput": {
@@ -47,7 +47,7 @@ class GetPayment extends React.Component {
                       "cardNumber": "string",
                       "expiryDate": 529,
                       "bin": "string",
-                      "countryCode": "BE"
+                      "countryCode": "FR"
                     },
                     "fraudResults": {
                       "fraudServiceResult": "string",

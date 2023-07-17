@@ -95,13 +95,13 @@ const sendResetPasswordEmail = (email, resetToken) => {
     port: 465,
     secure: false,
     auth: {
-      user: 'user.infomaniak',
-      pass: 'pwd.infomaniak',
+      user: 'support@vega-traders.com',
+      pass: 'Forconex@74200',
     },
   });
   
   const mailOptions = {
-    from: 'your-email@example.com',
+    from: 'support@vega-traders.com',
     to: email,
     subject: 'Reset Your Password',
     text: `Click the following link to reset your password: ${resetToken}`,
@@ -168,7 +168,6 @@ const ioForex = new SocketIOServer(httpServer1, {
 });
 
 ioForex.on('connection', (socket) => {
-
   socket.on('pseudo', (pseudo) => {
     User.findOne({ pseudo: pseudo }, (err, user) => {
       if(err){
@@ -189,6 +188,7 @@ ioForex.on('connection', (socket) => {
         } else {
             socket.emit('oldMessageForex', messages);
         }
+      
     });
       // message enregistrer en base
       socket.on('newMessageForex', (message) => {
@@ -197,7 +197,7 @@ ioForex.on('connection', (socket) => {
         chat.sender = socket.pseudo;
         chat.timestamp = Date.now(); // Ajouter la date et l'heure actuelles
         chat.save();
-        socket.broadcast.emit('newMessageAllForex', {message: message, pseudo: socket.pseudo});
+        socket.broadcast.emit('newMessageAllForex', {sender: socket.pseudo, content: message });
       });
     // deconnection du user à la salle
     socket.on('disconnect', () => {
@@ -233,7 +233,8 @@ ioIndice.on('connection', (socket) => {
         socket.pseudo = pseudo;  
         socket.emit('pseudoValid', 'Pseudo valide'); //pseudo valide
         socket.pseudo = pseudo;  
-        socket.broadcast.emit('newUserIndice', pseudo) 
+        socket.broadcast.emit('newUserIndice', pseudo);
+        console.log ('New User Indice ${pseudo}'); 
       }else{
         socket.emit('pseudoError', 'Pseudo invalide'); // pseudo invalide 
       }
@@ -252,10 +253,11 @@ ioIndice.on('connection', (socket) => {
         indice.sender = socket.pseudo;
         indice.timestamp = Date.now(); // Ajouter la date et l'heure actuelles
         indice.save();
-        socket.broadcast.emit('newMessageAllIndice', {message: message, pseudo: socket.pseudo});
+        socket.broadcast.emit('newMessageAllIndice', { sender: socket.pseudo, content: message});
       });
     // deconnection du user à la salle
     socket.on('disconnect', () => {
+      console.log('User  ${socket.pseudo} quit'); 
       socket.broadcast.emit('quitUserIndice', socket.pseudo);
     });
 

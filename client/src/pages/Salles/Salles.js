@@ -4,53 +4,38 @@ import io from 'socket.io-client';
 import { getUser } from '../../actions/user.actions';
 import { UidContext } from '../../components/AppContext';
 import { ProductID } from '../../components/AppContext';
+import  { Redirect } from 'react-router-dom';
 import './../../styles/Salle-forex.scss';
 
 // import js et scss et images
-import openposition from './../../images/salles/openpositions.png'
-import barretrade from './../../images/salles/trade-exemple.png'
-import publicAnnonce from './../../images/salles/Public announce.png'
+import openposition from './../../images/salles/openpositions.png';
+import barretrade from './../../images/salles/trade-exemple.png';
+import publicAnnonce from './../../images/salles/Public announce.png';
+import cirque from './../../images/salles/cirque.png';
 
 //Import des sons
-import Sound_default from './audio/message.mp3';
-import Sound_buyNow from './audio/BuyNow.mp3';
+import Sound_default from './audio/im.mp3';
 import Sound_TheVTSignals from './audio/TheVTSignals.mp3';
 import Sound_ThinkBigProfit from './audio/ThinkBigProfit.mp3';
 import Sound_ThinkLittleProfit from './audio/ThinkLittleProfit.mp3';
 import Sound_australiandollar from './audio/australiandollar.mp3';
-import Sound_bund from './audio/bund.mp3';
 import Sound_buyAustraliandollar from './audio/buyAustraliandollar.mp3';
-import Sound_buyBund from './audio/buyBund.mp3';
-import Sound_buyCable from './audio/buyCable.mp3';
-import Sound_buyCac from './audio/buyCac.mp3';
-import Sound_buyDax from './audio/buyDax.mp3';
 import Sound_buyDollarswissfranc from './audio/buyDollarswissfranc.mp3';
 import Sound_buyDollaryen from './audio/buyDollaryen.mp3';
-import Sound_buyDowjones from './audio/buyDowjones.mp3';
 import Sound_buyEurodollar from './audio/buyEurodollar.mp3';
 import Sound_buyEuropound from './audio/buyEuropound.mp3';
 import Sound_buyEuroyen from './audio/buyEuroyen.mp3';
-import Sound_buyFootsee from './audio/buyFootsee.mp3';
-import Sound_buyGold from './audio/buyGold.mp3';
-import Sound_buyNasdaq from './audio/buyNasdaq.mp3';
-import Sound_buySilver from './audio/buySilver.mp3';
-import Sound_buyWti from './audio/buyWti.mp3';
-import Sound_cable from './audio/cable.mp3';
-import Sound_cac from './audio/cac.mp3';
 import Sound_circus from './audio/circus.mp3';
 import Sound_circus_1 from './audio/circus_1.mp3';
 import Sound_circus_2 from './audio/circus_2.mp3';
-import Sound_dax from './audio/dax.mp3';
 import Sound_dollarswissfranc from './audio/dollarswissfranc.mp3';
 import Sound_dollaryen from './audio/dollaryen.mp3';
-import Sound_dowjones from './audio/dowjones.mp3';
 import Sound_eurodollar from './audio/eurodollar.mp3';
 import Sound_europond from './audio/europond.mp3';
 import Sound_europound from './audio/europound.mp3';
 import Sound_euroyen from './audio/euroyen.mp3';
 import Sound_exit from './audio/exit.mp3';
 import Sound_firework from './audio/firework.mp3';
-import Sound_footsee from './audio/footsee.mp3';
 import Sound_goLong from './audio/goLong.mp3';
 import Sound_goShort from './audio/goShort.mp3';
 import Sound_gold from './audio/gold.mp3';
@@ -58,7 +43,6 @@ import Sound_goodbye from './audio/goodbye.mp3';
 import Sound_green from './audio/green.mp3';
 import Sound_im from './audio/im.mp3';
 import Sound_message from './audio/message.mp3';
-import Sound_nasdaq from './audio/nasdaq.mp3';
 import Sound_new_message from './audio/new-message.mp3';
 import Sound_objective from './audio/objective.mp3';
 import Sound_orange from './audio/orange.mp3';
@@ -66,28 +50,17 @@ import Sound_ready from './audio/ready.mp3';
 import Sound_red from './audio/red.mp3';
 import Sound_reinforcePosition from './audio/reinforcePosition.mp3';
 import Sound_reinforcedPosition from './audio/reinforcedPosition.mp3';
-import Sound_sellNow from './audio/sellBund.mp3';
 import Sound_sellAustraliandollar from './audio/sellAustraliandollar.mp3';
-import Sound_sellBund from './audio/sellBund.mp3';
-import Sound_sellCable from './audio/sellCable.mp3';
-import Sound_sellCac from './audio/sellCac.mp3';
-import Sound_sellDax from './audio/sellDax.mp3';
 import Sound_sellDollarswissfranc from './audio/sellDollarswissfranc.mp3';
 import Sound_sellDollaryen from './audio/sellDollaryen.mp3';
-import Sound_sellDowjones from './audio/sellDowjones.mp3';
 import Sound_sellEurodollar from './audio/sellEurodollar.mp3';
 import Sound_sellEuropound from './audio/sellEuropound.mp3';
 import Sound_sellEuroyen from './audio/sellEuroyen.mp3';
-import Sound_sellFootsee from './audio/sellFootsee.mp3';
-import Sound_sellGold from './audio/sellGold.mp3';
-import Sound_sellNasdaq from './audio/sellNasdaq.mp3';
-import Sound_sellSilver from './audio/sellSilver.mp3';
-import Sound_sellWti from './audio/sellWti.mp3';
-import Sound_silver from './audio/silver.mp3';
 import Sound_stayAside from './audio/stayAside.mp3';
 import Sound_stop_entry_price from './audio/stop_entry_price.mp3';
-import Sound_wti from './audio/wti.mp3';
-
+import Sound_Gamble from './audio/im.mp3';
+import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
+//var SalleContext;
 
 const FOREX = () => {
   const uid = useContext(UidContext);
@@ -104,31 +77,48 @@ const socket = io('http://localhost:4001', {
   protocol: ['ws']
 });
 
-
  const pseudo = userData.pseudo
-    socket.on('connect', () => {
-      console.log('Connected Salle Forex to the server');
-      socket.emit('pseudo', pseudo);
+    socket.on('connect',() => {
+        socket.emit('pseudo', pseudo);
+        // On demande le pseudo + edit de l'onglet de la page avec le pseudo
+        document.title = pseudo + ' - Efficient Trading(Forex)';
     });
-    // On demande le pseudo + edit de l'onglet de la page avec le pseudo
-   
-    document.title = pseudo + ' - ' + document.title;
 
 /*============== Gestion de la salles ==================*/
 
     // Affichage du dernier message
-    function scrollToBottom() {
-      const chatDiv = document.getElementById('msgContainer');
-      //const maxScrollTop = chatDiv.scrollHeight - chatDiv.clientHeight; 
-      //chatDiv.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+    function scrollToBottom(msgContainerbyID) {
+      const chatDiv = document.getElementById(msgContainerbyID);
+      chatDiv.scrollTop = chatDiv.scrollHeight - chatDiv.clientHeight;
     }
-  
+
 
     // ========= Boutons =========== // 
     const onClickSend = (Value) => {
-      const textInput = Value;
-      socket.emit('newMessageForex', textInput);
-      createElementFunction('newMessageMeForex', textInput);
+      var textInput = Value;
+      
+      if (textInput.substring(0,9) == "Ready for") { document.getElementById('Ticker').value = textInput;};
+
+      var currenttickers = document.getElementById('Ticker').value.substring(9);
+
+      if (currenttickers != "") {
+
+        if (textInput == "GO Long") { textInput = Value + currenttickers};
+        if (textInput == "GO Short") { textInput = Value + currenttickers};
+        if (textInput == "New Price") { textInput = Value + currenttickers};
+        if (textInput == "Think Profit") { textInput = Value + currenttickers};
+        if (textInput == "Reinforce") { textInput = Value + currenttickers};
+        if (textInput == "Cancel") { textInput = Value + currenttickers};
+        
+        socket.emit('newMessageForex', textInput);
+        createElementFunction('newMessageMeForex', {sender: pseudo, content: textInput});
+       
+      } else {
+        if (textInput == "Jingle")  {
+          socket.emit('newMessageForex', textInput);
+          createElementFunction('newMessageMeForex', {sender: pseudo, content: textInput}); 
+        }
+      }
     }
 
 
@@ -136,14 +126,16 @@ const socket = io('http://localhost:4001', {
 
     // transmet le pseudo et la connection d'un user a l'admin
     socket.on('newUserForex', (pseudo) => {
-      createElementFunction('newUserForex', pseudo);
+      var message =' a rejoint le chat';
+      createElementFunction('newUserForex', {sender: pseudo, content: message});
       
     });
 
     // message all
-    socket.on("newMessageAllForex", (content) => {
-      createElementFunction('newMessageAllForex', content)
+    socket.on("newMessageAllForex", (message) => {
+      createElementFunction('newMessageAllForex', message)
     });
+
     // vieux message
     socket.on('oldMessageForex', (messages) => {
       messages.forEach( message => {
@@ -152,17 +144,18 @@ const socket = io('http://localhost:4001', {
         } else {
           createElementFunction('oldMessagesForex', message)
         }
-      })
+      });
       
-    })
+    });
 
     // écoute du user quit
     socket.on('quitUserForex', (pseudo) => {
-      createElementFunction('quitUserForex', pseudo);
+      var message = ' a quitté le chat';
+      createElementFunction('quitUserForex', {sender: pseudo, content: message});
     });
 
     // message annonce 
-    function createElementFunction(pseudo, message) {
+    function createElementFunctionAnnonce(pseudo, message) {
       // Créer une nouvelle div avec l'ID spécifié
       const newDiv = document.createElement('div');
       newDiv.setAttribute('id', pseudo);
@@ -173,22 +166,217 @@ const socket = io('http://localhost:4001', {
     // Ajouter la nouvelle div à la page
     const containerDiv = document.getElementById('annoncepublicadmin');
     containerDiv.appendChild(newDiv);
-  }
+  };
 
 /*=================== Fonction chat ===================*/
 
-    function createElementFunction(element, content) {
+  function createElementFunction(element, content) {
     const newElement = document.createElement('div');
+
+    // Heure du message
     const formattedTimestamp = moment(content.timestamp).format('HH:mm:ss');
+    //Text a afficher 
+    var TexttoDisplay=content.content;
     // Select Sound to be played
     var audio = new Audio(Sound_default);
-    switch (content){
-      case "BUY":
-        audio = new Audio(Sound_buyNow);
+    var preaudio = undefined; 
+
+    //Traitement des messages
+    switch (content.content){
+      case "Ready for EUR/GBP":
+        preaudio = new Audio(Sound_ready);
+        audio = new Audio(Sound_europound);
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#C0C0C0";>' + content.content+'</FONT>';
         break;
-      case "SELL":
-        audio = new Audio(Sound_sellNow);
+      case "Ready for GBP/USD":
+        audio = new Audio(Sound_europound);
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#C0C0C0";>' + content.content+'</FONT>';
         break;
+      case "Ready for EUR/USD":
+        preaudio = new Audio(Sound_ready);
+        audio = new Audio(Sound_eurodollar);
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#C0C0C0";>' + content.content+'</FONT>';
+        break;
+      case "Ready for USD/JPY":
+        preaudio = new Audio(Sound_ready);
+        audio = new Audio(Sound_dollaryen);
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#C0C0C0";>' + content.content+'</FONT>';
+        break;
+      case "Ready for USD/CHF":
+        preaudio = new Audio(Sound_ready);
+        audio = new Audio(Sound_dollarswissfranc);
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#C0C0C0";>' + content.content+'</FONT>';
+        break;
+      case "Ready for AUD/USD":
+        preaudio = new Audio(Sound_ready);
+        audio = new Audio(Sound_australiandollar);
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#C0C0C0";>' + content.content+'</FONT>';
+        break;
+      case "Ready for EUR/JPY":
+        preaudio = new Audio(Sound_ready);
+        audio = new Audio(Sound_euroyen);
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#C0C0C0";>' + content.content+'</FONT>';
+        break;
+      case "Cancel EUR/GBP":
+        preaudio = new Audio(Sound_default);
+        audio = new Audio(Sound_europound);
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#C0C0C0";>' + content.content+'</FONT><p> No Need to stand ready anymore</p>';
+        break;
+      case "Cancel GBP/USD":
+        preaudio = new Audio(Sound_default);
+        audio = new Audio(Sound_europound);
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#C0C0C0";>' + content.content+'</FONT><p> No Need to stand ready anymore</p>';
+        break;
+      case "Cancel EUR/USD":
+        preaudio = new Audio(Sound_default);
+        audio = new Audio(Sound_eurodollar);
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#C0C0C0";>' + content.content+'</FONT><p> No Need to stand ready anymore</p>';
+        break;
+      case "Cancel USD/JPY":
+        preaudio = new Audio(Sound_default);
+        audio = new Audio(Sound_dollaryen);
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#C0C0C0";>' + content.content+'</FONT><p> No Need to stand ready anymore</p>';
+        break;
+      case "Cancel USD/CHF":
+        preaudio = new Audio(Sound_default);
+        audio = new Audio(Sound_dollarswissfranc);
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#C0C0C0";>' + content.content+'</FONT><p> No Need to stand ready anymore</p>';
+        break;
+      case "Cancel AUD/USD":
+        preaudio = new Audio(Sound_default);
+        audio = new Audio(Sound_australiandollar);
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#C0C0C0";>' + content.content+'</FONT><p> No Need to stand ready anymore</p>';
+        break;
+      case "Cancel EUR/JPY":
+        preaudio = new Audio(Sound_default);
+        audio = new Audio(Sound_euroyen);
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#C0C0C0";>' + content.content+'</FONT><p> No Need to stand ready anymore</p>';
+        break;
+
+      // Traitement des Achats
+      case "BuyMarket":
+        audio = undefined;
+        break;
+      case "GO Long EUR/GBP":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#008000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_buyEuropound);
+        break;
+      case "GO Long GBP/USD":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#008000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_goLong);
+        break;
+      case "GO Long EUR/USD":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#008000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_buyEurodollar);
+        break;
+      case "GO Long USD/JPY":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#008000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_buyDollaryen);
+        break;
+      case "GO Long USD/CHF":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#008000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_buyDollarswissfranc);
+        break;
+      case "GO Long AUD/USD":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#008000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_buyAustraliandollar);
+        break;
+      case "GO Long EUR/JPY":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#008000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_buyEuroyen);
+        break;
+      case "Exit Long EUR/GBP":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#008000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_exit);
+        break;
+      case "Exit Long GBP/USD":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#008000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_exit);
+        break;
+      case "Exit Long EUR/USD":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#008000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_exit);
+        break;
+      case "Exit Long USD/JPY":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#008000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_exit);
+        break;
+      case "Exit Long USD/CHF":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#008000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_exit);
+        break;
+      case "Exit Long AUD/USD":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#008000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_exit);
+        break;
+      case "Exit Long EUR/JPY":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#008000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_exit);
+        break;
+      
+      // Traitement des Ventes
+      case "Sell Market":
+        audio = undefined;
+        break;
+      case "GO Short EUR/GBP":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#FF0000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_sellEuropound);
+        break;
+      case "GO Short GBP/USD":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#FF0000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_goShort);
+        break;
+      case "GO Short EUR/USD":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#FF0000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_sellEurodollar);
+        break;
+      case "GO Short USD/JPY":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#FF0000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_sellDollaryen);
+        break;
+      case "GO Short USD/CHF":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#FF0000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_sellDollarswissfranc);
+        break;
+      case "GO Short AUD/USD":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#FF0000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_sellAustraliandollar);
+        break;
+      case "GO Short EUR/JPY":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#FF0000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_sellEuroyen);
+        break;
+      case "Exit Short EUR/GBP":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#FF0000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_exit);
+        break;
+      case "Exit Short GBP/USD":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#FF0000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_exit);
+        break;
+      case "Exit Short EUR/USD":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#FF0000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_exit);
+        break;
+      case "Exit Short USD/JPY":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#FF0000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_exit);
+        break;
+      case "Exit Short USD/CHF":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#FF0000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_exit);
+        break;
+      case "Exit Short AUD/USD":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#FF0000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_exit);
+        break;
+      case "Exit Short EUR/JPY":
+        TexttoDisplay='<FONT SIZE="5pt" COLOR="#FF0000";>' + content.content+'</FONT>';
+        audio = new Audio(Sound_exit);
+        break;
+
+
+      // Traitement des Pastilles
       case "Green":
          audio = new Audio(Sound_green);
         break;
@@ -196,72 +384,111 @@ const socket = io('http://localhost:4001', {
          audio = new Audio(Sound_orange);
         break;
       case "Red":
+
          audio = new Audio(Sound_red);
         break;
-      case "GO Long":
-      audio = new Audio(Sound_goLong);
+
+      case "New Price":
+        audio = new Audio(Sound_default);
+        break; 
+      case "Think Profit":
+        audio = new Audio(Sound_default);
         break;
-      case "GO Short":
-        audio = new Audio(Sound_goShort);
+      case "Think Little Profit":
+        audio = new Audio(Sound_ThinkLittleProfit);
         break;
-      case "Ready for DAX":
-        audio = new Audio(Sound_dax);
+      case "Think BIG Profit":
+        audio = new Audio(Sound_ThinkBigProfit);
         break;
-      case "Ready for BUND":
-        audio = new Audio(Sound_bund);
+      case "Reinforce":
+        audio = new Audio(Sound_reinforcePosition);
+        TexttoDisplay='Reinforce Position';
         break;
-      case "Ready for EUR/DOL":
-      audio = new Audio(Sound_eurodollar);
+      case "Reinforced":
+        audio = new Audio(Sound_reinforcedPosition);
+        TexttoDisplay='Position has been Reinforced';
+        break; 
+      case "Stay Out":
+        audio = new Audio(Sound_stayAside);
         break;
+
+        
+      //Others Signals
+      case "Stop @ entry price":
+        audio = new Audio(Sound_stop_entry_price);
+        break; 
+      case "Cancel":
+        audio = new Audio(Sound_exit);
+        TexttoDisplay='Not Ready';
+        break;  
+      case "Jingle":
+        audio = new Audio(Sound_TheVTSignals);
+        TexttoDisplay='Bienvenue, notre session du jour commence.';
+        break; 
+      case "GAMBLE":
+        audio = new Audio(Sound_Gamble);
+        TexttoDisplay='<FONT SIZE="4pt" COLOR="#FF0000";>This is Gamble</FONT>';
+        break;   
+      case "Cirque":
+        audio = new Audio(Sound_circus);
+        TexttoDisplay='<img src='+cirque+' width="120">';
+        break;   
       default:
-        // audio = new Audio(Sound_default);         
-    }
+         // audio = new Audio(Sound_default);         
+    };
+
     switch (element) {
       case 'newUserForex':
         newElement.classList.add(element, 'message');
-        newElement.textContent = content + ' a rejoint le chat ';
+        newElement.innerHTML = content.sender + ' a rejoint le chat ';
         document.getElementById('msgContainerAdmin').appendChild(newElement);
+        scrollToBottom('msgContainerAdmin');
+        if (preaudio !== undefined) preaudio.play(); 
         if (audio !== undefined) audio.play();
         break; 
+
       case 'newMessageMeForex':
         newElement.classList.add(element, 'message')
-        newElement.textContent = "[" + formattedTimestamp + "] " + '' + pseudo + ' : ' + content;
+        newElement.innerHTML = "[" + formattedTimestamp + "] " + '' + pseudo + ' : ' + TexttoDisplay;
         document.getElementById('msgContainerAdmin').appendChild(newElement);
+        scrollToBottom('msgContainerAdmin');
+        if (preaudio !== undefined) preaudio.play(); 
         if (audio !== undefined) audio.play();
         break;
 
       case 'newMessageAllForex':
         newElement.classList.add(element, 'message')
-        newElement.textContent = "[" + formattedTimestamp + "] " + '' + content.pseudo + ' : ' + content.message;
+        newElement.innerHTML = "[" + formattedTimestamp + "] " + '' + content.sender + ' : ' + TexttoDisplay;
         document.getElementById('msgContainer').appendChild(newElement);
+        if (preaudio !== undefined) preaudio.play();
         if (audio !== undefined) audio.play();
-        scrollToBottom();
+        scrollToBottom('msgContainer');
         break;
 
       case 'oldMessageForex':
         newElement.classList.add( element, 'messages')
-        newElement.textContent = "[" + formattedTimestamp + "] " + '' + content.sender + ' : ' + content.content   ;
+        newElement.innerHTML = "[" + formattedTimestamp + "] " + '' + content.sender + ' : ' + TexttoDisplay  ;
         document.getElementById('msgContainerAdmin').appendChild(newElement);
-        scrollToBottom();
-        
+        scrollToBottom('msgContainerAdmin');
         break;
-        case 'oldMessagesMeForex':
-          newElement.classList.add('newMessageMeForex', 'messages');
-          newElement.textContent =  "[" + formattedTimestamp + "] " + '' + content.sender + ' : ' + content.content + ' - ' ;
-          document.getElementById('msgContainerAdmin').appendChild(newElement);
-          scrollToBottom();
-         
-          break;
+
+      case 'oldMessagesMeForex':
+        newElement.classList.add('newMessageMeForex', 'messages');
+        newElement.innerHTML =  "[" + formattedTimestamp + "] " + '' + content.sender + ' : ' + TexttoDisplay + ' - ' ;
+        document.getElementById('msgContainerAdmin').appendChild(newElement);
+        scrollToBottom('msgContainerAdmin');
+        break;
+
       case 'quitUserForex':
         newElement.classList.add(element, 'message');
-        newElement.textContent = content + ' a quitté le chat ';
+        newElement.innerHTML = content.sender + ' a quitté le chat ';
         document.getElementById('msgContainerAdmin').appendChild(newElement);
         if (audio !== undefined) audio.play();
-        scrollToBottom();
-        break; 
+        scrollToBottom('msgContainerAdmin');
+        break;
         
-          
-  }
+      default:   
+  };
 }
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -270,11 +497,11 @@ const socket = io('http://localhost:4001', {
   
     if (textInput.length > 0) {
       socket.emit('newMessageForex', textInput);
-      createElementFunction('newMessageMeForex', textInput);
+      createElementFunction('newMessageMeForex', {sender: pseudo, content: textInput});
     } else {
       return false;
-    }
-  }
+    };
+  };
   return (
       <div className='all-forex'>
         
@@ -318,25 +545,23 @@ const socket = io('http://localhost:4001', {
       </div>
         <div className='button-tickers1'>
             <div className='Bouton'>
-              <button onClick={() => onClickSend('Ready For EUR/GBP')}>EUR/GBP</button>
+              <button onClick={() => onClickSend('Ready for EUR/GBP')}>EUR/GBP</button>
             </div>
           
             <div className='Bouton'>
-              <button onClick={() => onClickSend('Ready For GBP/USD')}>GBP/USD</button>
+              <button onClick={() => onClickSend('Ready for GBP/USD')}>GBP/USD</button>
             </div>
             
             <div className='Bouton'>
               <button onClick={() => onClickSend('Ready for USD/JPY')}>USD/JPY</button>
             </div>
           
-            <div className='Bouton'>
-              <button onClick={() => onClickSend('Ready for EUR/DOL')}>EUR/DOL</button>
-            </div>
+
         </div>
           <div className='button-tickers2'>
-              <div className='Bouton'>
-                <button onClick={() => onClickSend('Ready for EUR/CHF')}>EUR/CHF</button>
-              </div>
+          <div className='Bouton'>
+              <button onClick={() => onClickSend('Ready for EUR/USD')}>EUR/DOL</button>
+            </div>
             
               <div className='Bouton'>
                 <button onClick={() => onClickSend('Ready for AUD/USD')}>AUD/USD</button>
@@ -348,7 +573,9 @@ const socket = io('http://localhost:4001', {
 
         </div>
         <div className='button-tickers3'>
-          
+
+        <input  className='Form-Value' type='text' placeholder='Select a Ticker' id='Ticker' /> 
+
         <div className='Bouton-Buy'>
             <button onClick={() => onClickSend('Buy Market')}>BUY Market</button>
         </div>  
@@ -373,7 +600,7 @@ const socket = io('http://localhost:4001', {
 
           if (textInput.length > 0) {
             socket.emit('newMessageForex', textInput);
-            createElementFunction('newMessageMeForex', textInput);
+            createElementFunction('newMessageMeForex', {sender: pseudo, content: textInput});
           } else {
             return false;
           }
@@ -397,7 +624,7 @@ const socket = io('http://localhost:4001', {
 
               if (textInput.length > 0) {
                 socket.emit('newMessageForex', textInput);
-                createElementFunction('newMessageMeForex', textInput);
+                createElementFunction('newMessageMeForex', {sender: pseudo, content: textInput});
               } else {
                 return false;
               }
@@ -421,64 +648,6 @@ const socket = io('http://localhost:4001', {
       </div>
 
 
-
-    <div className='Premium'>
-      <div className='Text'>
-          <h2>Premium</h2>
-      </div>
-
-      <div className='Bouton-renforce'>
-        <button onClick={() => onClickSend('Reinforce')}>Reinforce Position</button>
-      </div>
-
-      {/*<div className='Bouton'>
-        <button onClick={() => onClickSend('Objective')}>Objective</button>
-          </div>*/}
-      <div><h2>Objective</h2></div>
-      <div className='Placement-Boutton-Color'>
-        <div className='Bouton-1'>
-          <button onClick={() => onClickSend('RSELLPlus')}></button>
-        </div>
-
-        <div className='Bouton-2'>
-          <button onClick={() => onClickSend('RSELL')}></button>
-        </div>
-
-        <div className='Bouton-3'>
-          <button onClick={() => onClickSend('RBUYPlus')}></button>
-        </div>
-
-        <div className='Bouton-4'>
-          <button onClick={() => onClickSend('RBUY')}></button>
-        </div>
-      </div>
-    </div>
-
-    <div className='Lots'>
-      <h2>Information Lots</h2>
-      <div className='Lots-input'>
-          <h3>X</h3>
-          <input type='text' placeholder='(X)' id='X' />
-          <h3>= A</h3>
-          <input type='text' placeholder='(A)' id='A' />
-          <h3>+ B</h3> 
-          <input type='text' placeholder='(B)' id='B' />
-          <h3>+ C</h3>
-          <input type='text' placeholder='(C)' id='C' />
-      </div>
-      <div className='Lots-Bouton'>
-          <div className='Bouton'>
-          <button onClick={() => onClickSend('SendLOT')}>SEND</button>
-        </div>
-
-        <div className='Bouton-reset'>
-          <button onClick={() => onClickSend('ResetLOT')}>RESET</button>
-        </div>
-    </div>
-    </div>
-
-
-
 <div className='Signals'>
       <div className='Long'>
         <h2>Long Signals</h2>
@@ -490,10 +659,10 @@ const socket = io('http://localhost:4001', {
           <div className='profits'>
             <h2>Profits</h2>
               <div className='Bouton'>
-                <button onClick={() => onClickSend('Think Little Profit')}>Little</button>
+                <button onClick={() => onClickSend('New Price')}>Little</button>
               </div>
               <div className='Bouton'>
-                <button onClick={() => onClickSend('Think BIG profit')}>BIG</button>
+                <button onClick={() => onClickSend('Think Profit')}>BIG</button>
               </div>
           </div>
           
@@ -509,7 +678,7 @@ const socket = io('http://localhost:4001', {
       <h2>Shorts Signals</h2>
       <div className='Go-short'>
           <div className='Bouton'>
-            <button onClick={() => onClickSend('Go short')}>GO SHORT</button>
+            <button onClick={() => onClickSend('GO Short')}>GO SHORT</button>
           </div> 
       </div>    
       <div className='profits'>
@@ -518,17 +687,17 @@ const socket = io('http://localhost:4001', {
                 <button onClick={() => onClickSend('Think Little Profit')}>Little</button>
               </div>
               <div className='Bouton'>
-                <button onClick={() => onClickSend('Think BIG profit')}>BIG</button>
+                <button onClick={() => onClickSend('Think BIG Profit')}>BIG</button>
               </div>
           </div>
           <div className='Think-profit'>
               <div className='Bouton'>
-                <button onClick={()=>onClickSend('ThinkProfiThink Profit')}>Think Profit</button>
+                <button onClick={()=>onClickSend('Stay Out')}>Stay Out</button>
               </div>
           </div>
           <div className='Exit-short'>
               <div className='Bouton'>
-                <button onClick={() => onClickSend('Thint Short')}>EXIT SHORT</button>
+                <button onClick={() => onClickSend('Exit Short')}>EXIT SHORT</button>
               </div>
           </div> 
 
@@ -536,56 +705,59 @@ const socket = io('http://localhost:4001', {
       </div>
     </div> 
     <div className='Others'>
-        <h2>Others signals</h2>
-          <div className='Bouton'>
-            <button onClick={()=>onClickSend('Cancel')}>Cancel READY Signal</button>
-          </div>
-          <div className='Bouton'>
-      <button onClick={() => onClickSend('Jingle')}>Jingle</button>
-    </div>
-
+      <h2>Others signals</h2>
+      <div className='Bouton'>
+        <button onClick={() => onClickSend('Stop @ entry price')}>STOP @ ENTRY PRICE</button>
+       </div> 
+      <div className='Bouton'>
+        <button onClick={()=>onClickSend('Cancel')}>Cancel READY Signal</button>
+      </div>
+      <div className='Bouton'>
+        <button onClick={() => onClickSend('Jingle')}>Jingle</button>
+      </div>
+      <div className='Bouton'>
+        <button onClick={() => onClickSend('Cirque')}>Cirque</button>
+      </div>
     </div>  
 
 
 
 <div className='Instant-message'>
-  
   <div>
- 
-    <div className='Bouton'>
-      <button onClick={() => onClickSend('Stop @ entry price')}>STOP @ ENTRY PRICE</button>
-    </div> 
-        
-      <select onChange={(e) => {
-        const textInput = `${e.target.value}`;
+  <h2>Messagerie Instantanée</h2>
+    <select onChange={(e) => {
+      const textInput = `${e.target.value}`;
+      if (textInput.length > 0) {
         socket.emit('newMessageForex', textInput);
-        createElementFunction('newMessageMeForex', textInput);
-      }}>
-        <option value=""></option>
-        <option value="Bonjour !">Bonjour !</option>
-        <option value="Bon appétit">Bon appétit</option>
-        <option value="A demain">A demain</option>
-      </select>
-    </div>
+        createElementFunction('newMessageMeForex', {sender: pseudo, content: textInput});
+      }
+    }}>
+      <option value=""></option>
+      <option value="Bonjour !">Bonjour !</option>
+      <option value="Bon appétit">Bon appétit</option>
+      <option value="A demain">A demain</option>
+    </select>
 
-    <div>
-      <form onSubmit={(e) => {
-        e.preventDefault();
-        const textInput = document.getElementById('directTextInput').value;
-        document.getElementById('directTextInput').value = '';
+  </div>
 
-        if (textInput.length > 0) {
-          socket.emit('newMessageForex', textInput);
-          createElementFunction('newMessageMeForex', textInput);
-        } else {
-          return false;
-        }
-      }}>
-        <input type='text' placeholder='   Message direct' id='directTextInput' />
-        <button type='submit'>Envoyer</button>
-      </form>
-      </div>
+  <div>
+    <form onSubmit={(e) => {
+      e.preventDefault();
+      const textInput = document.getElementById('directTextInput').value;
+      document.getElementById('directTextInput').value = '';
+
+      if (textInput.length > 0) {
+        socket.emit('newMessageForex', textInput);
+        createElementFunction('newMessageMeForex', {sender: pseudo, content: textInput});
+      } else {
+        return false;
+      }
+    }}>
+      <input type='text' placeholder='Saisir le message à envoyer' id='directTextInput' />
+      <button type='submit'>Envoyer</button>
+    </form>
     </div>
+  </div>
 </div>
 
     <div className='chat-container'>

@@ -10,9 +10,19 @@ import { NavLink} from "react-router-dom";
 // images
 import Connexion from './../images/Connexion-SignUP.png'
 
+//Récupération InfoIP
+
 
 const SignUpForm = () => {
-
+    // Récupération adresse IP
+    const [userIp, setIpAddress] = useState('');
+    const fetchIp = async () => {
+        try { const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        setIpAddress(data.ip);
+        } catch (error) { console.error(error);
+      } };
+      fetchIp();
     // hook des différentes infos lors de l'inscriptions
     const [formSubmit, setFormSubmit] = useState(false);
     const [lastName, setlastName] = useState('')
@@ -85,7 +95,8 @@ const SignUpForm = () => {
               raisonS,
               connu,
               broker,
-              pseudo
+              pseudo,
+              userIp,
             },
         })
         

@@ -8,11 +8,10 @@ const createToken = (id) => {
     }) 
 }
 
-
 module.exports.signUp = async (req, res) => {
   console.log("Server.aut-controler.signup (Creation User)")
-  const {lastName, firstName, email, password, adress, ville, codePostal, pays, age, statut, connu, broker, pseudo} = req.body
-  const userIp = req.ip;
+  const {lastName, firstName, email, password, adress, ville, codePostal, pays, age, statut, connu, broker, pseudo,userIp} = req.body
+  //const userIp = req.ip; 
 
   try {
     
@@ -26,6 +25,8 @@ module.exports.signUp = async (req, res) => {
     res.status(200).send({ errors })
   }
 }
+
+
 
 
 // apport du signin avec creation du token propre a chaque user valide 3 jours (modifialbe en haut) 

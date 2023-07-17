@@ -36,14 +36,14 @@ class CreatePayment extends React.Component {
                     "method": "string",
                     "utcTimestamp": "string"
                   },
-                  "skipAuthentication": true,
+                  "skipAuthentication": false,
                   "exemptionRequest": "none",
                   "merchantFraudRate": 99,
                   "secureCorporatePayment": true,
                   "skipSoftDecline": true
                 },
                 "paymentProduct5100SpecificInput": {
-                  "brand": "string"
+                  "brand": "Forconex SA"
                 },
                 "paymentProduct130SpecificInput": {
                   "threeDSecure": {

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { UidContext } from './components/AppContext';
 import axios from "axios";
-import Routes from './components/Routes'
+import Routes from './components/Routes';
 import { useDispatch } from 'react-redux';
 import { getUser } from "./actions/user.actions";
 import { getUsers } from "./actions/users.actions";
-
 
 // check si l'utilisateur est connecté en analysant le token (JWT) "Stockage" 
 const App = () => {
@@ -22,7 +21,11 @@ const App = () => {
         .then((res) => {
           setUid(res.data);
         })
-        .catch((err) => console.log("No token"));
+        .catch((err) => {
+            console.log("No token, unconnected to server");
+
+         });
+        
     };
     fetchToken();
 

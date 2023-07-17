@@ -1,12 +1,12 @@
 // gestion de la modification user et suppression user
 
 // appel base de données
-const UserModel = require('../models/user.model')
+const UserModel = require('../models/user.model');
 // utilitaire mail
 
 
 // verification controlle que les id sont reconnue par la base
-const ObjectID = require('mongoose').Types.ObjectId
+const ObjectID = require('mongoose').Types.ObjectId;
 
 
 // fontion pour aller chercher des infos dans la base de donnes/ user = chercher dans la base et select prend les tous et retourne moi une réponse en json avec tout les users -password (sauf le password)
