@@ -1,29 +1,26 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
+import React, { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import io from 'socket.io-client';
-import { getUser } from '../../actions/user.actions';
-import { UidContext } from '../../components/AppContext';
-import { ProductID } from '../../components/AppContext';
+import { ProductID, UidContext } from '../../components/AppContext';
 import './../../styles/Salle-indice.scss';
 
 // import js et scss et images
-import openposition from './../../images/salles/openpositions.png'
-import barretrade from './../../images/salles/trade-exemple.png'
-import publicAnnonce from './../../images/salles/Public announce.png'
+import publicAnnonce from './../../images/salles/Public announce.png';
 import png_cirque from './../../images/salles/cirque.png';
 import png_Green from './../../images/salles/green.png';
+import openposition from './../../images/salles/openpositions.png';
 import png_Orange from './../../images/salles/orange.png';
 import png_Red from './../../images/salles/red.png';
+import barretrade from './../../images/salles/trade-exemple.png';
 
 //Import des sons
-import Sound_default from './audio/message.mp3';
 import Sound_TheVTSignals from './audio/TheVTSignals.mp3';
 import Sound_ThinkBigProfit from './audio/ThinkBigProfit.mp3';
 import Sound_ThinkLittleProfit from './audio/ThinkLittleProfit.mp3';
 import Sound_bund from './audio/bund.mp3';
 import Sound_buyBund from './audio/buyBund.mp3';
 import Sound_buyCac from './audio/buyCac.mp3';
-import Sound_buyDax from './audio/buyDax.mp3'
+import Sound_buyDax from './audio/buyDax.mp3';
 import Sound_buyDowjones from './audio/buyDowjones.mp3';
 import Sound_buyFootsee from './audio/buyFootsee.mp3';
 import Sound_buyNasdaq from './audio/buyNasdaq.mp3';
@@ -34,11 +31,9 @@ import Sound_dowjones from './audio/dowjones.mp3';
 import Sound_exit from './audio/exit.mp3';
 import Sound_footsee from './audio/footsee.mp3';
 import Sound_green from './audio/green.mp3';
-import Sound_im from './audio/im.mp3';
-import Sound_message from './audio/message.mp3';
+import Sound_Gamble from './audio/im.mp3';
+import Sound_default from './audio/message.mp3';
 import Sound_nasdaq from './audio/nasdaq.mp3';
-import Sound_new_message from './audio/new-message.mp3';
-import Sound_objective from './audio/objective.mp3';
 import Sound_orange from './audio/orange.mp3';
 import Sound_ready from './audio/ready.mp3';
 import Sound_red from './audio/red.mp3';
@@ -52,7 +47,6 @@ import Sound_sellFootsee from './audio/sellFootsee.mp3';
 import Sound_sellNasdaq from './audio/sellNasdaq.mp3';
 import Sound_stayAside from './audio/stayAside.mp3';
 import Sound_stop_entry_price from './audio/stop_entry_price.mp3';
-import Sound_Gamble from './audio/im.mp3';
 
 const Indice = () => {
   const product = useContext(ProductID);
@@ -76,12 +70,13 @@ const socket = io('http://localhost:4002', {
 
 /*============== Socket io ==================*/
 const pseudo = userData.pseudo
-socket.on('connect', () => {
-  console.log('Connected to Salle Indices server');
-  socket.emit('pseudo', pseudo);
-});
-// On demande le pseudo + edit de l'onglet de la page avec le pseudo
-document.title = pseudo + ' - Efficient-Trading';
+  socket.on('connect', () => {
+    console.log('Connected to Salle Indices server');
+    socket.emit('pseudo', pseudo);
+    // On demande le pseudo + edit de l'onglet de la page avec le pseudo
+    document.title = pseudo + ' [Salle Indices] - Efficient-Trading';
+  });
+
     
     // Gestion des Event //
 
@@ -114,6 +109,7 @@ document.title = pseudo + ' - Efficient-Trading';
     socket.on('quitUserIndice', (pseudo) => {
       var message = ' a quitté le chat';
       createElementFunction('quitUserIndice', { sender: pseudo, content: message});
+      document.title = 'Efficient-Trading';
     });
 
     // message annonce 
@@ -445,9 +441,14 @@ function createElementFunction(element, content) {
 
     // Envoi du message à la socket pour les clients
     socket.emit('newMessageIndice', textInput );
-
     // Affichage du message sur la console
     createElementFunction('newMessageMeIndice', {sender: pseudo, content: textInput});
+
+  } else {
+    if (textInput == "Jingle")  {
+      socket.emit('newMessageIndice', textInput);
+      createElementFunction('newMessageMeIndice', {sender: pseudo, content: textInput}); 
+    }
   }
 
 }
@@ -462,7 +463,7 @@ function createElementFunction(element, content) {
     } else {
       return false;
     }
-  }
+  };
   return (
       <div className='all-Indice'>
         

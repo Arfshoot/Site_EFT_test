@@ -12,6 +12,10 @@ import openposition from './../../images/salles/openpositions.png';
 import barretrade from './../../images/salles/trade-exemple.png';
 import publicAnnonce from './../../images/salles/Public announce.png';
 import cirque from './../../images/salles/cirque.png';
+import png_cirque from './../../images/salles/cirque.png';
+import png_Green from './../../images/salles/green.png';
+import png_Orange from './../../images/salles/orange.png';
+import png_Red from './../../images/salles/red.png';
 
 //Import des sons
 import Sound_default from './audio/im.mp3';
@@ -81,7 +85,7 @@ const socket = io('http://localhost:4001', {
     socket.on('connect',() => {
         socket.emit('pseudo', pseudo);
         // On demande le pseudo + edit de l'onglet de la page avec le pseudo
-        document.title = pseudo + ' - Efficient Trading(Forex)';
+        document.title = pseudo + ' [Forex] - Efficient-Trading';
     });
 
 /*============== Gestion de la salles ==================*/
@@ -107,8 +111,9 @@ const socket = io('http://localhost:4001', {
         if (textInput == "GO Short") { textInput = Value + currenttickers};
         if (textInput == "New Price") { textInput = Value + currenttickers};
         if (textInput == "Think Profit") { textInput = Value + currenttickers};
-        if (textInput == "Reinforce") { textInput = Value + currenttickers};
-        if (textInput == "Cancel") { textInput = Value + currenttickers};
+        if (textInput == "Reinforce Position") { textInput = Value + currenttickers};
+        if (textInput == "Exit Long") { textInput = Value + currenttickers};
+        if (textInput == "Exit Short") { textInput = Value + currenttickers};
         
         socket.emit('newMessageForex', textInput);
         createElementFunction('newMessageMeForex', {sender: pseudo, content: textInput});
@@ -378,23 +383,23 @@ const socket = io('http://localhost:4001', {
 
       // Traitement des Pastilles
       case "Green":
+        TexttoDisplay = '<img src='+png_Green+' width="20">';
          audio = new Audio(Sound_green);
         break;
       case "Orange":
+        TexttoDisplay = '<img src='+png_Orange+' width="20">';
          audio = new Audio(Sound_orange);
         break;
       case "Red":
-
+        TexttoDisplay = '<img src='+png_Red+' width="20">';
          audio = new Audio(Sound_red);
         break;
 
       case "New Price":
         audio = new Audio(Sound_default);
         break; 
-      case "Think Profit":
-        audio = new Audio(Sound_default);
-        break;
       case "Think Little Profit":
+        TexttoDisplay='New Price';
         audio = new Audio(Sound_ThinkLittleProfit);
         break;
       case "Think BIG Profit":
@@ -574,7 +579,7 @@ const socket = io('http://localhost:4001', {
         </div>
         <div className='button-tickers3'>
 
-        <input  className='Form-Value' type='text' placeholder='Select a Ticker' id='Ticker' /> 
+        <input  className='Form-Value' type='text' placeholder='Select a Ticker' disabled='true' id='Ticker' /> 
 
         <div className='Bouton-Buy'>
             <button onClick={() => onClickSend('Buy Market')}>BUY Market</button>
@@ -585,68 +590,43 @@ const socket = io('http://localhost:4001', {
         </div>
         </div>
       </div>
-
-
-
-      <div className='CurrentValue'>
-        <div className='Text'>
-          <h2>Current value</h2>
-        </div>
-
-        <form onSubmit={(e) => {
-          e.preventDefault();
-          const textInput = document.getElementById('Pricepoint').value;
-          document.getElementById('Pricepoint').value = '';
-
-          if (textInput.length > 0) {
-            socket.emit('newMessageForex', textInput);
-            createElementFunction('newMessageMeForex', {sender: pseudo, content: textInput});
-          } else {
-            return false;
-          }
-        }}>
-          <input  className='Form-Value' type='text' placeholder='Current Value' id='Pricepoint' />
-        </form>
-
-      <div className='Bouton'>
-        <button onClick={() => onClickSend('GAMBLE')}>THIS IS GAMBLE</button>
-      </div>
-    </div>
-
-
-
-    <div className='Future-value'>
-      <h2>Future Value</h2>
-        <form onSubmit={(e) => {
-              e.preventDefault();
-              const textInput = document.getElementById('FutrePricepoint').value;
-              document.getElementById('FutrePricepoint').value = '';
-
-              if (textInput.length > 0) {
-                socket.emit('newMessageForex', textInput);
-                createElementFunction('newMessageMeForex', {sender: pseudo, content: textInput});
-              } else {
-                return false;
-              }
-            }}>
-              <input type='text' placeholder='Future Value' id='FutrePricepoint' />
-            </form>
-
-          <div className='Future-value-color'>  
-            <div className='Bouton-green'>
-              <button onClick={() => onClickSend('Green')}>Green</button>
-            </div>
-
-            <div className='Bouton-orange'>
-              <button onClick={() => onClickSend('Orange')}>Orange</button>
-            </div>
-
-            <div className='Bouton-red'>
-              <button onClick={() => onClickSend('Red')}>Red</button>
-            </div>
+      <div className='Future-value'>
+        <div className='Future-value-color'>  
+          <div className='Bouton-green'>
+            <button onClick={() => onClickSend('Green')}>Green</button>
           </div>
+
+          <div className='Bouton-orange'>
+            <button onClick={() => onClickSend('Orange')}>Orange</button>
+          </div>
+
+          <div className='Bouton-red'>
+            <button onClick={() => onClickSend('Red')}>Red</button>
+          </div>
+        </div>
       </div>
 
+    <div className='CurrentValue'>
+      <div className='Text'>
+        <h2>Current value</h2>
+      </div>
+
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        const textInput = document.getElementById('Pricepoint').value;
+        document.getElementById('Pricepoint').value = '';
+
+        if (textInput.length > 0) {
+          socket.emit('newMessageForex', textInput);
+          createElementFunction('newMessageMeForex', {sender: pseudo, content: textInput});
+        } else {
+          return false;
+        }
+      }}>
+        <input  className='Form-Value' type='text' placeholder='Current Value' id='Pricepoint' />
+      </form>
+
+    </div>
 
 <div className='Signals'>
       <div className='Long'>
@@ -667,7 +647,6 @@ const socket = io('http://localhost:4001', {
           </div>
           
           <div className='Exit-Long'>
-            <br></br>
             <div className='Bouton'>
               <button onClick={() => onClickSend('Exit Long')}>EXIT LONG</button>
             </div>
@@ -690,11 +669,6 @@ const socket = io('http://localhost:4001', {
                 <button onClick={() => onClickSend('Think BIG Profit')}>BIG</button>
               </div>
           </div>
-          <div className='Think-profit'>
-              <div className='Bouton'>
-                <button onClick={()=>onClickSend('Stay Out')}>Stay Out</button>
-              </div>
-          </div>
           <div className='Exit-short'>
               <div className='Bouton'>
                 <button onClick={() => onClickSend('Exit Short')}>EXIT SHORT</button>
@@ -704,21 +678,49 @@ const socket = io('http://localhost:4001', {
 
       </div>
     </div> 
-    <div className='Others'>
-      <h2>Others signals</h2>
-      <div className='Bouton'>
-        <button onClick={() => onClickSend('Stop @ entry price')}>STOP @ ENTRY PRICE</button>
-       </div> 
-      <div className='Bouton'>
-        <button onClick={()=>onClickSend('Cancel')}>Cancel READY Signal</button>
+
+    <div className='Future-value'>
+      <h2>Future Value</h2>
+        <form onSubmit={(e) => {
+              e.preventDefault();
+              const textInput = document.getElementById('FutrePricepoint').value;
+              document.getElementById('FutrePricepoint').value = '';
+
+              if (textInput.length > 0) {
+                socket.emit('newMessageForex', textInput);
+                createElementFunction('newMessageMeForex', {sender: pseudo, content: textInput});
+              } else {
+                return false;
+              }
+            }}>
+              <input type='text' placeholder='Future Value' id='FutrePricepoint' />
+            </form>
       </div>
-      <div className='Bouton'>
-        <button onClick={() => onClickSend('Jingle')}>Jingle</button>
-      </div>
-      <div className='Bouton'>
-        <button onClick={() => onClickSend('Cirque')}>Cirque</button>
-      </div>
-    </div>  
+
+      <div className='Others'>
+        <h2>Others signals</h2>
+        <div className='bouton1'>
+          <button onClick={() => onClickSend('Stop @ entry price')}>STOP @ ENTRY PRICE</button>
+        </div> 
+        <div className='bouton2'>
+          <button onClick={()=>onClickSend('Cancel')}>Cancel READY Signal</button>
+        </div>
+        <div className='bouton3'>
+          <button onClick={() => onClickSend('Reinforce')}>Reinforce Position</button>
+        </div>
+        <div className='bouton4'>
+          <button onClick={() => onClickSend('Reinforced')}>Position has been Reinforced</button>
+        </div>
+        <div className='bouton5'>
+          <button onClick={() => onClickSend('GAMBLE')}>THIS IS GAMBLE</button>
+        </div>
+        <div className='bouton6'>
+          <button onClick={() => onClickSend('Jingle')}>Jingle</button>
+        </div>
+        <div className='bouton7'>
+          <button onClick={() => onClickSend('Cirque')}>Cirque</button>
+        </div>
+       </div>  
 
 
 
